@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #8b0000, #570000);
+}
+
+.contener {
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 600;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(135deg, #8b0000, #570000);
+}
+
+form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.user-details .input-box {
+    width: calc(50% - 15px);
+    margin-bottom: 15px;
+}
+
+.user-details .input-box .details {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.user-details .input-box input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+    border-color: #8b0000;
+}
+
+.gender-details {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.gender-details .gender-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.gender-details .category {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.gender-details .category label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gender-details .category .dot {
+    height: 18px;
+    width: 18px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked ~ .dot {
+    border-color: #d9d9d9;
+    background: #8b0000;
+}
+
+.gender-details .category .gender {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+input[type="submit"] {
+    height: 50px;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #8b0000, #570000);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(-135deg, #8b0000, #570000);
+}
+
+@media (max-width: 584px) {
+    .contener {
+        max-width: 100%;
+    }
+    .user-details .input-box {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .gender-details .category {
+        width: 100%;
+    }
+    .user-details {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+}
