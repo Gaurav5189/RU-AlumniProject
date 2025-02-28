@@ -31,7 +31,7 @@ body, html {
 
 /* Top Banner */
 .top-banner {
-  background-color: #00BCD4;
+  background-color: darkred;
   color: #fff;
   padding: 0.5rem 1rem;
 }
@@ -116,7 +116,7 @@ button a:hover {
 
 /* Hero Section */
 #hero {
-  background-image: url("IMG-01.jpg");
+  background-image: url("Images/IMG-01.jpg");
   height: 90vh;
   width: 100%;
   background-size: cover;
@@ -195,7 +195,7 @@ p {
   background-image: url();
   background-repeat: no-repeat;
   background-position: 20% 30%;
-  background-color: #041e42;
+  background-color: darkred;
   padding: 40px;
 }
 #newsletter p {
