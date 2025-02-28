@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registration From</title>
+    <title>Alumni Registration Form</title>
     <link rel="stylesheet" href="../Styles/style_resi.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Email</span>
-                        <input type="text" placeholder="Enter Your emailid" required>
+                        <input type="email" placeholder="Enter Your email Id" required>
                     </div>
                     <div class="input-box">
                         <span class="details">College ID</span>
@@ -29,53 +29,47 @@
                         <input type="text" placeholder="Enter Your Batch" required>
                     </div>
                     <div class="input-box">
-                        <span class="details">Graducated</span>
-                        <input type="text" placeholder="Enter Your Name" required>
+                        <span class="details">Graduation Year</span>
+                        <input type="text" placeholder="Enter Your Graduation Year" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Currently Connect To</span>
                         <input type="text" placeholder="Enter Your Company name" required>
                     </div>
                     <div class="input-box">
-                        <span class="details">Pic</span>
-                        <input type="text" placeholder="Enter Your Name" required>
+                        <span class="details">Profile Picture</span>
+                        <input type="file" accept="image/*" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Password</span>
-                        <input type="text" placeholder="Enter Your Password" required>
+                        <input type="password" placeholder="Enter Your Password" required>
                     </div>
-
                 </div>
+                
                 <div class="gender-details">
                     <span class="gender-title">Gender</span>
                     <div class="category">
-                        <label for="">
+                        <label for="male">
+                            <input type="radio" name="gender" id="male" value="male">
                             <span class="dot one"></span>
                             <span class="gender">Male</span>
-
                         </label>
-                        <label for="">
+                        <label for="female">
+                            <input type="radio" name="gender" id="female" value="female">
                             <span class="dot one"></span>
                             <span class="gender">Female</span>
-
                         </label>
-                        <label for="">
+                        <label for="prefer-not">
+                            <input type="radio" name="gender" id="prefer-not" value="prefer-not-to-say">
                             <span class="dot one"></span>
                             <span class="gender">Prefer Not To Say</span>
-
                         </label>
-                        
                     </div>
-
                 </div>
-                <div class="button1"></div>
-                <input type="submit" value=" Resiter ">
-                  
-
+                
+                <input type="submit" value="Register">
             </div>
-
         </form>
-
     </div>
 </body>
 </html>
