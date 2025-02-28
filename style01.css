@@ -1,149 +1,132 @@
-*{
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
-    padding: 0;
+body, html {
+  font-family: Arial, sans-serif;
+  /* Remove the flex display for the main layout */
+  min-height: 100vh;
+}
 
-    box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
-  body, html {
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Utility classes (similar to Tailwind) */
-  .flex {
-    display: flex;
-  }
-  .flex-col {
-    flex-direction: column;
-  }
-  .min-h-screen {
-    min-height: 100vh;
-  }
-  
-  /* Container */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  /* Top Banner */
-  .top-banner {
-    background-color: #00BCD4;
-    color: #fff;
-    padding: 0.5rem 1rem;
-  }
-  .top-banner-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .top-banner-left {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-  }
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-  }
-    /*.btn {
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 0.875rem;
-  }
-  .alumni-registration {
-    background-color: #fff;
-    color: #00BCD4;
-    transition: background-color 0.2s;
-  }
-  .alumni-registration:hover {
-    background-color: #f3f3f3;
-  } */
+/* Utility classes (similar to Tailwind) */
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.min-h-screen {
+  min-height: 100vh;
+}
 
-  button{
-    background-color: #ffffff;
-    border:none;
-    color: #00BCD4;
-    padding: 15px 32px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  button a{
-    color: black;
-    text-decoration: none;
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
-  }
-  button a:hover{
-    color: red;
-  }
-  
-  /* Navigation */
-  .header {
-    border-bottom: 1px solid #ddd;
-  }
-  .nav-container {
-    padding: 1rem 0;
-  }
-  .nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 2rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: inherit;
-  }
-  .logo-text-gray {
-    color: #333;
-  }
-  .logo-text-accent {
-    color: #00BCD4;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  .nav-link {
-    text-decoration: none;
-    color: #666;
-    transition: color 0.2s;
-  }
-  .nav-link:hover {
-    color: #333;
-  }
-  .nav-link.active {
-    color: #00BCD4;
-  }
-  
-  /* Hero Section */
+/* Top Banner */
+.top-banner {
+  background-color: #00BCD4;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+.top-banner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-banner-left {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
 
-  #hero{
-    
-    background-image: url("img/banner/ravenshaw-university-cuttack-orissa-banner.webp");
-    height: 90vh;
-    width:100% ;
-    /* background-repeat: no-repeat; */
-    background-size: cover;
-    background-position: top 25% right 0;
-    padding: 0 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+button {
+  background-color: #ffffff;
+  border: none;
+  color: #00BCD4;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+button a {
+  color: black;
+  text-decoration: none;
+}
+button a:hover {
+  color: red;
+}
+
+/* Navigation */
+.header {
+  border-bottom: 1px solid #ddd;
+}
+.nav-container {
+  padding: 1rem 0;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+}
+.logo-text-gray {
+  color: #333;
+}
+.logo-text-accent {
+  color: #00BCD4;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-link {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: #333;
+}
+.nav-link.active {
+  color: #00BCD4;
+}
+
+/* Hero Section */
+#hero {
+  background-image: url("IMG-01.jpg");
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: top 25% right 0;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .hero-content {
   position: relative;
@@ -153,88 +136,84 @@
   margin: 0 auto;
   color: #333;
 }
-#hero h1{
+#hero h1 {
   color: #f3f3f3;
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
-#hero p{
+#hero p {
   font-size: 1.5rem;
   color: #e9d8d8;
 }
 
- /* event */
-#event1{
+/* event */
+#event1 {
   text-align: center;
 }
-#event1 .pro-container{
+#event1 .pro-container {
   display: flex;
   justify-content: space-around;
-  padding-top:20px ;
-  flex-wrap: wrap; 
+  padding-top: 20px;
+  flex-wrap: wrap;
 }
-#event1 .pro{
- 
-  /* width: 90px; */
+#event1 .pro {
   min-width: 150px;
   padding: 10px 12px;
-
   border-radius: 25px;
   cursor: pointer;
-  /* box-shadow: 20px 20px 30px rgba(0,0,0,0.02); */
   margin: 15px 0;
   padding: 10px;
   transition: 0.2s ease;
-  position:relative ;
+  position: relative;
 }
-h2{
+#event1 .pro img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+h2 {
   font-size: 46px;
   line-height: 54px;
   color: #222;
-  
 }
-p{
+p {
   font-size: 16px;
   color: #222;
   margin: 15px 0 20px 0;
 }
-.section-e1{
+.section-e1 {
   padding: 60px 80px;
 }
 
-/* news letter */
-#newsletter{
+/* newsletter */
+#newsletter {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-image: url(img/banner/b14.png);
+  background-image: url();
   background-repeat: no-repeat;
   background-position: 20% 30%;
   background-color: #041e42;
   padding: 40px;
 }
-
-#newsletter p{
+#newsletter p {
   font-size: 14px;
   font-weight: 600;
   color: #ffffff;
-
 }
-#newsletter h1 span{
- 
+#newsletter h1 span {
   color: #ffbd27;
-
 }
-.newstext h1{
+.newstext h1 {
   color: white;
 }
-#newsletter .form{
+#newsletter .form {
   display: flex;
   width: 40%;
 }
-#newsletter input{
+#newsletter input {
   height: 3.125rem;
   padding: 0 1.25em;
   font-size: 14px;
@@ -245,142 +224,106 @@ p{
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-#newsletter button{
+#newsletter button {
   background-color: #088178;
   color: #fff;
-  white-space: nowarp;
+  white-space: nowrap;
   width: 20vh;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 /* footer */
-footer{
+footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 40px 80px;
 }
-footer .col{
+footer .col {
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   align-items: flex-start;
-  margin-bottom:20px ;
+  margin-bottom: 20px;
 }
-footer .logo{
-  margin-bottom:30px ;
+footer .logo {
+  margin-bottom: 30px;
+  max-width: 150px;
 }
-footer h4{
-  font-size: 14px ;
+footer h4 {
+  font-size: 14px;
   padding-bottom: 20px;
 }
-footer p{
-  font-size: 13px ;
+footer p {
+  font-size: 13px;
   margin: 0 0 8px 0;
- 
 }
-footer a{
-  font-size: 13px ;
+footer a {
+  font-size: 13px;
   text-decoration: none;
   color: #222;
   margin-bottom: 10px;
 }
-footer .follow{
+footer .follow {
   margin-top: 20px;
-
 }
-footer .follow i{
+footer .follow i {
   color: #465b52;
   padding-right: 4px;
   cursor: pointer;
-
 }
-footer .install .row img{
+footer .install .row img {
   border: 1px solid #088178;
   border-radius: 6px;
 }
-footer .install img{
+footer .install img {
   margin: 10px 0 15px 0;
-  /* top right bottom left */
 }
-
 footer .follow i:hover,
-footer a:hover{
+footer a:hover {
   color: #088178;
 }
-footer .copyright{
+footer .copyright {
   width: 100%;
   text-align: center;
 }
- 
 
-  /* #hero-section {
-    position: relative;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-  }
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  .hero-content {
-    position: relative;
-    text-align: center;
-    padding: 5rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    color: #333;
-  }
-  .hero-content h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  .hero-content p {
-    font-size: 1.5rem;
-    color: #666;
-  } */
-  
-  /* Hero Navigation Buttons */
-  .hero-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none;
-    padding: 0.5rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  .hero-nav-btn:hover {
-    background-color: #fff;
-  }
-  .left-btn {
-    left: 1rem;
-  }
-  .right-btn {
-    right: 1rem;
-  }
-  
-  /* Icon styling */
-  .icon {
-    width: 24px;
-    height: 24px;
-    stroke: currentColor;
-  }
- 
-  /* registration */
-  body{
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-  }
+/* Hero Navigation Buttons */
+.hero-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.hero-nav-btn:hover {
+  background-color: #fff;
+}
+.left-btn {
+  left: 1rem;
+}
+.right-btn {
+  right: 1rem;
+}
+
+/* Icon styling */
+.icon {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
+
+/* REMOVE THIS - Registration page specific styling */
+/* Apply this only to registration.html if needed, not globally */
+/*
+.registration-page {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+*/
