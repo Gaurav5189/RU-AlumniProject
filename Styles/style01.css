@@ -55,18 +55,18 @@ body, html {
 button {
   background-color: #ffffff;
   border: none;
-  color: #00BCD4;
+  color: darkred;
   padding: 15px 32px;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
 }
 button a {
-  color: black;
+  color: darkred;
   text-decoration: none;
 }
 button a:hover {
-  color: red;
+  color: orange;
 }
 
 /* Navigation */
@@ -92,10 +92,10 @@ button a:hover {
   color: inherit;
 }
 .logo-text-gray {
-  color: #333;
+  color: darkred; 
 }
 .logo-text-accent {
-  color: #00BCD4;
+  color: #FF8C00;
 }
 .nav-links {
   display: flex;
@@ -108,10 +108,10 @@ button a:hover {
   transition: color 0.2s;
 }
 .nav-link:hover {
-  color: #333;
+  color: #FF8C00;
 }
 .nav-link.active {
-  color: #00BCD4;
+  color: darkred;
 }
 
 /* Hero Section */
@@ -204,7 +204,7 @@ p {
   color: #ffffff;
 }
 #newsletter h1 span {
-  color: #ffbd27;
+  color: #FF8C00;
 }
 .newstext h1 {
   color: white;
@@ -225,7 +225,7 @@ p {
   border-bottom-right-radius: 0;
 }
 #newsletter button {
-  background-color: #088178;
+  background-color: #FF8C00;
   color: #fff;
   white-space: nowrap;
   width: 20vh;
@@ -253,6 +253,7 @@ footer .logo {
 footer h4 {
   font-size: 14px;
   padding-bottom: 20px;
+  color: darkred;
 }
 footer p {
   font-size: 13px;
@@ -273,7 +274,7 @@ footer .follow i {
   cursor: pointer;
 }
 footer .install .row img {
-  border: 1px solid #088178;
+  border: 1px solid darkred;
   border-radius: 6px;
 }
 footer .install img {
@@ -281,7 +282,7 @@ footer .install img {
 }
 footer .follow i:hover,
 footer a:hover {
-  color: #088178;
+  color: darkred;
 }
 footer .copyright {
   width: 100%;
