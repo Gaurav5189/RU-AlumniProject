@@ -13,16 +13,17 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background: linear-gradient(135deg, #8b0000, #570000);
+    background: #8b0000; /* Dark red background */
 }
 
 .contener {
     max-width: 700px;
     width: 100%;
-    background: #fff;
+    background: #fff; /* White form background */
     padding: 25px 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-top: 4px solid #ff8c00; /* Orange accent border */
 }
 
 .title {
@@ -30,6 +31,7 @@ body {
     font-weight: 600;
     position: relative;
     margin-bottom: 25px;
+    color: #8b0000; /* Dark red text */
 }
 
 .title::before {
@@ -39,7 +41,7 @@ body {
     bottom: -5px;
     height: 3px;
     width: 30px;
-    background: linear-gradient(135deg, #8b0000, #570000);
+    background: #ff8c00; /* Orange accent underline */
 }
 
 form .user-details {
@@ -58,7 +60,7 @@ form .user-details {
     display: block;
     font-weight: 500;
     margin-bottom: 5px;
-    color: #333;
+    color: #8b0000; /* Dark red label text */
 }
 
 .user-details .input-box input {
@@ -66,7 +68,7 @@ form .user-details {
     width: 100%;
     outline: none;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     padding-left: 15px;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -74,7 +76,8 @@ form .user-details {
 
 .user-details .input-box input:focus,
 .user-details .input-box input:valid {
-    border-color: #8b0000;
+    border-color: #ff8c00; /* Orange border on focus/valid */
+    box-shadow: 0 0 5px rgba(255, 140, 0, 0.3);
 }
 
 .gender-details {
@@ -86,6 +89,7 @@ form .user-details {
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 10px;
+    color: #8b0000; /* Dark red text */
 }
 
 .gender-details .category {
@@ -117,12 +121,13 @@ input[type="radio"] {
 
 input[type="radio"]:checked ~ .dot {
     border-color: #d9d9d9;
-    background: #8b0000;
+    background: #ff8c00; /* Orange radio button selected state */
 }
 
 .gender-details .category .gender {
     font-size: 16px;
     font-weight: 500;
+    color: #333;
 }
 
 input[type="submit"] {
@@ -135,14 +140,14 @@ input[type="submit"] {
     font-weight: 500;
     letter-spacing: 1px;
     border-radius: 5px;
-    background: linear-gradient(135deg, #8b0000, #570000);
+    background: #8b0000; /* Dark red button */
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 20px;
 }
 
 input[type="submit"]:hover {
-    background: linear-gradient(-135deg, #8b0000, #570000);
+    background: #ff8c00; /* Orange hover state */
 }
 
 @media (max-width: 584px) {
