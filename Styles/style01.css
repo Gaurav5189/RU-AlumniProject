@@ -290,7 +290,7 @@ footer .copyright {
 }
 
 /* Hero Navigation Buttons */
-.hero-nav-btn {
+/* .hero-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -309,14 +309,14 @@ footer .copyright {
 }
 .right-btn {
   right: 1rem;
-}
+} */
 
 /* Icon styling */
-.icon {
+/* .icon {
   width: 24px;
   height: 24px;
   stroke: currentColor;
-}
+} */
 
 /* REMOVE THIS - Registration page specific styling */
 /* Apply this only to registration.html if needed, not globally */
