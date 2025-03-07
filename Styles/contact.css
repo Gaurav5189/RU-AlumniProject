@@ -82,7 +82,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  /* .logo {
+  .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -90,13 +90,13 @@
     font-weight: 600;
     text-decoration: none;
     color: inherit;
-  } */
-  /* .logo-text-gray {
+  }
+   .logo-text-gray {
     color: darkred; 
-  } */
-  /* .logo-text-accent {
+  } 
+  .logo-text-accent {
     color: #FF8C00;
-  } */
+  }
   .nav-links {
     display: flex;
     align-items: center;
