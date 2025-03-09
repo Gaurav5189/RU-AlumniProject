@@ -18,7 +18,11 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Email</span>
-                        <input type="email" placeholder="Enter Your email Id" required>
+                        <input type="email" id="email-field" placeholder="Enter Your email Id" readonly required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Age</span>
+                        <input type="number" placeholder="Enter Your Age" min="18" max="100" required>
                     </div>
                     <div class="input-box">
                         <span class="details">College ID</span>
@@ -42,7 +46,11 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Password</span>
-                        <input type="password" placeholder="Enter Your Password" required>
+                        <input type="password" id="password" placeholder="Enter Your Password" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Confirm Password</span>
+                        <input type="password" id="confirm-password" placeholder="Confirm Your Password" required>
                     </div>
                 </div>
                 
@@ -71,5 +79,29 @@
             </div>
         </form>
     </div>
+
+    <script>
+        // Get the email parameter from URL and set it in the email field
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const emailParam = urlParams.get('email');
+            
+            if (emailParam) {
+                document.getElementById('email-field').value = emailParam;
+            }
+            
+            // Check if passwords match
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm-password');
+            const form = document.querySelector('form');
+            
+            form.addEventListener('submit', function(event) {
+                if (password.value !== confirmPassword.value) {
+                    alert("Passwords don't match!");
+                    event.preventDefault();
+                }
+            });
+        };
+    </script>
 </body>
 </html>

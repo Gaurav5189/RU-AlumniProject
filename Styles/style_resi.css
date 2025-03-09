@@ -74,10 +74,28 @@ form .user-details {
     transition: all 0.3s ease;
 }
 
+/* Style for readonly email field */
+.user-details .input-box input[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    border-left: 3px solid #ff8c00;
+}
+
 .user-details .input-box input:focus,
 .user-details .input-box input:valid {
     border-color: #ff8c00; /* Orange border on focus/valid */
     box-shadow: 0 0 5px rgba(255, 140, 0, 0.3);
+}
+
+/* Password match indicator */
+.password-match-indicator {
+    font-size: 12px;
+    color: #8b0000;
+    margin-top: 5px;
+}
+
+.password-match-indicator.valid {
+    color: green;
 }
 
 .gender-details {
