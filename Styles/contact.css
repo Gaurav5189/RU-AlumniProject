@@ -1,3 +1,12 @@
+:root {
+  --dark-red: #8B0000;
+  --darker-red: #650000;
+  --light-red: #FF4D4D;
+  --orange: #FF8C00;
+  --light-orange: #FFA940;
+  --off-white: #F5F5F5;
+  --grey: #333333;
+}
 * {
   margin: 0;
   padding: 0;
@@ -5,12 +14,7 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-:root {
-  --dark-red: darkred;
-  --orange: #FF8C00;
-  --text-gray: #666;
-  --text-dark: #222;
-}
+
 
 body, html {
   font-family: Arial, sans-serif;
@@ -58,29 +62,27 @@ body, html {
   font-size: 0.875rem;
 }
 .icon {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
+  width: 18px;
+  height: 18px;
 }
 
 button {
   background-color: #ffffff;
   border: none;
   color: var(--dark-red);
-  padding: 8px 16px;
+  padding: 0.5rem 1.5rem;
   text-align: center;
-  font-size: 14px;
+  font-size: 1rem;
   cursor: pointer;
   border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
 }
 button a {
   color: var(--dark-red);
   text-decoration: none;
-  font-weight: 600;
 }
 button:hover {
-  background-color: #f0f0f0;
+  background-color: var(--off-white);
 }
 button a:hover {
   color: var(--orange);
@@ -89,7 +91,7 @@ button a:hover {
 /* Navigation */
 .header {
   border-bottom: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); */
 }
 .nav-container {
   padding: 1rem 0;
@@ -104,7 +106,7 @@ button a:hover {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   text-decoration: none;
   color: inherit;
@@ -133,6 +135,8 @@ button a:hover {
   color: var(--dark-red);
   font-weight: bold;
 }
+
+
 
 /* Contact Section */
 #event1 {
