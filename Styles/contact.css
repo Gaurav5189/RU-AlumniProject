@@ -159,30 +159,11 @@ p {
   padding: 60px 80px;
 }
 
-/* Contact Form Section */
-.contact-form-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
 
-.contact-form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
 
-.form-group {
-  margin-bottom: 1rem;
-}
 
-.form-group.full {
-  grid-column: span 2;
-}
 
+<<<<<<< HEAD
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
@@ -220,6 +201,10 @@ p {
 }
 
 /* Newsletter */
+=======
+
+/* Footer */
+>>>>>>> 2aa51eb0a601d0e0ec0c294b07f89c5cde56731e
 footer {
   background-color: var(--dark-red);
   color: white;
