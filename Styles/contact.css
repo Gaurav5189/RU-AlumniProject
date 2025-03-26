@@ -220,38 +220,29 @@ p {
 }
 
 /* Newsletter */
-#newsletter {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  background-color: var(--dark-red);
-  padding: 40px;
-}
-#newsletter p {
-  font-size: 14px;
-  font-weight: 400;
-  color: #ffffff;
-  max-width: 600px;
-}
-#newsletter h1 {
-  color: white;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-#newsletter h1 span {
-  color: var(--orange);
-}
-#newsletter .form {
-  display: flex;
-  width: 40%;
-}
-
-/* Footer */
 footer {
   background-color: var(--dark-red);
   color: white;
   padding: 3rem 0 1rem;
+}
+
+.newstext {
+  margin-bottom: 2rem;
+}
+
+.newstext h1 {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.newstext h1 span {
+  color: var(--orange);
+}
+
+.newstext p {
+  color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 .footer-content {
@@ -306,16 +297,17 @@ footer {
   width: 36px;
   height: 36px;
   background-color: rgba(255, 255, 255, 0.1);
-  color: #222;
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .social-icons a:hover {
   background-color: var(--orange);
+  color: white;
 }
 
 .copyright {
@@ -326,21 +318,7 @@ footer {
   color: #aaa;
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-  .section-e1 {
-    padding: 40px;
-  }
-  
-  .nav-links {
-    gap: 1rem;
-  }
-  
-  .logo {
-    font-size: 1.2rem;
-  }
-}
-
+/* Responsive styles */
 @media (max-width: 768px) {
   .top-banner-container {
     flex-direction: column;
@@ -357,37 +335,48 @@ footer {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 1rem;
   }
   
   .section-e1 {
-    padding: 30px 20px;
+    padding: 2rem 1.25rem;
   }
   
-  .contact-form {
-    grid-template-columns: 1fr;
+  h2 {
+    font-size: 2rem;
   }
   
-  .form-group.full {
-    grid-column: span 1;
-  }
-  
-  #newsletter {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  #newsletter .form {
-    width: 100%;
-    margin-top: 1rem;
+  .social-icons {
+    justify-content: center;
   }
   
   .footer-content {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .top-banner-left {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 480px) {
   .footer-content {
     grid-template-columns: 1fr;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
   }
 }
