@@ -163,7 +163,6 @@ p {
 
 
 
-<<<<<<< HEAD
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
@@ -201,10 +200,6 @@ p {
 }
 
 /* Newsletter */
-=======
-
-/* Footer */
->>>>>>> 2aa51eb0a601d0e0ec0c294b07f89c5cde56731e
 footer {
   background-color: var(--dark-red);
   color: white;
