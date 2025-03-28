@@ -204,7 +204,6 @@
     </div>
 
     <script>
-        // Existing JavaScript remains the same as in the original event.html
         document.addEventListener('DOMContentLoaded', function() {
             // Sample events data
             const eventsData = [
@@ -219,11 +218,183 @@
                     type: "networking",
                     month: "mar"
                 },
-                // ... rest of the events data remains the same
+                {
+                    id: 2,
+                    title: "Class of 2015 Reunion",
+                    date: "April 10, 2025",
+                    time: "3:00 PM - 10:00 PM",
+                    location: "Main Campus Quad",
+                    description: "Celebrate a decade of achievements with your fellow classmates at this special reunion event.",
+                    image: "/api/placeholder/400/250",
+                    type: "reunion",
+                    month: "apr"
+                },
+                {
+                    id: 3,
+                    title: "Spring Charity Golf Tournament",
+                    date: "May 5, 2025",
+                    time: "8:00 AM - 2:00 PM",
+                    location: "Green Valley Golf Club",
+                    description: "Join us for a day of golf while raising funds for student scholarships. All skill levels welcome!",
+                    image: "/api/placeholder/400/250",
+                    type: "fundraising",
+                    month: "may"
+                },
+                {
+                    id: 4,
+                    title: "Summer Family Picnic",
+                    date: "June 20, 2025",
+                    time: "11:00 AM - 4:00 PM",
+                    location: "Riverside Park",
+                    description: "Bring your family for a day of fun activities, food, and reconnecting with the alumni community.",
+                    image: "/api/placeholder/400/250",
+                    type: "social",
+                    month: "jun"
+                },
+                {
+                    id: 5,
+                    title: "Distinguished Alumni Lecture Series",
+                    date: "April 25, 2025",
+                    time: "5:30 PM - 7:30 PM",
+                    location: "University Auditorium",
+                    description: "Hear inspiring stories and insights from our most accomplished alumni across different fields.",
+                    image: "/api/placeholder/400/250",
+                    type: "academic",
+                    month: "apr"
+                },
+                {
+                    id: 6,
+                    title: "Alumni Basketball Tournament",
+                    date: "March 28, 2025",
+                    time: "9:00 AM - 6:00 PM",
+                    location: "University Sports Complex",
+                    description: "Relive your glory days on the court at our annual alumni basketball tournament. Teams organized by graduation year.",
+                    image: "/api/placeholder/400/250",
+                    type: "sports",
+                    month: "mar"
+                }
             ];
             
-            // Rest of the JavaScript functions remain the same
-            // (displayEvents, filterEvents, updateCountdown, etc.)
+            // Display initial events
+            displayEvents(eventsData);
+            
+            // Set up event listeners for filtering
+            document.getElementById('event-type').addEventListener('change', filterEvents);
+            document.getElementById('event-month').addEventListener('change', filterEvents);
+            document.getElementById('search-events').addEventListener('input', filterEvents);
+            
+            // Load more events button (simulated)
+            let currentPage = 1;
+            document.getElementById('load-more-btn').addEventListener('click', function() {
+                // In a real application, you would fetch the next page of events from a server
+                // For this example, we'll just duplicate our existing events with new IDs
+                currentPage++;
+                const newEvents = eventsData.map(event => ({
+                    ...event,
+                    id: event.id + (eventsData.length * currentPage),
+                    title: `${event.title} ${currentPage}`
+                }));
+                
+                displayEvents(newEvents, true);
+                
+                // After a certain number of pages, disable the load more button
+                if (currentPage >= 3) {
+                    this.disabled = true;
+                    this.textContent = 'No More Events';
+                }
+            });
+            
+            // Update countdown timer
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Function to display events
+            function displayEvents(events, append = false) {
+                const container = document.getElementById('events-container');
+                
+                if (!append) {
+                    container.innerHTML = '';
+                }
+                
+                events.forEach(event => {
+                    const eventCard = document.createElement('div');
+                    eventCard.className = 'event-card';
+                    eventCard.dataset.type = event.type;
+                    eventCard.dataset.month = event.month;
+                    
+                    eventCard.innerHTML = `
+                        <div class="event-image">
+                            <img src="${event.image}" alt="${event.title}">
+                        </div>
+                        <div class="event-date">${event.date}</div>
+                        <div class="event-content">
+                            <h3>${event.title}</h3>
+                            <p>${event.description}</p>
+                            <div class="event-details">
+                                <i>🕒</i> ${event.time}
+                            </div>
+                            <div class="event-details">
+                                <i>📍</i> ${event.location}
+                            </div>
+                            <div class="event-actions">
+                                <a href="#" class="btn">Learn More</a>
+                                <a href="#" class="btn btn-orange">Register</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(eventCard);
+                });
+            }
+            
+            // Function to filter events
+            function filterEvents() {
+                const typeFilter = document.getElementById('event-type').value;
+                const monthFilter = document.getElementById('event-month').value;
+                const searchText = document.getElementById('search-events').value.toLowerCase();
+                
+                const filteredEvents = eventsData.filter(event => {
+                    // Type filter
+                    const typeMatch = typeFilter === 'all' || event.type === typeFilter;
+                    
+                    // Month filter
+                    const monthMatch = monthFilter === 'all' || event.month === monthFilter;
+                    
+                    // Search filter
+                    const searchMatch = event.title.toLowerCase().includes(searchText) || 
+                                        event.description.toLowerCase().includes(searchText) ||
+                                        event.location.toLowerCase().includes(searchText);
+                    
+                    return typeMatch && monthMatch && searchMatch;
+                });
+                
+                displayEvents(filteredEvents);
+                
+                // Reset load more button
+                document.getElementById('load-more-btn').disabled = false;
+                document.getElementById('load-more-btn').textContent = 'Load More Events';
+                currentPage = 1;
+            }
+            
+            // Function to update countdown timer
+            function updateCountdown() {
+                // Set the target date (September 15, 2025)
+                const targetDate = new Date('September 15, 2025 19:00:00').getTime();
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+                
+                // Time calculations
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                // Update the countdown numbers
+                document.getElementById('count-days').textContent = days;
+                document.getElementById('count-hours').textContent = hours;
+                document.getElementById('count-mins').textContent = minutes;
+                document.getElementById('count-secs').textContent = seconds;
+            }
         });
     </script>
 </body>
