@@ -12,33 +12,98 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-body {
-    background-color: var(--off-white);
-    color: var(--grey);
-    line-height: 1.6;
+body, html {
+    min-height: 100vh;
 }
 
-header {
+/* Utility classes */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+/* Top Banner */
+.top-banner {
     background-color: var(--dark-red);
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    padding: 0.5rem 1rem;
+}
+
+.top-banner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-banner-left {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+}
+
+button {
+    background-color: #ffffff;
+    border: none;
+    color: var(--dark-red);
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--off-white);
+}
+
+button a {
+    color: var(--dark-red);
+    text-decoration: none;
+}
+
+button a:hover {
+    color: var(--orange);
+}
+
+/* Navigation */
+.header {
+    border-bottom: 1px solid #ddd;
     position: sticky;
     top: 0;
+    background-color: white;
     z-index: 100;
 }
 
-.container {
-    width: 85%;
-    max-width: 1200px;
-    margin: 0 auto;
+.nav-container {
+    padding: 1rem 0;
 }
 
-.header-content {
+.nav {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -46,33 +111,62 @@ header {
 .logo {
     display: flex;
     align-items: center;
-}
-
-.logo img {
-    height: 50px;
-    margin-right: 1rem;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li {
-    margin-left: 2rem;
-}
-
-nav ul li a {
-    color: white;
+    gap: 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
     text-decoration: none;
+    color: inherit;
+}
+
+.logo-text-gray {
+    color: var(--dark-red);
+}
+
+.logo-text-accent {
+    color: var(--orange);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    transition: color 0.2s;
     font-weight: 500;
-    transition: color 0.3s;
 }
 
-nav ul li a:hover {
-    color: var(--light-orange);
+.nav-link:hover {
+    color: var(--orange);
 }
 
+.nav-link.active {
+    color: var(--dark-red);
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: var(--orange);
+    bottom: -4px;
+    left: 25%;
+}
+
+/* Container */
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Events Banner */
 .events-banner {
     background: linear-gradient(rgba(139, 0, 0, 0.85), rgba(139, 0, 0, 0.85)), url('/api/placeholder/1200/400') center/cover no-repeat;
     color: white;
@@ -92,6 +186,7 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
+/* Filter Container */
 .filter-container {
     background-color: white;
     padding: 1.5rem;
@@ -136,6 +231,7 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
+/* Events Grid */
 .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -290,10 +386,30 @@ nav ul li a:hover {
     text-transform: uppercase;
 }
 
+/* Footer */
 footer {
     background-color: var(--dark-red);
     color: white;
     padding: 3rem 0 1rem;
+}
+
+.newstext {
+    margin-bottom: 2rem;
+}
+
+.newstext h1 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.newstext h1 span {
+    color: var(--orange);
+}
+
+.newstext p {
+    color: #ffffff;
+    margin-bottom: 1rem;
 }
 
 .footer-content {
@@ -348,15 +464,17 @@ footer {
     width: 36px;
     height: 36px;
     background-color: rgba(255, 255, 255, 0.1);
+    color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .social-icons a:hover {
     background-color: var(--orange);
+    color: white;
 }
 
 .copyright {
@@ -367,6 +485,7 @@ footer {
     color: #aaa;
 }
 
+/* Responsive styles */
 @media (max-width: 992px) {
     .featured-event {
         grid-template-columns: 1fr;
@@ -378,40 +497,59 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .header-content {
+    .top-banner-container {
         flex-direction: column;
-        text-align: center;
+        gap: 1rem;
+        padding: 0.5rem 0;
     }
     
-    .logo {
-        margin-bottom: 1rem;
+    .nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        width: 100%;
         justify-content: center;
-    }
-    
-    nav ul {
-        justify-content: center;
-    }
-    
-    nav ul li {
-        margin: 0 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
     
     .events-banner h1 {
         font-size: 2.5rem;
     }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .top-banner-left {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
 }
 
-@media (max-width: 576px) {
-    .events-grid {
+@media (max-width: 480px) {
+    .footer-content {
         grid-template-columns: 1fr;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
     }
     
     .events-banner h1 {
         font-size: 2rem;
-    }
-    
-    .countdown {
-        flex-wrap: wrap;
-        justify-content: center;
     }
 }
