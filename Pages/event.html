@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Association - Events</title>
+    <link rel="stylesheet" href="../Styles/event.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/api/placeholder/50/50" alt="Alumni Logo" />
+                    <h1>Alumni Association</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Alumni Stories</a></li>
+                        <li><a href="#">Donate</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="events-banner">
+        <div class="container">
+            <h1>Alumni Events</h1>
+            <p>Connect with fellow alumni, celebrate our shared traditions, and create new memories at our upcoming events. From homecoming to networking nights, there's something for everyone.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="filter-container">
+            <div class="filter-options">
+                <select class="filter-select" id="event-type">
+                    <option value="all">All Event Types</option>
+                    <option value="networking">Networking</option>
+                    <option value="reunion">Reunion</option>
+                    <option value="social">Social Gathering</option>
+                    <option value="fundraising">Fundraising</option>
+                    <option value="sports">Sports & Recreation</option>
+                    <option value="academic">Academic</option>
+                </select>
+                <select class="filter-select" id="event-month">
+                    <option value="all">All Months</option>
+                    <option value="jan">January</option>
+                    <option value="feb">February</option>
+                    <option value="mar">March</option>
+                    <option value="apr">April</option>
+                    <option value="may">May</option>
+                    <option value="jun">June</option>
+                    <option value="jul">July</option>
+                    <option value="aug">August</option>
+                    <option value="sep">September</option>
+                    <option value="oct">October</option>
+                    <option value="nov">November</option>
+                    <option value="dec">December</option>
+                </select>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search events..." id="search-events">
+                    <button type="button">🔍</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-event">
+            <div class="featured-content">
+                <h2>Annual Homecoming Gala</h2>
+                <p>Join us for our most prestigious event of the year. Reconnect with classmates, enjoy fine dining, and celebrate the achievements of our distinguished alumni.</p>
+                <div class="event-details">
+                    <i>📅</i> September 15, 2025 | 7:00 PM
+                </div>
+                <div class="event-details">
+                    <i>📍</i> Grand Alumni Hall
+                </div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="count-days">198</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="count-hours">12</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="count-mins">24</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="count-secs">36</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-orange">Register Now</a>
+            </div>
+            <div class="featured-image">
+                <img src="/api/placeholder/500/300" alt="Homecoming Gala" />
+            </div>
+        </div>
+
+        <div class="events-grid" id="events-container">
+            <!-- Event cards will be dynamically generated here -->
+        </div>
+
+        <div class="load-more">
+            <button class="btn" id="load-more-btn">Load More Events</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Alumni Stories</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Alumni Services</h3>
+                    <ul>
+                        <li><a href="#">Alumni Directory</a></li>
+                        <li><a href="#">Events Calendar</a></li>
+                        <li><a href="#">Mentorship Program</a></li>
+                        <li><a href="#">Career Resources</a></li>
+                        <li><a href="#">Benefits & Discounts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Get Involved</h3>
+                    <ul>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Donate</a></li>
+                        <li><a href="#">Attend Events</a></li>
+                        <li><a href="#">Class Reunions</a></li>
+                        <li><a href="#">Regional Clubs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Alumni Association Office</li>
+                        <li>123 University Avenue</li>
+                        <li>College Town, CT 12345</li>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Email: alumni@college.edu</li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>TW</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>LI</span></a>
+                        <a href="#"><span>YT</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Alumni Association. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample events data
+            const eventsData = [
+                {
+                    id: 1,
+                    title: "Alumni Networking Mixer",
+                    date: "March 15, 2025",
+                    time: "6:30 PM - 9:00 PM",
+                    location: "Downtown Business Hub",
+                    description: "Connect with alumni professionals in various industries for an evening of networking and career opportunities.",
+                    image: "/api/placeholder/400/250",
+                    type: "networking",
+                    month: "mar"
+                },
+                {
+                    id: 2,
+                    title: "Class of 2015 Reunion",
+                    date: "April 10, 2025",
+                    time: "3:00 PM - 10:00 PM",
+                    location: "Main Campus Quad",
+                    description: "Celebrate a decade of achievements with your fellow classmates at this special reunion event.",
+                    image: "/api/placeholder/400/250",
+                    type: "reunion",
+                    month: "apr"
+                },
+                {
+                    id: 3,
+                    title: "Spring Charity Golf Tournament",
+                    date: "May 5, 2025",
+                    time: "8:00 AM - 2:00 PM",
+                    location: "Green Valley Golf Club",
+                    description: "Join us for a day of golf while raising funds for student scholarships. All skill levels welcome!",
+                    image: "/api/placeholder/400/250",
+                    type: "fundraising",
+                    month: "may"
+                },
+                {
+                    id: 4,
+                    title: "Summer Family Picnic",
+                    date: "June 20, 2025",
+                    time: "11:00 AM - 4:00 PM",
+                    location: "Riverside Park",
+                    description: "Bring your family for a day of fun activities, food, and reconnecting with the alumni community.",
+                    image: "/api/placeholder/400/250",
+                    type: "social",
+                    month: "jun"
+                },
+                {
+                    id: 5,
+                    title: "Distinguished Alumni Lecture Series",
+                    date: "April 25, 2025",
+                    time: "5:30 PM - 7:30 PM",
+                    location: "University Auditorium",
+                    description: "Hear inspiring stories and insights from our most accomplished alumni across different fields.",
+                    image: "/api/placeholder/400/250",
+                    type: "academic",
+                    month: "apr"
+                },
+                {
+                    id: 6,
+                    title: "Alumni Basketball Tournament",
+                    date: "March 28, 2025",
+                    time: "9:00 AM - 6:00 PM",
+                    location: "University Sports Complex",
+                    description: "Relive your glory days on the court at our annual alumni basketball tournament. Teams organized by graduation year.",
+                    image: "/api/placeholder/400/250",
+                    type: "sports",
+                    month: "mar"
+                }
+            ];
+            
+            // Display initial events
+            displayEvents(eventsData);
+            
+            // Set up event listeners for filtering
+            document.getElementById('event-type').addEventListener('change', filterEvents);
+            document.getElementById('event-month').addEventListener('change', filterEvents);
+            document.getElementById('search-events').addEventListener('input', filterEvents);
+            
+            // Load more events button (simulated)
+            let currentPage = 1;
+            document.getElementById('load-more-btn').addEventListener('click', function() {
+                // In a real application, you would fetch the next page of events from a server
+                // For this example, we'll just duplicate our existing events with new IDs
+                currentPage++;
+                const newEvents = eventsData.map(event => ({
+                    ...event,
+                    id: event.id + (eventsData.length * currentPage),
+                    title: `${event.title} ${currentPage}`
+                }));
+                
+                displayEvents(newEvents, true);
+                
+                // After a certain number of pages, disable the load more button
+                if (currentPage >= 3) {
+                    this.disabled = true;
+                    this.textContent = 'No More Events';
+                }
+            });
+            
+            // Update countdown timer
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Function to display events
+            function displayEvents(events, append = false) {
+                const container = document.getElementById('events-container');
+                
+                if (!append) {
+                    container.innerHTML = '';
+                }
+                
+                events.forEach(event => {
+                    const eventCard = document.createElement('div');
+                    eventCard.className = 'event-card';
+                    eventCard.dataset.type = event.type;
+                    eventCard.dataset.month = event.month;
+                    
+                    eventCard.innerHTML = `
+                        <div class="event-image">
+                            <img src="${event.image}" alt="${event.title}">
+                        </div>
+                        <div class="event-date">${event.date}</div>
+                        <div class="event-content">
+                            <h3>${event.title}</h3>
+                            <p>${event.description}</p>
+                            <div class="event-details">
+                                <i>🕒</i> ${event.time}
+                            </div>
+                            <div class="event-details">
+                                <i>📍</i> ${event.location}
+                            </div>
+                            <div class="event-actions">
+                                <a href="#" class="btn">Learn More</a>
+                                <a href="#" class="btn btn-orange">Register</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(eventCard);
+                });
+            }
+            
+            // Function to filter events
+            function filterEvents() {
+                const typeFilter = document.getElementById('event-type').value;
+                const monthFilter = document.getElementById('event-month').value;
+                const searchText = document.getElementById('search-events').value.toLowerCase();
+                
+                const filteredEvents = eventsData.filter(event => {
+                    // Type filter
+                    const typeMatch = typeFilter === 'all' || event.type === typeFilter;
+                    
+                    // Month filter
+                    const monthMatch = monthFilter === 'all' || event.month === monthFilter;
+                    
+                    // Search filter
+                    const searchMatch = event.title.toLowerCase().includes(searchText) || 
+                                        event.description.toLowerCase().includes(searchText) ||
+                                        event.location.toLowerCase().includes(searchText);
+                    
+                    return typeMatch && monthMatch && searchMatch;
+                });
+                
+                displayEvents(filteredEvents);
+                
+                // Reset load more button
+                document.getElementById('load-more-btn').disabled = false;
+                document.getElementById('load-more-btn').textContent = 'Load More Events';
+                currentPage = 1;
+            }
+            
+            // Function to update countdown timer
+            function updateCountdown() {
+                // Set the target date (September 15, 2025)
+                const targetDate = new Date('September 15, 2025 19:00:00').getTime();
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+                
+                // Time calculations
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                // Update the countdown numbers
+                document.getElementById('count-days').textContent = days;
+                document.getElementById('count-hours').textContent = hours;
+                document.getElementById('count-mins').textContent = minutes;
+                document.getElementById('count-secs').textContent = seconds;
+            }
+        });
+    </script>
+</body>
+</html>
