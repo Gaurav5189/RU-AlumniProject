@@ -1,36 +1,140 @@
-# Ravenshaw University Alumni Website
+<p align="center">
+  <img src="banner.png" alt="Ravenshaw University Alumni Website Banner" width="600">
+</p>
 
-## Description
-The Ravenshaw University Alumni Website is a platform designed to connect alumni of Ravenshaw University with each other and with the university. It provides a space for alumni to network, share opportunities, and stay updated on university events.
+<h1 align="center">Ravenshaw University Alumni Website 🌐</h1>
 
-## Features
-- **Home Page:** The central hub where users can navigate to different sections of the website.
-- **Contact Page:** Provides contact information for the university or the alumni association.
-- **Event Page:** Lists upcoming and past events organized by the university or the alumni association.
-- **About Page:** Contains information about the alumni association, its mission, and history.
-- **Alumni Signup/Login:** Allows alumni to create an account or log in to access personalized features.
-- **Admin Login:** A separate login for administrators to manage the website.
+<p align="center">
+  <a href="https://github.com/your-repo/license"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://github.com/your-repo"><img src="https://img.shields.io/badge/language-Python-green.svg" alt="Language: Python"></a>
+  <a href="https://github.com/your-repo"><img src="https://img.shields.io/badge/framework-Django-orange.svg" alt="Framework: Django"></a>
+  <a href="https://github.com/your-repo/stargazers"><img src="https://img.shields.io/github/stars/your-repo.svg?style=social" alt="GitHub Stars"></a>
+  <a href="https://github.com/your-repo/network/members"><img src="https://img.shields.io/github/forks/your-repo.svg?style=social" alt="GitHub Forks"></a>
+  <a href="https://github.com/your-repo/actions"><img src="https://github.com/your-repo/workflows/CI/badge.svg" alt="CI Status"></a>
+</p>
 
-Once logged in, alumni have access to their profile dashboard, which includes:
-- **Events:** View upcoming and past events, with details and registration options.
-- **Alumni Network:** See the full network of Ravenshaw University alumni, possibly with search and filter options.
-- **Profile Editing:** Update personal information, professional details, and contact information.
-- **Job Postings:** Post job opportunities for other alumni and view jobs posted by others.
+<p align="center">
+  <strong>A platform to connect Ravenshaw University alumni, share opportunities, and stay updated on university events.</strong>
+</p>
 
-## Usage
-1. **Visiting the Website:** Access the website through the provided URL.
-2. **Navigating the Home Page:** From the home page, you can click on links to go to the Contact, Event, About, Alumni Signup/Login, or Admin Login pages.
-3. **Signing Up as an Alumni:**
-   - Click on "Alumni Signup" and fill in the required information to create an account.
-   - After signing up, you will receive a confirmation email to verify your account.
-4. **Logging In as an Alumni:**
-   - Click on "Alumni Login" and enter your credentials.
-   - Upon successful login, you will be redirected to your profile dashboard.
-5. **Using the Profile Dashboard:**
-   - **View Events:** See a list of upcoming and past events. Click on an event to see more details or to register.
-   - **Alumni Network:** Browse or search for other alumni. You might be able to view their profiles or connect with them.
-   - **Edit Profile:** Update your personal and professional information.
-   - **Post Jobs:** Share job opportunities with the alumni community. You can also view jobs posted by others.
-6. **Admin Features:** (For administrators only)
-   - Log in using the Admin Login page.
-   - Manage user accounts, events, job postings, and other website content.
+<p align="center">
+  <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Animated Networking GIF" width="200">
+</p>
+
+---
+
+## 🚀 Features
+
+![Features Animation](https://media.giphy.com/media/l0MYt5jPRARFEwXDi/giphy.gif)
+
+- **Home Page:** Central hub for navigation to other sections.
+- **Contact Page:** University and alumni association contact details.
+- **Event Page:** Upcoming and past events with registration options.
+- **About Page:** Information about the alumni association and its mission.
+- **Alumni Signup/Login:** Create an account or log in to access personalized features.
+- **Admin Login:** Manage the website as an administrator.
+
+Once logged in, alumni can:
+- 📅 View and register for events.
+- 👥 Explore the full alumni network.
+- ✏️ Edit their profile information.
+- 💼 Post and view job opportunities.
+
+---
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Usage](#-usage)
+- [Installation](#-installation)
+- [Contributing](#-contributing)
+- [Project Progress](#-project-progress)
+- [License](#-license)
+- [Contributors](#-contributors)
+
+---
+
+## 🛠️ Usage
+
+![Usage Animation](https://media.giphy.com/media/26BRBKqUiq1ZWoo80/giphy.gif)
+
+1. **Visit the Website:** Access via the provided URL.
+2. **Navigate the Home Page:** Links to Contact, Event, About, Alumni Signup/Login, and Admin Login.
+3. **Alumni Signup:**
+   - Click "Alumni Signup" and fill in the form.
+   - Confirm your account via email.
+4. **Alumni Login:**
+   - Click "Alumni Login" and enter credentials.
+   - Access your profile dashboard.
+5. **Profile Dashboard:**
+   - **Events:** View and register for events.
+   - **Alumni Network:** Browse and connect with other alumni.
+   - **Edit Profile:** Update personal and professional details.
+   - **Job Postings:** Post and view job opportunities.
+6. **Admin Features:**
+   - Log in via Admin Login to manage users, events, and content.
+
+---
+
+## 🔧 Installation
+
+![Installation Animation](https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif)
+
+To set up the project locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd your-repo
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the development server:
+   ```bash
+   python manage.py runserver
+   ```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+---
+
+## 📈 Project Progress
+
+![Progress Bar](https://progress-bar.dev/75/?title=Project%20Completion&width=200)
+
+- **Core Features:** 100% complete
+- **UI Design:** 80% complete
+- **Testing:** 50% complete
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Contributors
+
+- [Your Name](https://github.com/your-profile) - Initial work
+
+---
+
+<p align="center">
+  <strong>Built with ❤️ by the Ravenshaw University Alumni Community</strong>
+</p>
