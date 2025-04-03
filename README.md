@@ -72,21 +72,19 @@ Founded in 1868, Ravenshaw University has a rich legacy of academic excellence a
 
 <div align="center">
   
-  ![Frontend](https://img.shields.io/badge/Frontend-React-blue)
-  ![Backend](https://img.shields.io/badge/Backend-Node.js-green)
-  ![Database](https://img.shields.io/badge/Database-MongoDB-green)
-  ![Authentication](https://img.shields.io/badge/Authentication-JWT-yellow)
-  ![CSS Framework](https://img.shields.io/badge/CSS-Tailwind-blue)
-  ![Hosting](https://img.shields.io/badge/Hosting-AWS-orange)
+  ![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-blue)
+  ![Backend](https://img.shields.io/badge/Backend-Django-green)
+  ![Database](https://img.shields.io/badge/Database-SQLite3-green)
+  ![Hosting](https://img.shields.io/badge/Hosting-GitHub%20Pages-orange)
   
 </div>
 
 ## 📥 Installation <a name="installation"></a>
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB
-- npm or yarn package manager
+- Python 3.8 or higher
+- Django
+- Git
 
 ### Steps
 
@@ -97,15 +95,21 @@ git clone https://github.com/your-username/ravenshaw-alumni-portal.git
 # Navigate to the project directory
 cd ravenshaw-alumni-portal
 
-# Install dependencies
-npm install
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your configuration
+# Install dependencies
+pip install -r requirements.txt
+
+# Run migrations
+python manage.py migrate
+
+# Create a superuser (admin)
+python manage.py createsuperuser
 
 # Run the development server
-npm run dev
+python manage.py runserver
 ```
 
 ## 📱 Usage <a name="usage"></a>
@@ -130,34 +134,52 @@ npm run dev
 
 ```
 ravenshaw-alumni-portal/
-├── client/                  # Frontend React application
-│   ├── public/              # Static assets
-│   ├── src/                 # Source files
-│   │   ├── components/      # Reusable UI components
-│   │   ├── pages/           # Page components
-│   │   ├── context/         # React context providers
-│   │   ├── utils/           # Utility functions
-│   │   └── styles/          # CSS/SCSS files
-├── server/                  # Backend Node.js application
-│   ├── controllers/         # Request handlers
-│   ├── models/              # Database models
-│   ├── routes/              # API routes
-│   ├── middleware/          # Custom middleware
-│   └── utils/               # Utility functions
-├── .env.example             # Example environment variables
+├── alumni_portal/           # Django project directory
+│   ├── settings.py          # Project settings
+│   ├── urls.py              # URL configurations
+│   ├── wsgi.py              # WSGI application
+│   └── asgi.py              # ASGI application
+├── alumni/                  # Django app directory
+│   ├── migrations/          # Database migrations
+│   ├── templates/           # HTML templates
+│   │   └── alumni/          # Alumni-specific templates
+│   ├── static/              # Static files (CSS, JS, images)
+│   │   ├── css/             # Stylesheets
+│   │   ├── js/              # JavaScript files
+│   │   └── images/          # Image assets
+│   ├── models.py            # Database models
+│   ├── views.py             # View functions
+│   ├── forms.py             # Form definitions
+│   ├── admin.py             # Admin configurations
+│   ├── urls.py              # App URL patterns
+│   └── tests.py             # Unit tests
+├── events/                  # Events app (if separated)
+│   ├── models.py
+│   ├── views.py
+│   └── ...
+├── jobs/                    # Jobs app (if separated)
+│   ├── models.py
+│   ├── views.py
+│   └── ...
+├── manage.py                # Django management script
+├── requirements.txt         # Python dependencies
+├── .gitignore               # Git ignore file
 ├── README.md                # Project documentation
-└── package.json             # Project dependencies
+└── db.sqlite3               # SQLite database file
 ```
 
 ## 📚 API Documentation <a name="api-documentation"></a>
 
-The API documentation is available at `/api/docs` once the server is running. It provides detailed information about:
+The Django admin interface provides insight into the application's data models and relationships. Once logged in as an admin user, you can access it at `/admin`. 
 
-- Authentication endpoints
-- User management
-- Event operations
-- Job posting functionality
-- Profile management
+Key endpoints include:
+
+- `/accounts/login/` - Alumni login
+- `/accounts/register/` - Alumni registration
+- `/profile/` - Profile management
+- `/events/` - Event listings and details
+- `/network/` - Alumni network browsing
+- `/jobs/` - Job posting and searching
 
 ## 🤝 Contributing <a name="contributing"></a>
 
