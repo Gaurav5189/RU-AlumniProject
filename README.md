@@ -65,7 +65,7 @@ Founded in 1868, Ravenshaw University has a rich legacy of academic excellence a
   
   [🔗 Live Demo](https://gaurav5189.github.io/RU-AlumniProject/index.html)
   
-  ![Demo GIF](https://your-demo-gif-url-here.gif)
+  ![Demo IMAGE](https://github.com/Gaurav5189/RU-AlumniProject/blob/main/Images/portal-img.png)
 </div>
 
 ## 💻 Tech Stack <a name="tech-stack"></a>
@@ -157,10 +157,6 @@ ravenshaw-alumni-portal/
 │   ├── models.py
 │   ├── views.py
 │   └── ...
-├── jobs/                    # Jobs app (if separated)
-│   ├── models.py
-│   ├── views.py
-│   └── ...
 ├── manage.py                # Django management script
 ├── requirements.txt         # Python dependencies
 ├── .gitignore               # Git ignore file
@@ -213,5 +209,5 @@ College Square, Cuttack, Odisha, India - 753003
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by Ravenshaw University Alumni Association</sub>
+  <sub>Built with ❤️ by Ravenshaw University students</sub>
 </div>
