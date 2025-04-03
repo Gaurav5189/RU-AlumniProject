@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My profile</title>
+    <link rel="stylesheet" href="../Styles/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="../img/boys/boy2.jpeg" alt="Profile Avatar" class="avatar">
+            </div>
+            <h3 class="user-name">Ravi</h3>
+            <p class="user-email"><span class="status-indicator"></span>Ravi@gmail.com</p>
+        </div>
+
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="events.html">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="alumni-network.html">Alumni Network</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="postjob.html">Post Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                <li class="menu-item active">
+                    <i class="fas fa-user"></i>
+                    <a href="my-profile.html">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="logout.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">My Profile</h1>
+            <div class="action-buttons">
+                <button class="btn">
+                    <i class="fas fa-edit"></i>
+                    Edit Profile
+                </button>
+            </div>
+        </div>
+        
+        <!-- Profile Details -->
+        <div class="recent-section personal">
+            <div class="section-header">
+                <h2 class="section-title">Personal Information</h2>
+            </div>
+            
+            <div class="profile-details">
+                <div class="profile-image">
+                    <div class="large-profile-pic">
+                        <span>RN</span>
+                    </div>
+                    <button class="btn btn-sm">Change Photo</button>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="info-group">
+                        <label>Full Name</label>
+                        <div class="info-value">Ravi Nayak</div>
+                    </div>
+                    <div class="info-group">
+                        <label>Email Address</label>
+                        <div class="info-value">Ravi@gmail.com</div>
+                    </div>
+                    <div class="info-group">
+                        <label>Phone Number</label>
+                        <div class="info-value">7853913066</div>
+                    </div>
+                    <div class="info-group">
+                        <label>Location</label>
+                        <div class="info-value">Cuttack, Odisha</div>
+                    </div>
+                    <div class="info-group">
+                        <label>Graduation Year</label>
+                        <div class="info-value">2020</div>
+                    </div>
+                    <div class="info-group">
+                        <label>Degree</label>
+                        <div class="info-value">Bachelor of Science in Computer Science</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Professional Information -->
+        <div class="recent-section professional">
+            <div class="section-header">
+                <h2 class="section-title">Professional Information</h2>
+            </div>
+            
+            <div class="work-experience">
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="experience-details">
+                        <div class="experience-title">Software Engineer</div>
+                        <div class="experience-company">Tech Solutions Inc.</div>
+                        <div class="experience-date">Jan 2021 - Present</div>
+                        <div class="experience-description">
+                            Working on developing scalable web applications using modern frameworks.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="experience-details">
+                        <div class="experience-title">Intern Developer</div>
+                        <div class="experience-company">WebTech Startup</div>
+                        <div class="experience-date">May 2020 - Dec 2020</div>
+                        <div class="experience-description">
+                            Assisted in front-end development and UI/UX design for mobile applications.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
