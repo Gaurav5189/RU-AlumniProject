@@ -63,7 +63,7 @@ Founded in 1868, Ravenshaw University has a rich legacy of academic excellence a
 
 <div align="center">
   
-  [🔗 Live Demo](https://your-demo-link-here.com)
+  [🔗 Live Demo](https://gaurav5189.github.io/RU-AlumniProject/index.html)
   
   ![Demo GIF](https://your-demo-gif-url-here.gif)
 </div>
