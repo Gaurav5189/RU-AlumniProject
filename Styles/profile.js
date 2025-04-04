@@ -1,4 +1,3 @@
-// DOM elements
 document.addEventListener('DOMContentLoaded', function() {
     // Navigation and sidebar functionality
     const menuItems = document.querySelectorAll('.menu-item');
@@ -75,26 +74,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const reader = new FileReader();
                 
                 reader.onload = function(event) {
-                    // Update both profile images
-                    document.querySelector('.avatar').src = event.target.result;
+                    // Get the new image URL from the FileReader
+                    const newImageUrl = event.target.result;
                     
-                    // If using initials in large profile pic, replace with image
-                    const largeProfilePic = document.querySelector('.large-profile-pic');
+                    // Update avatar in sidebar
+                    document.querySelector('.avatar').src = newImageUrl;
                     
-                    // Check if the large profile pic contains an image already
-                    let profileImage = largeProfilePic.querySelector('img');
-                    
-                    if (!profileImage) {
-                        // Remove the text node (initials)
-                        largeProfilePic.innerHTML = '';
-                        
-                        // Create a new image element
-                        profileImage = document.createElement('img');
-                        profileImage.className = 'large-avatar';
-                        largeProfilePic.appendChild(profileImage);
-                    }
-                    
-                    profileImage.src = event.target.result;
+                    // Update large profile picture
+                    document.querySelector('.large-profile-pic').src = newImageUrl;
                 };
                 
                 reader.readAsDataURL(e.target.files[0]);
