@@ -3,62 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Alumni Network</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../Styles/alumni-network.css">
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-pic">
-                <img src="/api/placeholder/80/80" alt="Profile" class="avatar">
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-pic">
+                    <img src="/api/placeholder/80/80" alt="Profile" class="avatar">
+                </div>
+                <div class="user-name">John Doe</div>
+                <div class="user-email">john.doe@example.com</div>
+                <div>
+                    <span class="status-indicator"></span>
+                    <span>Online</span>
+                </div>
             </div>
-            <div class="user-name">John Doe</div>
-            <div class="user-email">john.doe@example.com</div>
-            <div>
-                <span class="status-indicator"></span>
-                <span>Online</span>
+            
+            <div class="menu-section">
+                <h3>Main Menu</h3>
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <i class="fas fa-th-large"></i>
+                        <a href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <a href="dash_events.html">Events</a>
+                    </li>
+                    <li class="menu-item active">
+                        <i class="fas fa-users"></i>
+                        <a href="alumni-network.html">Alumni Network</a>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-briefcase"></i>
+                        <a href="postjob.html">Post Job</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="menu-section">
+                <h3>ACCOUNT</h3>
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <a href="my-profile.html">My Profile</a>
+                    </li>
+                    <li class="menu-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a href="logout.html">Logout</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        
-        <div class="menu-section">
-            <h3>Main Menu</h3>
-            <ul class="menu-items">
-                <li class="menu-item">
-                    <i class="fas fa-th-large"></i>
-                    <a href="dashboard.html">Dashboard</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <a href="dash_events.html">Events</a>
-                </li>
-                <li class="menu-item active">
-                    <i class="fas fa-users"></i>
-                    <a href="alumni-network.html">Alumni Network</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-briefcase"></i>
-                    <a href="postjob.html">Post Job</a>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="menu-section">
-            <h3>ACCOUNT</h3>
-            <ul class="menu-items">
-                <li class="menu-item">
-                    <i class="fas fa-user"></i>
-                    <a href="my-profile.html">My Profile</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <a href="logout.html">Logout</a>
-                </li>
-            </ul>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1 class="page-title">Alumni Network</h1>
+                <!-- <div class="action-buttons">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-filter"></i>
+                        Filter
+                    </button>
+                    <button class="btn">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div> -->
+            </div>
+            
+            <!-- Search & Filter -->
+            <div class="alumni-section">
+                <!-- <div class="search-bar">
+                    <input type="text" placeholder="Search alumni by name, company, or skills...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div> -->
+                
+                <!-- <div class="filter-options">
+                    <div class="filter-group">
+                        <label>Graduation Year</label>
+                        <select class="form-select">
+                            <option selected>All Years</option>
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                            <option>2020</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Industry</label>
+                        <select class="form-select">
+                            <option selected>All Industries</option>
+                            <option>Technology</option>
+                            <option>Finance</option>
+                            <option>Healthcare</option>
+                            <option>Education</option>
+                            <option>Retail</option>
+                            <option>Manufacturing</option>
+                        </select>
+                    </div>
+                </div> -->
+                
+                <!-- Alumni Grid - Sample Cards -->
+                <div class="alumni-grid">
+                    <!-- Sample Card 1 -->
+                    <div class="alumni-card">
+                        <div class="alumni-header">
+                            <div class="alumni-avatar">
+                                <img src="/api/placeholder/90/90" alt="Sarah Johnson">
+                            </div>
+                            <h3 class="alumni-name">Sarah Johnson</h3>
+                            <p class="alumni-title">Senior Software Engineer at TechCorp</p>
+                        </div>
+                        <div class="alumni-body">
+                            <div class="alumni-info">
+                                <div class="info-item">
+                                    <span class="info-label">Class of:</span>
+                                    <span class="info-value">2022</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value">San Francisco, CA</span>
+                                </div>
+                            </div>
+                            <div class="alumni-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Cloud</span>
+                                <span class="tag">Leadership</span>
+                            </div>
+                        </div>
+                        <div class="alumni-footer">
+                            <button class="connect-btn">
+                                <i class="fas fa-user-plus"></i>
+                                Connect
+                            </button>
+                            <button class="connect-btn">
+                                <i class="fas fa-envelope"></i>
+                                Message
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Sample Card 2 -->
+                    <div class="alumni-card">
+                        <div class="alumni-header">
+                            <div class="alumni-avatar">
+                                <img src="/api/placeholder/90/90" alt="Michael Chen">
+                            </div>
+                            <h3 class="alumni-name">Michael Chen</h3>
+                            <p class="alumni-title">Investment Analyst at Global Finance</p>
+                        </div>
+                        <div class="alumni-body">
+                            <div class="alumni-info">
+                                <div class="info-item">
+                                    <span class="info-label">Class of:</span>
+                                    <span class="info-value">2021</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value">New York, NY</span>
+                                </div>
+                            </div>
+                            <div class="alumni-tags">
+                                <span class="tag">Finance</span>
+                                <span class="tag">Data Analysis</span>
+                                <span class="tag">Economics</span>
+                            </div>
+                        </div>
+                        <div class="alumni-footer">
+                            <button class="connect-btn">
+                                <i class="fas fa-user-plus"></i>
+                                Connect
+                            </button>
+                            <button class="connect-btn">
+                                <i class="fas fa-envelope"></i>
+                                Message
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sample Card 3 -->
+                    <div class="alumni-card">
+                        <div class="alumni-header">
+                            <div class="alumni-avatar">
+                                <img src="/api/placeholder/90/90" alt="Emily Davis">
+                            </div>
+                            <h3 class="alumni-name">Emily Davis</h3>
+                            <p class="alumni-title">Product Manager at InnovateTech</p>
+                        </div>
+                        <div class="alumni-body">
+                            <div class="alumni-info">
+                                <div class="info-item">
+                                    <span class="info-label">Class of:</span>
+                                    <span class="info-value">2023</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value">Austin, TX</span>
+                                </div>
+                            </div>
+                            <div class="alumni-tags">
+                                <span class="tag">Product</span>
+                                <span class="tag">UX</span>
+                                <span class="tag">Agile</span>
+                                <span class="tag">Marketing</span>
+                            </div>
+                        </div>
+                        <div class="alumni-footer">
+                            <button class="connect-btn">
+                                <i class="fas fa-user-plus"></i>
+                                Connect
+                            </button>
+                            <button class="connect-btn">
+                                <i class="fas fa-envelope"></i>
+                                Message
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="../Styles/"></script>
+    <script src="../Styles/alumni-network.js"></script>
 </body>
 </html>

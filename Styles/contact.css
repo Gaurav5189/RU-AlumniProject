@@ -137,6 +137,17 @@ button a:hover {
 .nav-link.active {
   color: var(--dark-red);
   font-weight: bold;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  background-color: var(--orange);
+  bottom: -4px;
+  left: 25%;
 }
 
 
