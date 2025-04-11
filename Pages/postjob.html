@@ -59,6 +59,94 @@
         </div>
     </div>
 
+
+    <!-- Main Content -->
+     <div class="main-content">
+        <div class="header">
+            <h1>Post a New Job</h1>
+        </div>
+
+        <div class="content-container">
+            <div class="job-form-card">
+                <h2>Job Details</h2>
+                <from class="job-form">
+                    <div class="form-group">
+                        <label for="job-title">Job Title</label>
+                        <input type="text" id="job-title" placeholder="e.g. Senior Software Developer">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" placeholder="e.g. Tech Solutions Inc.">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="job-type">Job Type</label>
+                            <select id="job-type">
+                                <option value="">Select Job Type</option>
+                                <option value="full-time">Full-time</option>
+                                <option value="part-time">Part-time</option>
+                                <option value="contract">Contract</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group half">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="e.g. New York, NY or Remote">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="salary-min">Salary Range (Min)</label>
+                            <input type="number" id="salary-min" placeholder="Minimum salary">
+                        </div>
+                        
+                        <div class="form-group half">
+                            <label for="salary-max">Salary Range (Max)</label>
+                            <input type="number" id="salary-max" placeholder="Maximum salary">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job-description">Job Description</label>
+                        <textarea id="job-description" rows="6" placeholder="Describe the job responsibilities, requirements, and benefits..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skills">Required Skills (comma separated)</label>
+                        <input type="text" id="skills" placeholder="e.g. JavaScript, React, Node.js">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="application-deadline">Application Deadline</label>
+                        <input type="date" id="application-deadline">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email">Contact Email</label>
+                        <input type="email" id="contact-email" placeholder="Email for receiving applications">
+                    </div>
+
+                    <div class="form-buttons">
+                       
+                        <button type="submit" class="btn-primary">Post Job</button>
+                    </div>
+                </from>
+            </div>
+            
+            <div></div>
+
+        </div>
+
+
+     </div>
+
+
+
     <script src="../Styles/"></script>
 </body>
 </html>
