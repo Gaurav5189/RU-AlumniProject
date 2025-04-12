@@ -134,6 +134,10 @@ button a:hover {
   color: var(--orange);
 }
 
+.nav-link1{
+  color: var(--dark-red);
+}
+
 .nav-links {
   display: flex;
   align-items: center;
