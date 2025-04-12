@@ -134,6 +134,9 @@ button a:hover {
 .logo-text-accent {
   color: var(--orange);
 }
+.nav-link1{
+  color: var(--dark-red);
+}
 
 .nav-links {
   display: flex;
