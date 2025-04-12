@@ -249,6 +249,17 @@ p {
   padding: 4rem 5rem;
 }
 
+.img-enlarge {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.img-enlarge:hover {
+  transform: scale(1.03);
+}
+
 /* Newsletter */
 #newsletter {
   display: flex;
@@ -441,3 +452,4 @@ footer {
     font-size: 1.75rem;
   }
 }
+
