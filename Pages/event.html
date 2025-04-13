@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>College Alumni System</title>
+    <title>Events - Ravenshaw Alumni System</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../Images/AR_LOGO.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="../Styles/event.css">
@@ -34,7 +34,7 @@
           <div class="container nav-container">
             <nav class="nav">
               <a href="../index.html" class="logo">
-                <span class="logo-text-gray">College</span>
+                <span class="logo-text-gray">Ravenshaw</span>
                 <span class="logo-text-accent">Alumni System</span>
               </a>
               <div class="nav-links">
@@ -48,13 +48,93 @@
         </header>
 
         <main>
-            <section class="container">
-                <div class="events-banner">
-                    <h1>Alumni Events</h1>
-                    <p>Connect with fellow alumni, celebrate our shared traditions, and create new memories at our upcoming events. From homecoming to networking nights, there's something for everyone.</p>
-                </div>
-
+            <div class="container">
+                <p class="section-header">Upcoming Events</p>
+                <h1 class="section-title">Connect, celebrate, and create new memories with fellow alumni.</h1>
                 
+                <p class="hero-text">
+                    From homecoming celebrations to networking nights, our events bring together alumni from across generations. Join us to strengthen your ties with Ravenshaw and expand your professional network while celebrating our shared traditions.
+                </p>
+                
+                <!-- Event filters -->
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="event-type">Filter by Type</label>
+                        <select id="event-type" class="filter-select">
+                            <option value="all">All Events</option>
+                            <option value="networking">Networking</option>
+                            <option value="social">Social</option>
+                            <option value="career">Career Development</option>
+                            <option value="academic">Academic</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="event-month">Filter by Month</label>
+                        <select id="event-month" class="filter-select">
+                            <option value="all">All Months</option>
+                            <option value="jan">January</option>
+                            <option value="feb">February</option>
+                            <option value="mar">March</option>
+                            <option value="apr">April</option>
+                            <option value="may">May</option>
+                            <option value="jun">June</option>
+                            <option value="jul">July</option>
+                            <option value="aug">August</option>
+                            <option value="sep">September</option>
+                            <option value="oct">October</option>
+                            <option value="nov">November</option>
+                            <option value="dec">December</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group search-group">
+                        <label for="search-events">Search Events</label>
+                        <input type="text" id="search-events" placeholder="Search by title, description or location...">
+                    </div>
+                </div>
+                
+                <!-- Highlight next big event with countdown -->
+                <div class="featured-event">
+                    <div class="featured-event-content">
+                        <div class="featured-event-label">Featured Event</div>
+                        <h2>Homecoming Weekend 2025</h2>
+                        <p>Join us for the annual homecoming celebration featuring a football game, parade, and alumni reception. This is our biggest event of the year!</p>
+                        <div class="event-details-featured">
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>September 15, 2025</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>7:00 PM - 11:00 PM</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>University Campus</span>
+                            </div>
+                        </div>
+                        <div class="countdown-container">
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="count-days">00</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="count-hours">00</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="count-mins">00</div>
+                                <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="count-secs">00</div>
+                                <div class="countdown-label">Seconds</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-featured">Register Now</a>
+                    </div>
+                </div>
 
                 <div class="events-grid" id="events-container">
                     <!-- Event cards will be dynamically generated here -->
@@ -63,15 +143,15 @@
                 <div class="load-more">
                     <button id="load-more-btn" class="btn">Load More Events</button>
                 </div>
-            </section>
+            </div>
         </main>
 
         <!-- Footer -->
         <footer>
           <div class="container">
             <div class="newstext" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-              <h1>College <span>Alumni S/Y</span></h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus, expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, repudiandae.</p>
+              <h1>Ravenshaw <span>Alumni Network</span></h1>
+              <p>Job Board & Placement Support: Browse job listings and internship opportunities posted by alumni and partner organizations</p>
             </div>
             <div class="footer-content">
               <div class="footer-column">
@@ -128,173 +208,6 @@
           </div>
         </footer>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Sample events data
-            const eventsData = [
-                {
-                    title: "Alumni Networking Mixer",
-                    date: "March 15, 2025",
-                    time: "6:30 PM - 9:00 PM",
-                    location: "Downtown Business Hub",
-                    description: "Connect with alumni professionals in various industries for an evening of networking and career opportunities.",
-                    image: "/api/placeholder/400/250",
-                    month: "mar",
-                    type: "networking"
-                },
-                {
-                    title: "Homecoming Weekend",
-                    date: "September 15, 2025",
-                    time: "7:00 PM - 11:00 PM",
-                    location: "University Campus",
-                    description: "Join us for the annual homecoming celebration featuring a football game, parade, and alumni reception.",
-                    image: "/api/placeholder/400/250",
-                    month: "sep",
-                    type: "social"
-                },
-                {
-                    title: "Career Development Workshop",
-                    date: "May 12, 2025",
-                    time: "9:00 AM - 3:00 PM",
-                    location: "Alumni Center",
-                    description: "Develop your professional skills with workshops on resume writing, interviewing, and career advancement.",
-                    image: "/api/placeholder/400/250",
-                    month: "may",
-                    type: "career"
-                },
-                {
-                    title: "Distinguished Lecture Series",
-                    date: "April 20, 2025",
-                    time: "5:00 PM - 7:00 PM",
-                    location: "Main Auditorium",
-                    description: "Hear from industry leaders and distinguished alumni about current trends and future opportunities.",
-                    image: "/api/placeholder/400/250",
-                    month: "apr",
-                    type: "academic"
-                }
-            ];
-            
-            // Display initial events
-            displayEvents(eventsData);
-            
-            // Set up event listeners for filtering
-            document.getElementById('event-type').addEventListener('change', filterEvents);
-            document.getElementById('event-month').addEventListener('change', filterEvents);
-            document.getElementById('search-events').addEventListener('input', filterEvents);
-            
-            // Load more events button (simulated)
-            let currentPage = 1;
-            document.getElementById('load-more-btn').addEventListener('click', function() {
-                // In a real application, you would fetch the next page of events from a server
-                // For this example, we'll just duplicate our existing events with new IDs
-                currentPage++;
-                const newEvents = eventsData.map(event => ({
-                    ...event,
-                    title: `${event.title} ${currentPage}`
-                }));
-                
-                displayEvents(newEvents, true);
-                
-                // After a certain number of pages, disable the load more button
-                if (currentPage >= 3) {
-                    this.disabled = true;
-                    this.textContent = 'No More Events';
-                }
-            });
-            
-            // Update countdown timer
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-            
-            // Function to display events
-            function displayEvents(events, append = false) {
-                const container = document.getElementById('events-container');
-                
-                if (!append) {
-                    container.innerHTML = '';
-                }
-                
-                events.forEach(event => {
-                    const eventCard = document.createElement('div');
-                    eventCard.className = 'event-card';
-                    eventCard.dataset.type = event.type;
-                    eventCard.dataset.month = event.month;
-                    
-                    eventCard.innerHTML = `
-                        <div class="event-image">
-                            <img src="${event.image}" alt="${event.title}">
-                        </div>
-                        <div class="event-date">${event.date}</div>
-                        <div class="event-content">
-                            <h3>${event.title}</h3>
-                            <p>${event.description}</p>
-                            <div class="event-details">
-                                <i class="fas fa-clock"></i> ${event.time}
-                            </div>
-                            <div class="event-details">
-                                <i class="fas fa-map-marker-alt"></i> ${event.location}
-                            </div>
-                            <div class="event-actions">
-                                <a href="#" class="btn">Learn More</a>
-                                <a href="#" class="btn btn-orange">Register</a>
-                            </div>
-                        </div>
-                    `;
-                    
-                    container.appendChild(eventCard);
-                });
-            }
-            
-            // Function to filter events
-            function filterEvents() {
-                const typeFilter = document.getElementById('event-type').value;
-                const monthFilter = document.getElementById('event-month').value;
-                const searchText = document.getElementById('search-events').value.toLowerCase();
-                
-                const filteredEvents = eventsData.filter(event => {
-                    // Type filter
-                    const typeMatch = typeFilter === 'all' || event.type === typeFilter;
-                    
-                    // Month filter
-                    const monthMatch = monthFilter === 'all' || event.month === monthFilter;
-                    
-                    // Search filter
-                    const searchMatch = event.title.toLowerCase().includes(searchText) || 
-                                        event.description.toLowerCase().includes(searchText) ||
-                                        event.location.toLowerCase().includes(searchText);
-                    
-                    return typeMatch && monthMatch && searchMatch;
-                });
-                
-                displayEvents(filteredEvents);
-                
-                // Reset load more button
-                document.getElementById('load-more-btn').disabled = false;
-                document.getElementById('load-more-btn').textContent = 'Load More Events';
-                currentPage = 1;
-            }
-            
-            // Function to update countdown timer
-            function updateCountdown() {
-                // Set the target date (September 15, 2025)
-                const targetDate = new Date('September 15, 2025 19:00:00').getTime();
-                const now = new Date().getTime();
-                const difference = targetDate - now;
-                
-                // Time calculations
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-                
-                // Update the countdown numbers
-                document.getElementById('count-days').textContent = days;
-                document.getElementById('count-hours').textContent = hours;
-                document.getElementById('count-mins').textContent = minutes;
-                document.getElementById('count-secs').textContent = seconds;
-            }
-        });
-    </script>
+        <script src="../Styles/event.js"></script>
   </body>
 </html>
