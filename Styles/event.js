@@ -46,11 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Display initial events
     displayEvents(eventsData);
     
-    // Set up event listeners for filtering
-    document.getElementById('event-type').addEventListener('change', filterEvents);
-    document.getElementById('event-month').addEventListener('change', filterEvents);
-    document.getElementById('search-events').addEventListener('input', filterEvents);
-    
     // Add animation to event cards when they come into view
     function animateOnScroll() {
         const cards = document.querySelectorAll('.event-card');
