@@ -286,8 +286,8 @@ p {
 
 /* Individual Event Card */
 .event-card {
-  background-color: white;
-  border-radius: 10px;
+  background-color: rgba(173, 28, 28, 0.055);
+  border-radius: 25px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 30%;
