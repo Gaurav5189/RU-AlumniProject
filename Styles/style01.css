@@ -206,64 +206,108 @@ button a:hover {
   color: #e9d8d8;
 }
 
-/* Event Section
-#event1 {
-  text-align: center;
-}
+                    /* alumini section start  */
 
-#event1 .pro-container {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 20px;
-  flex-wrap: wrap;
+         /* alumini title 
+                             */
+.alumini-title-row{
+    text-align:center;
+    margin-bottom: 20px;
 }
-
-#event1 .pro {
-  min-width: 150px;
-  padding: 10px 12px;
-  border-radius: 25px;
-  cursor: pointer;
-  margin: 15px 0;
-  padding: 10px;
-  transition: 0.2s ease;
-  position: relative;
-}
-
-#event1 .pro img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-}
-
-h2 {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  color: var(--grey);
-  margin-bottom: 1rem;
-}
-
-p {
-  font-size: 1rem;
-  color: var(--grey);
-  margin: 0 0 1.25rem 0;
-  line-height: 1.6;
-}
-
-.section-e1 {
-  padding: 4rem 5rem;
-}
-
-.img-enlarge {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  transition: transform 0.3s ease;
+/* Container for all alumni cards */
+.illustrious-alumini-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(3, auto);   /* 3 rows */
+    gap: 30px;
+    width: 100%;
+    max-width: 990px;
+    margin: 0 auto;
+  }
   
-}
+  .alumini-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .alumini-card:hover {
+    transform: translateY(-10px);
+    
+  }
+    /* animation text style below  */
+  
+  .typing-text {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid black;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    animation: none;
+  }
+  
+  .alumini-card:hover .typing-text {
+    animation: typing 4s steps(60, end) forwards;
+  }
 
-.img-enlarge:hover {
-  transform: scale(1.03);
-} */
+  .alumini-card:hover .typing-text::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    display: inline-block;
+  }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+         /* animation text style above  */
+
+  /* Circular image */
+  .alumini-card-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Alumni name styling */
+  .alumini-card-name {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  /* Batch year styling */
+  .batch-year {
+    margin: 0;
+    margin-top: 5px;
+    width: 100%;
+    margin-left: 115px; 
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive adjustment for smaller screens */
+  @media (max-width: 768px) {
+    .alumni-container {
+      grid-template-columns: 1fr; /* 1 column on smaller screens */
+    }
+  }
+               /* alumini section end  */
 
                                   /* EVENT SECTION  */
 
