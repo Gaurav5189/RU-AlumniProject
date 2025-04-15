@@ -15,6 +15,9 @@ from pathlib import Path
 from decouple import config # type: ignore#
 from dotenv import load_dotenv
 from urllib.parse import urlparse
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
 
 load_dotenv()
 
@@ -44,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ru', # Add the app to the installed apps
+    'cloudinary',
+    'cloudinary_storage',
 ]
 AUTH_USER_MODEL = 'ru.CustomUser' # Add this line to point to the custom user model
 
@@ -85,14 +90,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myrav.wsgi.application'
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 # Replace the DATABASES section of your settings.py with this
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
@@ -155,6 +152,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Configure Cloudinary (add to settings.py)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
