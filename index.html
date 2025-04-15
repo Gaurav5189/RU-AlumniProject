@@ -117,49 +117,49 @@
 
               <!-- alumini section starting -->
 
-  <section class ="alumini-section">
-    <div class="alumini-container">
-      <h2 class="alumini-title-row ">OUR ILLUSTRIOUS ALUMINI</h2>
-      <div class="illustrious-alumini-content">
-        <div class="alumini-card">
-          <img src="Images/biju-patnaik.webp" alt="Biju patnaik" class="alumini-card-img">
-          <p class="alumini-card-name">BIJU PATNAIK <br><span style="color: #666; font-size: 0.9rem;">1932</span></p>
-          <div class="typing-text">Visionary leader, freedom fighter, and pilot who shaped Odisha's future.</div>
-        </div>
-      
-        
-        <div class="alumini-card">
-          <img src="Images/sample.jpg" alt="Name" class="alumini-card-img">
-          <p class="alumini-card-name">ALUMNI NAME1 <br><span style="color: #666; font-size: 0.9rem;">1945</span></p>
-          <div class="typing-text">rabi sale  kuch kaam kar le bas ipl dekhne se kuch nhi hoga.</div>
-        </div>
-      
-        <div class="alumini-card">
-          <img src="Images/sample.jpg" alt="Name" class="alumini-card-img">
-          <p class="alumini-card-name">ALUMNI NAME2 <br><span style="color: #666; font-size: 0.9rem;">1945</span></p>
-          <div class="typing-text">sale speaker idhar udhar mat ghusa dena .</div>
-        </div>
-    
-        <div class="alumini-card">
-          <img src="Images/sample.jpg" alt="Name" class="alumini-card-img">
-          <p class="alumini-card-name">ALUMNI NAME3 <br><span style="color: #666; font-size: 0.9rem;">1945</span></p>
-          <div class="typing-text">dekh kya rha hai sale bas itna hi animate kiya hai.</div>
-        </div>
-    
-        <div class="alumini-card">
-          <img src="Images/sample.jpg" alt="Name" class="alumini-card-img">
-          <p class="alumini-card-name">ALUMNI NAME4 <br><span style="color: #666; font-size: 0.9rem;">1945</span></p>
-          <div class="typing-text">dekho dekho phir aa gya animation dekhne .</div>
-        </div>
-    
-        <div class="alumini-card">
-          <img src="Images/sample.jpg" alt="Name" class="alumini-card-img">
-          <p class="alumini-card-name">ALUMNI NAME5 <br><span style="color: #666; font-size: 0.9rem;">1945</span></p>
-          <div class="typing-text">rohan ko meri taraf se gaali dena.</div>
-        </div>
+
+  <!-- Alumni Section -->
+<section class="alumni-section">
+  <div class="alumni-container">
+    <h2 class="alumni-title-row">OUR ILLUSTRIOUS ALUMNI</h2>
+    <div class="alumni-card">
+      <img src="Images/biju-patnaik.webp" alt="Biju patnaik" class="alumni-card-img">
+      <div class="alumni-text-content">
+        <p class="alumni-card-name">BIJU PATNAIK<br><span style="color: #666; font-size: 0.9rem;">1932</span></p>
+        <div class="typing-text">Visionary leader, freedom fighter, and pilot who shaped Odisha's future. He was instrumental in numerous development projects and left a lasting legacy in the state's history.</div>
       </div>
     </div>
-  </section>
+    
+    <div class="alumni-card">
+      <img src="Images/sample1.jpg" alt="Sample 1" class="alumni-card-img">
+      <div class="alumni-text-content">
+        <p class="alumni-card-name">DR. RAGHUNATH MOHAPATRA<br><span style="color: #666; font-size: 0.9rem;">1940</span></p>
+        <div class="typing-text">Distinguished academician and researcher who made significant contributions to the field of cultural heritage preservation and education development.</div>
+      </div>
+    </div>
+    
+    <div class="alumni-card">
+      <img src="Images/sample2.jpg" alt="Sample 2" class="alumni-card-img">
+      <div class="alumni-text-content">
+        <p class="alumni-card-name">PROF. SAROJ MOHANTY<br><span style="color: #666; font-size: 0.9rem;">1955</span></p>
+        <div class="typing-text">Pioneer in science and technology, bringing innovation to rural development projects and creating sustainable solutions for community challenges.</div>
+      </div>
+    </div>
+    
+    <div class="alumni-card">
+      <img src="Images/sample3.jpg" alt="Sample 3" class="alumni-card-img">
+      <div class="alumni-text-content">
+        <p class="alumni-card-name">DR. PRATIBHA RAY<br><span style="color: #666; font-size: 0.9rem;">1961</span></p>
+        <div class="typing-text">Renowned author and Jnanpith Award winner known for her powerful literary works that address social issues and cultural heritage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 
                 <!-- alumini section ending -->
 
@@ -225,5 +225,30 @@
     </div>
   </footer>
 </div>
+
+<!-- Script for alumni section animations -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const alumniCards = document.querySelectorAll('.alumni-card');
+
+    // Initialize IntersectionObserver with threshold
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add show class with a slight delay to ensure proper animation
+          setTimeout(() => {
+            entry.target.classList.add('show');
+          }, 100);
+          observer.unobserve(entry.target); // Trigger animation once
+        }
+      });
+    }, {
+      threshold: 0.3 // Trigger when 30% of the card is visible
+    });
+
+    // Start observing each alumni card
+    alumniCards.forEach(card => observer.observe(card));
+  });
+</script>
 </body>
 </html>
