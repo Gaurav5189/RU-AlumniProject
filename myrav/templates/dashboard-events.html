@@ -1,0 +1,228 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Alumni System | Events</title>
+    <link rel="stylesheet" href="{% static 'dashboard-events.css' %}">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div class="container">  
+     <!-- Sidebar Navigation -->
+     <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="{{ user.profile_img.url }}" alt="Profile" class="avatar">
+            </div>
+            <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
+        </div>
+        
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="menu-item active">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="{% url 'dashboard-events' %}">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'job-post-create' %}">Post Job</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>Account</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <a href="{% url 'dashboard-profile' %}">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">Events</h1>
+        </div>
+     
+        <!-- Ongoing Events -->
+        {% if ongoing_events %}
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Ongoing Events</h2>
+                <!-- <div class="view-options">
+                    <span class="view-all">View All</span>
+                </div> -->
+            </div>
+            
+            <ul class="event-list-full">
+                {% for event in ongoing_events %}
+                <li class="event-item-full">
+                    <div class="event-date">
+                        <div class="date-day">{{ event.event_date|date:"d" }}</div>  <!-- "d" extracts just the day of the month (like "01", "02", etc.). -->
+                        <div class="date-month">{{ event.event_date|date:"M" }}</div>  <!-- "M" extracts just the month as a three-letter abbreviation (like "Jan", "Feb", etc.). -->
+                    </div>
+                    <div class="event-details">
+                        <div class="event-title">{{ event.event_name }}</div>
+                        <div class="event-info">
+                            <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}</span>
+                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                        </div>
+                        <div class="event-description">
+                            {{ event.event_description }}
+                        </div>
+                        <div class="event-status ongoing">
+                            <span><i class="fas fa-circle"></i> Ongoing</span>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        <!-- Upcoming Events -->
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Events</h2>
+                <!-- <div class="view-options">
+                    <span class="view-all">View All</span>
+                </div> -->
+            </div>
+            
+            <ul class="event-list-full">
+                {% for event in upcoming_events %}
+                <li class="event-item-full">
+                    <div class="event-date">
+                        <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                        <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                    </div>
+                    <div class="event-details">
+                        <div class="event-title">{{ event.event_name }}</div>
+                        <div class="event-info">
+                            <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}</span>
+                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                        </div>
+                        <div class="event-description">
+                            {{ event.event_description }}
+                        </div>
+                        <div class="event-status upcoming">
+                            <span><i class="fas fa-clock"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="no-events">
+                    <div class="event-details">
+                        <div class="event-title">No upcoming events at this time</div>
+                        <div class="event-description">
+                            Check back later for new events.
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- Completed Events -->
+        {% if completed_events %}
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Completed Events</h2>
+                <!-- <div class="view-options">
+                    <span class="view-all">View All</span>
+                </div> -->
+            </div>
+            
+            <ul class="event-list-full">
+                {% for event in completed_events %}
+                <li class="event-item-full">
+                    <div class="event-date">
+                        <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                        <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                    </div>
+                    <div class="event-details">
+                        <div class="event-title">{{ event.event_name }}</div>
+                        <div class="event-info">
+                            <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}</span>
+                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                        </div>
+                        <div class="event-description">
+                            {{ event.event_description }}
+                        </div>
+                        <div class="event-status completed">
+                            <span><i class="fas fa-check-circle"></i> Completed</span>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        <!-- Cancelled Events -->
+        {% if cancelled_events %}
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Cancelled Events</h2>
+                <!-- <div class="view-options">
+                    <span class="view-all">View All</span>
+                </div> -->
+            </div>
+            
+            <ul class="event-list-full">
+                {% for event in cancelled_events %}
+                <li class="event-item-full">
+                    <div class="event-date">
+                        <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                        <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                    </div>
+                    <div class="event-details">
+                        <div class="event-title">{{ event.event_name }}</div>
+                        <div class="event-info">
+                            <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}</span>
+                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                        </div>
+                        <div class="event-description">
+                            {{ event.event_description }}
+                        </div>
+                        <div class="event-status cancelled">
+                            <span><i class="fas fa-ban"></i> Cancelled</span>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div> 
+    
+<script src=""></script>
+</body>
+</html>
