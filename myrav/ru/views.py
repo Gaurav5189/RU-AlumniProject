@@ -37,7 +37,7 @@ def events(request):
         'events': events,
     }
     
-    return render(request, 'events.html', context)
+    return render(request, 'event.html', context)
 
 def contact(request):
     if request.method == 'POST':
