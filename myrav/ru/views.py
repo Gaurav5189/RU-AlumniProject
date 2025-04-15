@@ -20,6 +20,12 @@ def generate_otp():
     return f"{random.randint(100000, 999999)}"
 
 def index(request):
+
+    events = RavenshawEvent.objects.all(status='upcoming').order_by('-event_date')[:3]  # Get the latest 3 events
+    # Pass the events to the template
+    context = {
+        'events': events,
+    }
     return render(request, 'index.html')
 
 def about(request):
