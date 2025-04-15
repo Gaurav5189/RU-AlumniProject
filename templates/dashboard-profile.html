@@ -87,14 +87,18 @@
                     <!-- Profile Image Section - Now centered -->
                     <div class="profile-image">
                         <div class="large-profile-pic">
-                            {% if user.profile_img %}
+                            {% if user.profile_img and user.profile_img.url != '#' %}
                                 <img src="{{ user.profile_img.url }}" alt="Profile" class="large-avatar">
                             {% else %}
-                                {{ user.username|slice:":2"|upper }}
+                                <div class="profile-initials">{{ user.username|slice:":2"|upper }}</div>
                             {% endif %}
                         </div>
-                        <input type="file" id="profilePhotoInput" name="profile_img" accept="image/*" style="display: none;">
-                        <button type="button" class="btn btn-sm" id="changePhotoBtn" style="display: none;"><i class="fas fa-camera"></i> Change Photo</button>
+                        <div class="photo-upload-controls">
+                            <input type="file" id="profilePhotoInput" name="profile_img" accept="image/*" style="display: none;">
+                            <button type="button" class="btn btn-sm" id="changePhotoBtn" style="display: none;">
+                                <i class="fas fa-camera"></i> Change Photo
+                            </button>
+                        </div>
                     </div>
                         
                     <!-- Profile Info Section - Full width -->
@@ -185,7 +189,9 @@
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 20px;">
-                    <button type="submit" id="submitBtn" class="btn" style="display: none;">Save Changes</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
                 </div>
             </form>
         </div>

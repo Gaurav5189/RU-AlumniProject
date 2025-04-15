@@ -1,4 +1,3 @@
-// JavaScript for the profile page
 document.addEventListener('DOMContentLoaded', function() {
     // Navigation and sidebar functionality
     const menuItems = document.querySelectorAll('.menu-item');
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let isEditing = false;
     
     // Maximum file size (1MB in bytes)
-    const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1MB
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
     
     // Toggle active class in menu
     menuItems.forEach(item => {
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Check file size
             if (file.size > MAX_FILE_SIZE) {
-                alert('File size exceeds 1MB. Please choose a smaller image.');
+                alert('File size exceeds 5MB. Please choose a smaller image.');
                 // Reset the input
                 profilePhotoInput.value = '';
                 return;
@@ -68,6 +67,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 profileImage.src = event.target.result;
+                
+                // Show a "selected" indicator
+                const fileNameDisplay = document.createElement('div');
+                fileNameDisplay.className = 'selected-file-indicator';
+                fileNameDisplay.textContent = `Selected: ${file.name}`;
+                
+                const existingIndicator = document.querySelector('.selected-file-indicator');
+                if (existingIndicator) {
+                    existingIndicator.remove();
+                }
+                
+                changePhotoBtn.parentNode.appendChild(fileNameDisplay);
             };
             
             reader.readAsDataURL(file);
@@ -83,7 +94,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isEditing) {
             // Switch to edit mode
-            toggleEditBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+            toggleEditBtn.innerHTML = '<i class="fas fa-times"></i> Cancel';
+            
+            // Show the submit button
+            submitBtn.style.display = 'inline-block';
             
             // Show the change photo button
             changePhotoBtn.style.display = 'block';
@@ -97,35 +111,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (input) {
                     input.style.display = 'block';
-                    input.value = infoValue.textContent.trim();
+                    // Only set the value if it's not already set (prevents overwriting changes)
+                    if (!input.value.trim()) {
+                        input.value = infoValue.textContent.trim();
+                    }
                 }
             });
         } else {
-            // Save changes and exit edit mode
+            // Exit edit mode without saving
             toggleEditBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Profile';
+            
+            // Hide the submit button
+            submitBtn.style.display = 'none';
             
             // Hide the change photo button
             changePhotoBtn.style.display = 'none';
-            
-            // Submit the form to save changes
-            saveProfileChanges();
             
             infoValues.forEach(infoValue => {
                 const fieldName = infoValue.getAttribute('data-field');
                 const input = document.querySelector(`input[name="${fieldName}"], textarea[name="${fieldName}"]`);
                 
                 if (input) {
-                    infoValue.textContent = input.value;
+                    // Just hide the inputs without saving
                     input.style.display = 'none';
                     infoValue.style.display = 'block';
                 }
             });
+            
+            // Remove any selected file indicator
+            const fileIndicator = document.querySelector('.selected-file-indicator');
+            if (fileIndicator) {
+                fileIndicator.remove();
+            }
         }
-    }
-    
-    // Save profile changes to backend
-    function saveProfileChanges() {
-        // Submit the form
-        profileForm.submit();
     }
 });
