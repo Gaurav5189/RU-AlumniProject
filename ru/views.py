@@ -328,68 +328,45 @@ def forgot_password(request):
 @login_required(login_url='login')
 def dashboard_profile(request):
     if request.method == 'POST':
-        # Debug information
-        print("POST request received")
-        print("FILES:", request.FILES)
-        print("POST data keys:", request.POST.keys())
-        
-        # Handle profile image upload if present
-        if 'profile_img' in request.FILES:
-            try:
-                profile_img = request.FILES['profile_img']
-                print(f"Image received: {profile_img.name}, size: {profile_img.size} bytes")
-                
-                # Save the image to Cloudinary
-                request.user.profile_img = profile_img
-                print("Image assigned to user model")
-            except Exception as e:
-                print(f"Error handling image: {str(e)}")
-                messages.error(request, f"Error uploading image: {str(e)}")
-        else:
-            print("No profile_img in request.FILES")
-
-        # Rest of your profile update code...
-        age = request.POST.get('age', '')
-        subject = request.POST.get('subject', '')
-        phone_no = request.POST.get('phone_no', '')
-        c_name = request.POST.get('c_name', '')
-        location = request.POST.get('location', '')
-        bio = request.POST.get('bio', '')
-        
-        # Handle social media links
-        linkedin = request.POST.get('linkedin', '')
-        twitter = request.POST.get('twitter', '')
-        github = request.POST.get('github', '')
-        other = request.POST.get('other', '')
-        
-        # Create a dictionary for social links
-        social_links = {
-            'linkedin': linkedin,
-            'twitter': twitter,
-            'github': github,
-            'other': other,
-        }
-
-        # Update the user profile
-        request.user.age = None if age == '' else age
-        request.user.subject = subject
-        request.user.Phone_no = None if phone_no == '' else phone_no
-        request.user.c_name = c_name
-        request.user.location = location
-        request.user.bio = bio
-        request.user.social_links = social_links
-        
         try:
+            if 'profile_img' in request.FILES:
+                profile_img = request.FILES['profile_img']
+                
+                # Add validation for file type and size
+                if not profile_img.content_type.startswith('image/'):
+                    raise ValueError("Only image files are allowed")
+                
+                if profile_img.size > 1 * 1024 * 1024:  # 1MB limit
+                    raise ValueError("File size too large. Please keep files under 5MB")
+                
+                # Clear existing image if any
+                if request.user.profile_img:
+                    request.user.profile_img.delete()
+                
+                # Save new image
+                request.user.profile_img = profile_img
+                
+            # Update other fields
+            request.user.age = request.POST.get('age') or None
+            request.user.subject = request.POST.get('subject', '')
+            request.user.Phone_no = request.POST.get('phone_no') or None
+            request.user.c_name = request.POST.get('c_name', '')
+            request.user.location = request.POST.get('location', '')
+            request.user.bio = request.POST.get('bio', '')
+            
+            # Save the user object
             request.user.save()
-            print("User profile saved successfully")
+            
             messages.success(request, 'Profile updated successfully!')
+            
+        except ValueError as ve:
+            messages.error(request, str(ve))
         except Exception as e:
-            print(f"Error saving user profile: {str(e)}")
             messages.error(request, f'Error updating profile: {str(e)}')
-        
+            
         return redirect('dashboard-profile')
-    else:
-        return render(request, 'dashboard-profile.html', {'user': request.user})
+        
+    return render(request, 'dashboard-profile.html', {'user': request.user})
     
 @login_required(login_url='login')
 def dashboard_events(request):

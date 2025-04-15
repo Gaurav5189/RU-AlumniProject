@@ -79,11 +79,15 @@
                     <div class="alumni-card">
                         <div class="alumni-header">
                             {% if user.profile_img %}
-                            <div class="alumni-avatar-img">
-                                <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
-                            </div>
+                                {% if user.profile_img.url != 'default_pf.png' %}
+                                    <div class="alumni-avatar-img">
+                                        <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
+                                    </div>
+                                {% else %}
+                                    <div class="alumni-avatar">{{ user.initials }}</div>
+                                {% endif %}
                             {% else %}
-                            <div class="alumni-avatar">{{ user.initials }}</div>
+                                <div class="alumni-avatar">{{ user.initials }}</div>
                             {% endif %}
                             <div class="alumni-name">{{ user.name }}</div>
                             <div class="alumni-email">{{ user.email }}</div>
