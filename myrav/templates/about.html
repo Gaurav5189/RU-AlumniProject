@@ -1,130 +1,228 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>College Alumni System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="{% static 'about.css' %}">
-  </head>
-  <body>
-    <div class="min-h-screen flex flex-col">
-        <!-- Top Banner -->
-        <div class="top-banner">
-          <div class="container top-banner-container">
-            <div class="top-banner-left">
-              <div class="contact-item">
-                <!-- Phone Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .66 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.66A2 2 0 0 1 22 16.92z"></path>
-                </svg>
-                <span>7896541239</span>
-              </div>
-              <div class="contact-item">
-                <!-- Mail Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-                  <polyline points="3 7 12 13 21 7"></polyline>
-                </svg>
-                <span>information@gmail.com</span>
-              </div>
-            </div>
-            <button>
-              <a href="{% url 'register' %}">Alumni Registration</a>
-            </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Ravenshaw Alumni System</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../Images/AR_LOGO.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'about.css' %}">
+</head>
+<body>
+  <div class="min-h-screen flex flex-col">
+    <!-- Top Banner -->
+    <div class="top-banner">
+      <div class="container top-banner-container">
+        <div class="top-banner-left">
+          <div class="contact-item">
+            <!-- Mail Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+              <polyline points="3 7 12 13 21 7"></polyline>
+            </svg>
+            <span>alumni.ravenshaw987@gmail.com</span>
           </div>
         </div>
-  
-        <!-- Navigation -->
-        <header class="header">
-          <div class="container nav-container">
-            <nav class="nav">
-              <a href="/" class="logo">
-                <span class="logo-text-gray">College</span>
-                <span class="logo-text-accent">Alumni System</span>
-              </a>
-              <div class="nav-links">
-                <a href="/" class="nav-link">Home</a>
-                <a href="{% url 'about' %}" class="nav-link active">About</a>
-                <a href="{% url 'contact' %}" class="nav-link">Contact</a>
-                <a href="" class="nav-link">Events</a>
-                <a href="{% url 'login' %}" class="nav-link">Login</a>
-                <a href="" class="nav-link">Admin</a>
-              </div>
-            </nav>
-          </div>
-        </header>
-        
-        <main>
-          <section id="event1" class="section-e1">
-            <h2>Welcome To Ravenshaw Alumni System</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, ipsa. Lorem ipsum dolor sit amet consectetur.</p>
-            <p>adipisicing elit. Quo quae numquam consequuntur ullam illo iusto facere excepturi fuga esse architecto Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ex, at ipsum aliquid laborum saepe sapiente, culpa tempora eligendi consequuntur suscipit aperiam expedita? Nulla, quia impedit labore fugiat sunt exercitationem quam distinctio commodi aperiam beatae amet illum, id et nobis!</p>
-          </section>
-        </main>
-
-        <!-- Footer -->
-        <footer>
-          <div class="container">
-            <div class="newstext" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-              <h1>College <span>Alumni S/Y</span></h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus, expedita. Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, repudiandae.</p>
-            </div>
-            <div class="footer-content">
-              <div class="footer-column">
-                <h3>About Us</h3>
-                <ul>
-                  <li><a href="#">Our Mission</a></li>
-                  <li><a href="#">Leadership</a></li>
-                  <li><a href="#">History</a></li>
-                  <li><a href="#">Alumni Stories</a></li>
-                  <li><a href="#">Careers</a></li>
-                </ul>
-              </div>
-              <div class="footer-column">
-                <h3>Alumni Services</h3>
-                <ul>
-                  <li><a href="#">Alumni Directory</a></li>
-                  <li><a href="#">Events Calendar</a></li>
-                  <li><a href="#">Mentorship Program</a></li>
-                  <li><a href="#">Career Resources</a></li>
-                  <li><a href="#">Benefits & Discounts</a></li>
-                </ul>
-              </div>
-              <div class="footer-column">
-                <h3>Get Involved</h3>
-                <ul>
-                  <li><a href="#">Volunteer</a></li>
-                  <li><a href="#">Donate</a></li>
-                  <li><a href="#">Attend Events</a></li>
-                  <li><a href="#">Class Reunions</a></li>
-                  <li><a href="#">Regional Clubs</a></li>
-                </ul>
-              </div>
-              <div class="footer-column">
-                <h3>Contact Us</h3>
-                <ul>
-                  <li>Alumni Association Office</li>
-                  <li>123 University Avenue</li>
-                  <li>College Town, CT 12345</li>
-                  <li>Phone: (555) 123-4567</li>
-                  <li>Email: alumni@college.edu</li>
-                </ul>
-                <div class="social-icons">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-instagram"></i></a>
-                  <a href="#"><i class="fab fa-youtube"></i></a>
-                  <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="copyright">
-              &copy; 2025 Alumni Association. All Rights Reserved.
-            </div>
-          </div>
-        </footer>
+        <button>
+          <a href="{% url 'login' %}" class="nav-link1">Login</a>
+        </button>
+      </div>
     </div>
-  </body>
+
+    <!-- Navigation -->
+    <header class="header">
+      <div class="container nav-container">
+        <nav class="nav">
+          <a href="/" class="logo">
+            <span class="logo-text-gray">Ravenshaw</span>
+            <span class="logo-text-accent">Alumni System</span>
+          </a>
+          <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="{% url 'event' %}" class="nav-link">Events</a>
+            <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+            <a href="{% url 'about' %}" class="nav-link active">About</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <main>
+      <div class="container">
+        <p class="section-header">Our Legacy</p>
+        <h1 class="section-title">It's important to stay connected to your roots.</h1>
+        
+        <p class="hero-text">
+          Established in 1868 as one of the oldest institutions in the state of Odisha, Ravenshaw University has nurtured generations of students who have gone on to make significant contributions in various fields. Our alumni community is a testament to the vibrant legacy of Ravenshaw, uniting graduates worldwide and inspiring them to remain connected to their alumnus.
+        </p>
+        
+        <p class="mission-quote">
+          "To foster a community of lifelong learners and innovators who contribute to society through world-class academics, research, and service."
+        </p>
+        
+        <div class="cards-container">
+          <div class="card" style="--card-index: 0">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="card-title">History & Legacy</h3>
+            <p class="card-text">
+              Founded in 1868, Ravenshaw has a rich history spanning over 150 years. What began as a provincial college has evolved into a premier university, nurturing generations of leaders, thinkers, and innovators who have made significant contributions across various fields.
+            </p>
+            <a href="#" class="card-link">Explore our history <span class="arrow-icon">→</span></a>
+          </div>
+          
+          <div class="card" style="--card-index: 1">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">Alumni Network</h3>
+            <p class="card-text">
+              Our alumni network spans the globe, connecting graduates through shared experiences and common values. By joining our network, you gain access to mentorship opportunities, career resources, and connections with fellow alumni who are making waves in their respective fields.
+            </p>
+            <a href="{% url 'login' %}" class="card-link">Join the network <span class="arrow-icon">→</span></a>
+          </div>
+          
+          <div class="card" style="--card-index: 2">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title">Events & Reunions</h3>
+            <p class="card-text">
+              Stay connected through our regular events and reunions. Whether it's annual homecoming celebrations, class reunions, or professional networking events, we offer numerous opportunities for alumni to reconnect with classmates and engage with their alma mater.
+            </p>
+            <a href="#" class="card-link">View upcoming events <span class="arrow-icon">→</span></a>
+          </div>
+          
+          <div class="card" style="--card-index: 3">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title">Give Back</h3>
+            <p class="card-text">
+              There are many ways to give back to Ravenshaw. Whether through mentoring current students, volunteering your time and expertise, or making a financial contribution, your support helps us continue our tradition of academic excellence and innovation.
+            </p>
+            <a href="#" class="card-link">Learn how to contribute <span class="arrow-icon">→</span></a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+   <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="newstext" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+      <h1>Ravenshaw <span>Alumni Network</span></h1>
+      <p>Job Board & Placement Support: Browse job listings and internship opportunities posted by alumni and partner organizations</p>
+    </div>
+    <div class="footer-content">
+      <!-- Remove the About Us column -->
+      <div class="footer-column">
+        <h3>Alumni Services</h3>
+        <ul>
+          <li><a href="#">Alumni Directory</a></li>
+          <li><a href="#">Events Calendar</a></li>
+          <li><a href="#">Mentorship Program</a></li>
+          <li><a href="#">Career Resources</a></li>
+          <li><a href="#">Benefits & Discounts</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Get Involved</h3>
+        <ul>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Attend Events</a></li>
+          <li><a href="#">Class Reunions</a></li>
+          <li><a href="#">Regional Clubs</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <ul>
+          <li>Alumni Association Office</li>
+          <li>123 University Avenue</li>
+          <li>College Town, CT 12345</li>
+          <li>Phone: (555) 123-4567</li>
+          <li>Email: alumni@college.edu</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="copyright">
+        &copy; 2025 Alumni Association. All Rights Reserved.
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+  <script>
+    // Add JavaScript to initialize card animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add animation to SVG icons for continuous subtle movement
+      const cardIcons = document.querySelectorAll('.card-icon svg');
+      
+      cardIcons.forEach(icon => {
+        // Add a small pulse animation
+        setInterval(() => {
+          icon.style.transform = 'scale(1.05)';
+          setTimeout(() => {
+            icon.style.transform = 'scale(1)';
+          }, 500);
+        }, 3000);
+      });
+      
+      // Add reveal animation for cards when they come into view
+      const cards = document.querySelectorAll('.card');
+      
+      // Check if IntersectionObserver is supported
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        cards.forEach(card => {
+          observer.observe(card);
+        });
+      } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        cards.forEach(card => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      }
+    });
+  </script>
+</body>
 </html>

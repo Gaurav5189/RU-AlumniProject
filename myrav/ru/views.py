@@ -25,6 +25,20 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+def events(request):
+    """
+    Fetches all events from the database and renders them on the events.html page.
+    """
+    # Fetch all events from the database
+    events = RavenshawEvent.objects.all()
+    
+    # Pass the events to the template
+    context = {
+        'events': events,
+    }
+    
+    return render(request, 'events.html', context)
+
 def contact(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name', '').strip()
