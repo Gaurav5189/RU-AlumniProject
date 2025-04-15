@@ -242,7 +242,7 @@ button a:hover {
 
 /* Hero Section */
 #hero {
-  background-image: url("../Images/IMG-01.jpg");
+  background-image: url("/media/IMG-01.jpg");
   height: 90vh;
   width: 100%;
   background-size: cover;

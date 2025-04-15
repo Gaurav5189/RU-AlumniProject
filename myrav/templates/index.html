@@ -63,47 +63,31 @@
           <h2 class="section-title">Upcoming Events</h2>
           
           <div class="events-container">
-              <!-- Event Card 1 -->
+              <!-- Event Cards -->
+              {% for event in upcoming_events %}
               <div class="event-card">
-                  <img src="Images\DSC_0054-scaled.jpg" alt="photo mai nhi dhundh rha" class="event-image">
+                  <img src="Images\DSC_0054-scaled.jpg" alt="Event-Img" class="event-image">
                   <div class="event-content">
                       <div class="event-title-row">
                           <i class="fas fa-graduation-cap event-icon"></i>
-                          <h3 class="event-title">Alumni Meetup</h3>
+                          <h3 class="event-title">{{ event.event_name }}</h3>
                       </div>
-                      <p class="event-date">July 20 - 26</p>
-                      <p class="event-description">Lorem ipsum an dolor sit amet, consectetur adipiscing elit.</p>
+                      <p class="event-date">{{ event.event_date|date:"M" }} {{ event.event_date|date:"d" }}  {{ event.event_date|date:"Y" }}</p>
+                      <p class="event-description">{{ event.event_description }}</p>
                       <button class="learn-more-btn">LEARN MORE</button>
                   </div>
               </div>
-              
-              <!-- Event Card 2 -->
-              <div class="event-card">
-                  <img src="Images\alumni-weekend.jpg" alt="ravi sale photo dhundh" class="event-image">
-                  <div class="event-content">
-                      <div class="event-title-row">
-                          <i class="far fa-calendar-alt event-icon"></i>
-                          <h3 class="event-title">Homecoming Reunion</h3>
-                      </div>
-                      <p class="event-date">August 15</p>
-                      <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipiscing eit.</p>
-                      <button class="learn-more-btn">LEARN MORE</button>
-                  </div>
-              </div>
-              
-              <!-- Event Card 3 -->
-              <div class="event-card">
-                  <img src="Images\images.jpg" alt="gaurav tu kya dekh rha hai backend kar" class="event-image">
-                  <div class="event-content">
-                      <div class="event-title-row">
-                          <i class="fas fa-user-friends event-icon"></i>
-                          <h3 class="event-title">Networking Workshop</h3>
-                      </div>
-                      <p class="event-date">September 10</p>
-                      <p class="event-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                      <button class="learn-more-btn">LEARN MORE</button>
-                  </div>
-              </div>
+
+              {% empty %}
+                <li class="no-events">
+                    <div class="event-details">
+                        <div class="event-title">No upcoming events at this time</div>
+                        <div class="event-description">
+                            Check back later for new events.
+                        </div>
+                    </div>
+                </li>
+               {% endfor %}
           </div>
 
       </div>
@@ -116,7 +100,7 @@
   <div class="alumni-container">
     <h2 class="alumni-title-row">OUR ILLUSTRIOUS ALUMNI</h2>
     <div class="alumni-card">
-      <img src="Images/biju-patnaik.webp" alt="Biju patnaik" class="alumni-card-img">
+      <img src="media/biju-patnaik.webp" alt="Biju patnaik" class="alumni-card-img">
       <div class="alumni-text-content">
         <p class="alumni-card-name">BIJU PATNAIK<br><span style="color: #666; font-size: 0.9rem;">1932</span></p>
         <div class="typing-text">Visionary leader, freedom fighter, and pilot who shaped Odisha's future. He was instrumental in numerous development projects and left a lasting legacy in the state's history.</div>
@@ -124,7 +108,7 @@
     </div>
     
     <div class="alumni-card">
-      <img src="Images/sample1.jpg" alt="Sample 1" class="alumni-card-img">
+      <img src="media/sample1.jpg" alt="Sample 1" class="alumni-card-img">
       <div class="alumni-text-content">
         <p class="alumni-card-name">DR. RAGHUNATH MOHAPATRA<br><span style="color: #666; font-size: 0.9rem;">1940</span></p>
         <div class="typing-text">Distinguished academician and researcher who made significant contributions to the field of cultural heritage preservation and education development.</div>
@@ -132,7 +116,7 @@
     </div>
     
     <div class="alumni-card">
-      <img src="Images/sample2.jpg" alt="Sample 2" class="alumni-card-img">
+      <img src="media/sample2.jpg" alt="Sample 2" class="alumni-card-img">
       <div class="alumni-text-content">
         <p class="alumni-card-name">PROF. SAROJ MOHANTY<br><span style="color: #666; font-size: 0.9rem;">1955</span></p>
         <div class="typing-text">Pioneer in science and technology, bringing innovation to rural development projects and creating sustainable solutions for community challenges.</div>
@@ -140,7 +124,7 @@
     </div>
     
     <div class="alumni-card">
-      <img src="Images/sample3.jpg" alt="Sample 3" class="alumni-card-img">
+      <img src="media/sample3.jpg" alt="Sample 3" class="alumni-card-img">
       <div class="alumni-text-content">
         <p class="alumni-card-name">DR. PRATIBHA RAY<br><span style="color: #666; font-size: 0.9rem;">1961</span></p>
         <div class="typing-text">Renowned author and Jnanpith Award winner known for her powerful literary works that address social issues and cultural heritage.</div>
