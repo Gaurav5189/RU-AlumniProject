@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     c_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20, blank=True)
     profile_img = models.ImageField(upload_to='profile_images/', default="default_pf.png")
-    Phone_no = models.IntegerField(null=True, blank=True)
+    Phone_no = models.CharField(max_length=15, null=True, blank=True)
     location = models.TextField(default='', blank=True)
     bio = models.TextField(default='', blank=True)  # or some other appropriate default
     subject = models.CharField(max_length=100, default='', blank=True)
