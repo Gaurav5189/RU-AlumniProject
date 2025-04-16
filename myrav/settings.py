@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ru', # Add the app to the installed apps
+    'storages', # Add the app to the installed apps
 ]
 AUTH_USER_MODEL = 'ru.CustomUser' # Add this line to point to the custom user model
 
@@ -155,5 +156,27 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL="/media/"
-MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+# Backblaze B2 settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# B2 credentials
+AWS_ACCESS_KEY_ID = 'your-keyID'  # Replace with your actual keyID
+AWS_SECRET_ACCESS_KEY = 'your-applicationKey'  # Replace with your actual applicationKey
+AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'  # Replace with your bucket name
+
+# B2-specific settings
+AWS_S3_ENDPOINT_URL = 'https://s3.eu-central-003.backblazeb2.com'  # Use your endpoint
+AWS_S3_REGION_NAME = 'eu-central-003'  # Use your region
+
+# Optional settings
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_QUERYSTRING_AUTH = False  # Set to True if you want signed URLs
+AWS_DEFAULT_ACL = 'private-read'  # Change if you need different permissions
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.eu-central-003.backblazeb2.com/media/'
+
+DEFAULT_FILE_STORAGE = 'path.to.custom_storage.MediaStorage'  # Use your custom storage class
+
+# MEDIA_URL="/media/"
+# MEDIA_ROOT=os.path.join(BASE_DIR,"media")
