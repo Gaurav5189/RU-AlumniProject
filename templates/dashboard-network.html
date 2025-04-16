@@ -79,9 +79,9 @@
                     <div class="alumni-card">
                         <div class="alumni-header">
                             {% if user.profile_img %}
-                                {% if 'default_pf.png' not in user.profile_img.url %}
+                                {% if user.profile_img.url != 'default_pf.png' %}
                                     <div class="alumni-avatar-img">
-                                        <img src="{{ user.profile_img.url }}" alt="{{ user.name }}" class="avatar-img">
+                                        <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
                                     </div>
                                 {% else %}
                                     <div class="alumni-avatar">{{ user.initials }}</div>

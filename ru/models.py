@@ -11,11 +11,10 @@ class CustomUser(AbstractUser):
     batchno = models.CharField(max_length=20)
     c_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20, blank=True)
-    # In models.py, update the CustomUser model
     profile_img = models.ImageField(
         upload_to='profile_images/',
         storage=MediaCloudinaryStorage(),
-        default="default_pf.png",  # Just the filename, not the full path
+        default="default_pf.png",  # Default image path
         null=True,
         blank=True
     )
