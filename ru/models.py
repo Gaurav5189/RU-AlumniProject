@@ -4,13 +4,10 @@ from datetime import timedelta
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
-from django.db.models.fields.files import ImageFieldFile
 
 class MediaStorage(S3Boto3Storage):
     location = 'media'
     file_overwrite = False
-    default_acl = 'public-read'  # Make files publicly accessible
-    querystring_auth = False     # Don't use query params for auth
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True)
@@ -18,7 +15,7 @@ class CustomUser(AbstractUser):
     batchno = models.CharField(max_length=20)
     c_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20, blank=True)
-    profile_img = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    profile_img = models.ImageField(upload_to='profile_images/', default="default_pf.png")
     Phone_no = models.CharField(max_length=15, null=True, blank=True)
     location = models.TextField(default='', blank=True)
     bio = models.TextField(default='', blank=True)  # or some other appropriate default
@@ -26,12 +23,6 @@ class CustomUser(AbstractUser):
     # Update this line - make sure a default empty dict is provided
     social_links = models.JSONField(default=dict, blank=True, null=False)  # Store social links as JSON
     is_verified = models.BooleanField(default=False)  # New field to track verification status
-
-    @property
-    def get_profile_image_url(self):
-        if self.profile_img:
-            return self.profile_img.url
-        return settings.DEFAULT_PROFILE_IMAGE_UR
 
 class OTPVerification(models.Model):
     email = models.EmailField()

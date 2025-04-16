@@ -170,15 +170,13 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_QUERYSTRING_AUTH = False
-AWS_DEFAULT_ACL = 'public-read'
+AWS_DEFAULT_ACL = 'private-read'
 
 # Use your custom storage class
 DEFAULT_FILE_STORAGE = 'ru.models.MediaStorage'
 
 # Set media URL to your B2 bucket URL
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.eu-central-003.backblazeb2.com/media/'
-
-DEFAULT_PROFILE_IMAGE_URL = 'https://rav-prop.s3.eu-central-003.backblazeb2.com/media/default_pf.png'
 
 # MEDIA_URL="/media/"
 # MEDIA_ROOT=os.path.join(BASE_DIR,"media")
