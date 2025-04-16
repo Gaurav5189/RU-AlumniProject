@@ -156,6 +156,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Use your custom storage class
+DEFAULT_FILE_STORAGE = 'ru.models.MediaStorage'
+
 # Replace with your actual B2 credentials (consider using environment variables)
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
@@ -171,9 +174,6 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = 'public-read'
-
-# Use your custom storage class
-DEFAULT_FILE_STORAGE = 'ru.models.MediaStorage'
 
 # Set media URL to your B2 bucket URL
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.eu-central-003.backblazeb2.com/media/'
