@@ -1,0 +1,147 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job - College Alumni System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/dashboard-job-post.css' %}">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="{{ user.profile_img.url|default:'#' }}" alt="Profile" class="avatar">
+            </div>
+            {% if user.is_authenticated %}
+            <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
+            {% else %}
+            <div class="user-name">John Doe</div>
+            <div class="user-email">john.doe@example.com</div>
+            {% endif %}
+        </div>
+        
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="{% url 'dashboard-events' %}">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
+                </li>
+                <li class="menu-item active">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'job-post-create' %}">Post Job</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <a href="{% url 'dashboard-profile' %}">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">Post a Job</h1>
+        </div>
+
+        <div class="job-post-form">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="job_title">Job Title</label>
+                    <input type="text" id="job_title" name="job_title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company_name">Company Name</label>
+                    <input type="text" id="company_name" name="company_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="employment_type">Employment Type</label>
+                        <select id="employment_type" name="employment_type" required>
+                            <option value="">Select Type</option>
+                            <option value="full-time">Full-time</option>
+                            <option value="part-time">Part-time</option>
+                            <option value="contract">Contract</option>
+                            <option value="internship">Internship</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group half">
+                        <label for="experience_level">Experience Level</label>
+                        <select id="experience_level" name="experience_level" required>
+                            <option value="">Select Level</option>
+                            <option value="entry">Entry Level</option>
+                            <option value="mid">Mid Level</option>
+                            <option value="senior">Senior Level</option>
+                            <option value="executive">Executive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="job_description">Job Description</label>
+                    <textarea id="job_description" name="job_description" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="requirements">Requirements</label>
+                    <textarea id="requirements" name="requirements" rows="4" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="salary_range">Salary Range</label>
+                        <input type="text" id="salary_range" name="salary_range" placeholder="e.g., $50,000 - $70,000">
+                    </div>
+
+                    <div class="form-group half">
+                        <label for="application_deadline">Application Deadline</label>
+                        <input type="date" id="application_deadline" name="application_deadline" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Post Job</button>
+                    <button type="reset" class="btn-reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

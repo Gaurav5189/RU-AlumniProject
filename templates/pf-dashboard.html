@@ -1,0 +1,181 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/pf-dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="{{ user.profile_img.url }}" alt="Profile Avatar" class="avatar">
+            </div>
+            {% if user.is_authenticated %}
+                <h3 class="user-name">{{ user.first_name }} {{ user.last_name }}</h3>
+                <p class="user-email"><span class="status-indicator"></span>{{ user.email }}</p>
+            {% else %}
+                <h3 class="user-name">Emilie S.</h3>
+                <p class="user-email"><span class="status-indicator"></span>semilie123@gmail.com</p>
+            {% endif %}
+        </div>
+
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item active">
+                    <i class="fas fa-th-large"></i>
+                    <a href="{% url 'dashboard' %}" class="menu_change">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="{% url 'dashboard-events' %}">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'job-post-create' %}">Post Job</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                
+                <li class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <a href="{% url 'dashboard-profile' %}">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- main content -->
+     <div class="main-content">
+        <div class="top-bar">
+            <h1 class="logo">COLLAGE ALUMNI SYSTEM</h1>
+            <div class="top-bar-action">
+                <div class="user-profile-mini">
+                    <img src="{{ user.profile_img.url }}" alt="User Avatar" class="user-avatar-mini">
+                    <span>{{ user.username }}</span>
+
+                </div>
+                <a href="{% url 'logout' %}" class="logout-btn">
+                    <i class="fas fa-sign-out-alt logout-icon"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="dashboard-content">
+            <h2 class="page-title">Dashboard</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat1 ">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-value">{{ total_events }}</div>
+                    <div class="stat-label">Total Events</div>
+                    <button class="stat-btn">
+                        <a href="{% url 'dashboard-events' %}">View Details</a>
+                    </button>
+                </div>
+            
+                <div class="stat-card">
+                    <div class="stat2 ">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-value">{{ total_jobs }}</div>
+                    <div class="stat-label">Jobs Posted</div>
+                    <button class="stat-btn">
+                        <a href="{% url 'dashboard-jobs' %}">View Details</a>
+                    </button>
+                </div>
+            
+                <div class="stat-card">
+                    <div class="stat3 ">
+                        <i class="fas fa-users"></i>
+                    </div>    
+                    <div class="stat-value">{{ total_users }}</div>
+                    <div class="stat-label">Alumni Connections</div>
+                    <button class="stat-btn">
+                        <a href="{% url 'dashboard-network' %}">View Details</a>
+                    </button>
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        <div>
+            <link rel="stylesheet" href="{% static 'css/dashboard-events.css' %}">
+        <div class="recent-section">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Events</h2>
+                <!-- <div class="view-options">
+                    <span class="view-all">View All</span>
+                </div> -->
+            </div>
+            
+            <ul class="event-list-full">
+                {% for event in upcoming_events %}
+                <li class="event-item-full">
+                    <div class="event-date">
+                        <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                        <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                    </div>
+                    <div class="event-details">
+                        <div class="event-title">{{ event.event_name }}</div>
+                        <div class="event-info">
+                            <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}</span>
+                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                        </div>
+                        <div class="event-description">
+                            {{ event.event_description }}
+                        </div>
+                        <div class="event-status upcoming">
+                            <span><i class="fas fa-clock"></i> Upcoming</span>
+                        </div>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="no-events">
+                    <div class="event-details">
+                        <div class="event-title">No upcoming events at this time</div>
+                        <div class="event-description">
+                            Check back later for new events.
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        </div>
+       
+
+     </div>
+
+
+
+
+    
+</body>
+</html>

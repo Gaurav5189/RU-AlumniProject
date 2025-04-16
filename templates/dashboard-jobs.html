@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posted Jobs - College Alumni System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/dashboard-jobs.css' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'media/ar_img.jpeg' }}">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="{{ user.profile_img.url|default:'#' }}" alt="Profile" class="avatar">
+            </div>
+            {% if user.is_authenticated %}
+            <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
+            {% else %}
+            <div class="user-name">John Doe</div>
+            <div class="user-email">john.doe@example.com</div>
+            {% endif %}
+        </div>
+        
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="{% url 'dashboard-events' %}">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'job-post-create' %}">Post Job</a>
+                </li>
+                <li class="menu-item active">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <a href="{% url 'dashboard-profile' %}">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">Posted Jobs</h1>
+            <div class="header-actions">
+                <button class="btn-post-job">
+                    <i class="fas fa-plus"></i>
+                    Post New Job
+                </button>
+            </div>
+        </div>
+
+        <div class="jobs-filter">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search jobs...">
+            </div>
+            <div class="filter-options">
+                <select class="filter-select">
+                    <option value="">All Types</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="contract">Contract</option>
+                    <option value="internship">Internship</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">All Locations</option>
+                    <option value="remote">Remote</option>
+                    <option value="onsite">On-site</option>
+                    <option value="hybrid">Hybrid</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="jobs-grid">
+            <!-- Job Card Example -->
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="job-header">
+                    <h3 class="job-title">{{ job.title }}</h3>
+                    <span class="job-company">{{ job.company }}</span>
+                </div>
+                <div class="job-details">
+                    <div class="job-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ job.location }}</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ job.type }}</span>
+                    </div>
+                    <div class="job-info">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>{{ job.salary_range }}</span>
+                    </div>
+                </div>
+                <p class="job-description">{{ job.description|truncatechars:150 }}</p>
+                <div class="job-footer">
+                    <span class="posted-date">Posted {{ job.posted_date }}</span>
+                    <button class="btn-view-job">View Details</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
