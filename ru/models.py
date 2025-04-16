@@ -3,7 +3,6 @@ from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from cloudinary_storage.storage import MediaCloudinaryStorage
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True)
@@ -11,13 +10,7 @@ class CustomUser(AbstractUser):
     batchno = models.CharField(max_length=20)
     c_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20, blank=True)
-    profile_img = models.ImageField(
-        upload_to='profile_images/',
-        storage=MediaCloudinaryStorage(),
-        default="default_pf.png",  # Default image path
-        null=True,
-        blank=True
-    )
+    profile_img = models.ImageField(upload_to='profile_images/', default="default_pf.png")
     Phone_no = models.CharField(max_length=15, null=True, blank=True)
     location = models.TextField(default='', blank=True)
     bio = models.TextField(default='', blank=True)  # or some other appropriate default
