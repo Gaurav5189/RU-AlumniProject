@@ -328,27 +328,7 @@ def forgot_password(request):
 @login_required(login_url='login')
 def dashboard_profile(request):
     if request.method == 'POST':
-        # Debug information
-        print("POST request received")
-        print("FILES:", request.FILES)
-        print("POST data keys:", request.POST.keys())
-        
-        # Handle profile image upload if present
-        if 'profile_img' in request.FILES:
-            try:
-                profile_img = request.FILES['profile_img']
-                print(f"Image received: {profile_img.name}, size: {profile_img.size} bytes")
-                
-                # Save the image to Cloudinary
-                request.user.profile_img = profile_img
-                print("Image assigned to user model")
-            except Exception as e:
-                print(f"Error handling image: {str(e)}")
-                messages.error(request, f"Error uploading image: {str(e)}")
-        else:
-            print("No profile_img in request.FILES")
-
-        # Rest of your profile update code...
+        # Handle profile update logic here
         age = request.POST.get('age', '')
         subject = request.POST.get('subject', '')
         phone_no = request.POST.get('phone_no', '')
@@ -369,6 +349,11 @@ def dashboard_profile(request):
             'github': github,
             'other': other,
         }
+        
+        # Handle profile image upload if present
+        if 'profile_img' in request.FILES:
+            profile_img = request.FILES['profile_img']
+            request.user.profile_img = profile_img
 
         # Update the user profile
         request.user.age = None if age == '' else age
@@ -377,16 +362,10 @@ def dashboard_profile(request):
         request.user.c_name = c_name
         request.user.location = location
         request.user.bio = bio
-        request.user.social_links = social_links
+        request.user.social_links = social_links  # Now we're setting a proper dictionary
+        request.user.save()
         
-        try:
-            request.user.save()
-            print("User profile saved successfully")
-            messages.success(request, 'Profile updated successfully!')
-        except Exception as e:
-            print(f"Error saving user profile: {str(e)}")
-            messages.error(request, f'Error updating profile: {str(e)}')
-        
+        messages.success(request, 'Profile updated successfully!')
         return redirect('dashboard-profile')
     else:
         return render(request, 'dashboard-profile.html', {'user': request.user})
