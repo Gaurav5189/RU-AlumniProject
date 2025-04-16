@@ -387,6 +387,7 @@ def dashboard_events(request):
     
     return render(request, 'dashboard-events.html', context)
 
+# In views.py, update the dashboard_network view
 @login_required(login_url='login')
 def dashboard_network(request):
     # Fetch all users except the current user and admin users
@@ -402,6 +403,11 @@ def dashboard_network(request):
             initials = user.first_name[0].upper()
         else:
             initials = user.username[0].upper()
+        
+        # Check if profile image exists and is accessible
+        profile_img_url = None
+        if user.profile_img and 'default_pf.png' not in str(user.profile_img):
+            profile_img_url = user.profile_img.url
             
         user_data.append({
             'id': user.id,
@@ -411,7 +417,7 @@ def dashboard_network(request):
             'subject': user.subject or '',
             'c_name': user.c_name or '',
             'location': user.location or '',
-            'profile_img': user.profile_img.url if user.profile_img and not user.profile_img.url == '#' else None,
+            'profile_img': profile_img_url,
             'initials': initials
         })
 
