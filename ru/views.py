@@ -406,7 +406,7 @@ def dashboard_network(request):
         
         # Check if profile image exists and is accessible
         profile_img_url = None
-        if user.profile_img:
+        if user.profile_img and 'default_pf.png' not in str(user.profile_img):
             profile_img_url = user.profile_img.url
             
         user_data.append({
