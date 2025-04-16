@@ -336,8 +336,8 @@ def dashboard_profile(request):
                 if not profile_img.content_type.startswith('image/'):
                     raise ValueError("Only image files are allowed")
                 
-                if profile_img.size > 1 * 1024 * 1024:  # 1MB limit
-                    raise ValueError("File size too large. Please keep files under 5MB")
+                if profile_img.size > 3 * 1024 * 1024:  # 3MB limit
+                    raise ValueError("File size too large. Please keep files under 3MB")
                 
                 # Clear existing image if any
                 if request.user.profile_img:

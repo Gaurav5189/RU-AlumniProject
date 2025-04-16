@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById('submitBtn');
     let isEditing = false;
     
-    // Maximum file size (1MB in bytes)
-    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+    // Maximum file size (3MB in bytes)
+    const MAX_FILE_SIZE = 3* 1024 * 1024; // 3MB
     
     // Toggle active class in menu
     menuItems.forEach(item => {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Check file size
             if (file.size > MAX_FILE_SIZE) {
-                alert('File size exceeds 5MB. Please choose a smaller image.');
+                alert('File size exceeds 3MB. Please choose a smaller image.');
                 // Reset the input
                 profilePhotoInput.value = '';
                 return;
