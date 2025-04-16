@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../Styles/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="../img/boys/boy2.jpeg" alt="Profile Avatar" class="avatar">
+            </div>
+            <h3 class="user-name">Ravi</h3>
+            <p class="user-email"><span class="status-indicator"></span>Ravi@gmail.com</p>
+        </div>
+
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item active">
+                    <i class="fas fa-th-large"></i>
+                    <a href="dashboard.html" class="menu_change">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="dash_events.html">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="alumni-network.html">Alumni Network</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="postjob.html">Post Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                
+                <li class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <a href="my-profile.html">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="logout.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- main content -->
+     <div class="main-content">
+        <div class="top-bar">
+            <h1 class="logo">COLLAGE ALUMNI SYSTEM</h1>
+            <div class="top-bar-action">
+                <div class="user-profile-mini">
+                    <img src="../img/boys/boy2.jpeg" alt="User Avatar" class="user-avatar-mini">
+                    <span>ravi nayak</span>
+
+                </div>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="logout.html"></a>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="dashboard-content">
+            <h2 class="page-title">Dashboard</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat1 ">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Total Events</div>
+                    <button class="stat-btn">
+                        <a href="dash_events.html">View Details</a>
+                    </button>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat2 ">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Jobs Posted</div>
+                    <button class="stat-btn">
+                        <a href="postjob.html">View Details</a>
+                    </button>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat3 ">
+                        <i class="fas fa-users"></i>
+                    </div>    
+                    <div class="stat-value">150</div>
+                    <div class="stat-label">Alumni Connections</div>
+                    <button class="stat-btn">
+                        <a href="alumni-network.html">View Details</a>
+                    </button>
+                </div>
+
+            </div>
+
+            
+
+        </div>
+
+       
+
+     </div>
+
+
+
+
+    
+</body>
+</html>

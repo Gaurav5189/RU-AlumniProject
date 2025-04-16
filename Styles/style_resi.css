@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #8b0000; /* Dark red background */
+}
+
+.contener {
+    max-width: 700px;
+    width: 100%;
+    background: #fff; /* White form background */
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-top: 4px solid #ff8c00; /* Orange accent border */
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 600;
+    position: relative;
+    margin-bottom: 25px;
+    color: #8b0000; /* Dark red text */
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 3px;
+    width: 30px;
+    background: #ff8c00; /* Orange accent underline */
+}
+
+form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.user-details .input-box {
+    width: calc(50% - 15px);
+    margin-bottom: 15px;
+}
+
+.user-details .input-box .details {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #8b0000; /* Dark red label text */
+}
+
+.user-details .input-box input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding-left: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Style for readonly email field */
+.user-details .input-box input[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    border-left: 3px solid #ff8c00;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+    border-color: #ff8c00; /* Orange border on focus/valid */
+    box-shadow: 0 0 5px rgba(255, 140, 0, 0.3);
+}
+
+/* Password match indicator */
+.password-match-indicator {
+    font-size: 12px;
+    color: #8b0000;
+    margin-top: 5px;
+}
+
+.password-match-indicator.valid {
+    color: green;
+}
+
+.gender-details {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.gender-details .gender-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #8b0000; /* Dark red text */
+}
+
+.gender-details .category {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.gender-details .category label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gender-details .category .dot {
+    height: 18px;
+    width: 18px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked ~ .dot {
+    border-color: #d9d9d9;
+    background: #ff8c00; /* Orange radio button selected state */
+}
+
+.gender-details .category .gender {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+input[type="submit"] {
+    height: 50px;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    background: #8b0000; /* Dark red button */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background: #ff8c00; /* Orange hover state */
+}
+
+@media (max-width: 584px) {
+    .contener {
+        max-width: 100%;
+    }
+    .user-details .input-box {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .gender-details .category {
+        width: 100%;
+    }
+    .user-details {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+}

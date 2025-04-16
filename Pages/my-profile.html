@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../Styles/profile.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="/api/placeholder/80/80" alt="Profile" class="avatar">
+            </div>
+            <div class="user-name">John Doe</div>
+            <div class="user-email">john.doe@example.com</div>
+            <div>
+                <span class="status-indicator"></span>
+                <span>Online</span>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="dash_events.html">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="alumni-network.html">Alumni Network</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="postjob.html">Post Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                <li class="menu-item active">
+                    <i class="fas fa-user"></i>
+                    <a href="my-profile.html">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="logout.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">My Profile</h1>
+            <div class="action-buttons">
+                <button class="btn"><i class="fas fa-edit"></i> Edit Profile</button>
+            </div>
+        </div>
+        
+        <div class="recent-section personal">
+            <div class="section-header">
+                <h2 class="section-title">Personal Details</h2>
+            </div>
+            
+            <div class="profile-details">
+                <div class="profile-image">
+                    <img src="/api/placeholder/150/150" alt="John Doe" class="large-profile-pic">
+                    <button class="btn btn-sm"><i class="fas fa-camera"></i> Change Photo</button>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="info-group">
+                        <label>Full Name</label>
+                        <div class="info-value">John Doe</div>
+                    </div>
+                    
+                    <div class="info-group">
+                        <label>Email Address</label>
+                        <div class="info-value">john.doe@example.com</div>
+                    </div>
+                    
+                    <div class="info-group">
+                        <label>Phone Number</label>
+                        <div class="info-value">+1 (555) 123-4567</div>
+                    </div>
+                    
+                    <div class="info-group">
+                        <label>Location</label>
+                        <div class="info-value">San Francisco, CA</div>
+                    </div>
+                    
+                    <div class="info-group">
+                        <label>Bio</label>
+                        <div class="info-value">Frontend Developer with 5+ years of experience building responsive web applications. Passionate about user experience and clean code.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recent-section professional">
+            <div class="section-header">
+                <h2 class="section-title">Work Experience</h2>
+            </div>
+            
+            <div class="work-experience">
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="experience-details">
+                        <div class="experience-title">Senior Frontend Developer</div>
+                        <div class="experience-company">Tech Solutions Inc.</div>
+                        <div class="experience-date">Jan 2020 - Present</div>
+                        <div class="experience-description">
+                            Lead developer for the company's flagship product. Responsible for architecture decisions, code quality, and mentoring junior developers. Implemented new features that increased user engagement by 45%.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="experience-details">
+                        <div class="experience-title">Frontend Developer</div>
+                        <div class="experience-company">WebDesign Studio</div>
+                        <div class="experience-date">Mar 2018 - Dec 2019</div>
+                        <div class="experience-description">
+                            Developed responsive websites for various clients using HTML, CSS, and JavaScript. Collaborated with designers to implement pixel-perfect interfaces.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Experience Modal -->
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Add New Experience</h3>
+            <form id="add-experience-form">
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="month" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input type="month" name="endDate">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="current-position">
+                        <label for="current-position">I currently work here</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn">Save Experience</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../Styles/profile.js"></script>
+</body>
+</html>
