@@ -20,7 +20,8 @@
                 <img src="{{ user.profile_img.url }}" alt="Profile" class="avatar">
             </div>
             <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
-            <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
+            <div class="user-email">{{ user.email }}</div>
+            <div class="user-status"><span class="status-indicator"></span>Online</div>
         </div>
         
         <div class="menu-section">
@@ -75,17 +76,23 @@
         <div class="recent-section">
             <div class="section-header">
                 <h2 class="section-title">Ongoing Events</h2>
-                <!-- <div class="view-options">
-                    <span class="view-all">View All</span>
-                </div> -->
             </div>
             
             <ul class="event-list-full">
                 {% for event in ongoing_events %}
                 <li class="event-item-full">
-                    <div class="event-date">
-                        <div class="date-day">{{ event.event_date|date:"d" }}</div>  <!-- "d" extracts just the day of the month (like "01", "02", etc.). -->
-                        <div class="date-month">{{ event.event_date|date:"M" }}</div>  <!-- "M" extracts just the month as a three-letter abbreviation (like "Jan", "Feb", etc.). -->
+                    <div class="event-image-container">
+                        <div class="event-date">
+                            <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                            <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                        </div>
+                        {% if event.event_image %}
+                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% else %}
+                            <div class="event-image-placeholder">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="event-details">
                         <div class="event-title">{{ event.event_name }}</div>
@@ -110,17 +117,23 @@
         <div class="recent-section">
             <div class="section-header">
                 <h2 class="section-title">Upcoming Events</h2>
-                <!-- <div class="view-options">
-                    <span class="view-all">View All</span>
-                </div> -->
             </div>
             
             <ul class="event-list-full">
                 {% for event in upcoming_events %}
                 <li class="event-item-full">
-                    <div class="event-date">
-                        <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                        <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                    <div class="event-image-container">
+                        <div class="event-date">
+                            <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                            <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                        </div>
+                        {% if event.event_image %}
+                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% else %}
+                            <div class="event-image-placeholder">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="event-details">
                         <div class="event-title">{{ event.event_name }}</div>
@@ -154,17 +167,23 @@
         <div class="recent-section">
             <div class="section-header">
                 <h2 class="section-title">Completed Events</h2>
-                <!-- <div class="view-options">
-                    <span class="view-all">View All</span>
-                </div> -->
             </div>
             
             <ul class="event-list-full">
                 {% for event in completed_events %}
                 <li class="event-item-full">
-                    <div class="event-date">
-                        <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                        <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                    <div class="event-image-container">
+                        <div class="event-date">
+                            <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                            <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                        </div>
+                        {% if event.event_image %}
+                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% else %}
+                            <div class="event-image-placeholder">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="event-details">
                         <div class="event-title">{{ event.event_name }}</div>
@@ -178,6 +197,9 @@
                         <div class="event-status completed">
                             <span><i class="fas fa-check-circle"></i> Completed</span>
                         </div>
+                        <div class="event-actions">
+                            <button class="btn-details">View Gallery</button>
+                        </div>
                     </div>
                 </li>
                 {% endfor %}
@@ -190,17 +212,23 @@
         <div class="recent-section">
             <div class="section-header">
                 <h2 class="section-title">Cancelled Events</h2>
-                <!-- <div class="view-options">
-                    <span class="view-all">View All</span>
-                </div> -->
             </div>
             
             <ul class="event-list-full">
                 {% for event in cancelled_events %}
                 <li class="event-item-full">
-                    <div class="event-date">
-                        <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                        <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                    <div class="event-image-container">
+                        <div class="event-date">
+                            <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                            <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                        </div>
+                        {% if event.event_image %}
+                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% else %}
+                            <div class="event-image-placeholder">
+                                <i class="fas fa-calendar-times"></i>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="event-details">
                         <div class="event-title">{{ event.event_name }}</div>
@@ -223,6 +251,6 @@
     </div>
 </div> 
     
-<script src=""></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
 </body>
 </html>

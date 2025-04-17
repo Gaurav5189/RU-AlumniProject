@@ -29,9 +29,13 @@
     --event-date-bg: #2a3356;
     --event-date-text: #6b89ff;
     --text-light: #e5e5e5;
---text-muted: #a3a3a3;
-
+    --text-muted: #a3a3a3;
+    --action-btn-bg: #4a6cfa;
+    --action-btn-hover: #3b5ed9;
+    --details-btn-bg: rgba(107, 137, 255, 0.2);
+    --details-btn-color: #6b89ff;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -67,7 +71,7 @@ body {
     background-color: var(--dark-red);
     padding: 25px 20px;
     text-align: center;
-    border-bottom: 1px solidrgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .profile-pic {
@@ -107,7 +111,6 @@ body {
     justify-content: center;
     font-size: 0.85rem;
 }
-
 
 .status-indicator {
     display: inline-block;
@@ -158,7 +161,6 @@ a {
 
 .menu-item:hover {
     background-color: rgba(34, 197, 94, 0.1); 
-    /* Light Green Grass on hover */
 }
 
 .menu-item:hover a {
@@ -167,7 +169,6 @@ a {
 
 .menu-item.active {
     background-color: var(--primary); 
-    /* Ultramarine for active menu item */
 }
 
 .menu-item.active a {
@@ -195,8 +196,6 @@ a {
     color: var(--white);
 }
 
-
-
 /* Section style */
 .recent-section {
     background-color: var(--bg-light);
@@ -220,7 +219,7 @@ a {
 }
 
 .view-options {
-    color:  #6b89ff;
+    color: #6b89ff;
     font-size: 0.9rem;
     cursor: pointer;
     transition: color 0.2s ease;
@@ -251,30 +250,71 @@ a {
     border-bottom: none;
 }
 
+/* Event Image Container */
+.event-image-container {
+    position: relative;
+    min-width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: var(--medium-gray);
+}
+
+.event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.event-image-container:hover .event-image {
+    transform: scale(1.05);
+}
+
+.event-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--medium-gray), var(--dark-gray));
+}
+
+.event-image-placeholder i {
+    font-size: 3rem;
+    color: var(--event-date-text);
+    opacity: 0.7;
+}
+
 .event-date {
+    position: absolute;
+    top: 10px;
+    left: 10px;
     background-color: var(--event-date-bg);
     color: var(--event-date-text);
-    min-width: 80px;
-    height: 80px;
-    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(107, 137, 255, 0.3);
+    z-index: 1;
 }
 
 .date-day {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: bold;
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .date-month {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     opacity: 0.9;
@@ -288,7 +328,7 @@ a {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.8rem;
-    color: var(--text-white);
+    color: var(--white);
 }
 
 .event-info {
@@ -320,7 +360,7 @@ a {
 
 /* Event status styles */
 .event-status {
-    margin-top: 10px;
+    margin-bottom: 15px;
     font-size: 0.9rem;
     font-weight: 500;
     padding: 5px 10px;
@@ -334,39 +374,55 @@ a {
 }
 
 .event-status.ongoing {
-    background-color: #e3f2fd;
-    color: #1976d2;
+    background-color: rgba(25, 118, 210, 0.2);
+    color: #64b5f6;
 }
 
 .event-status.ongoing i {
-    color: #1976d2;
+    color: #64b5f6;
 }
 
 .event-status.upcoming {
-    background-color: #e8f5e9;
-    color: #388e3c;
+    background-color: rgba(56, 142, 60, 0.2);
+    color: #81c784;
 }
 
 .event-status.upcoming i {
-    color: #388e3c;
+    color: #81c784;
 }
 
 .event-status.completed {
-    background-color: #ede7f6;
-    color: #7b1fa2;
+    background-color: rgba(123, 31, 162, 0.2);
+    color: #ba68c8;
 }
 
 .event-status.completed i {
-    color: #7b1fa2;
+    color: #ba68c8;
 }
 
 .event-status.cancelled {
-    background-color: #ffebee;
-    color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.2);
+    color: #e57373;
 }
 
 .event-status.cancelled i {
-    color: #d32f2f;
+    color: #e57373;
+}
+
+/* Event Action Buttons */
+.event-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-details {
+    background-color: var(--details-btn-bg);
+    color: var(--details-btn-color);
+    border: 1px solid rgba(107, 137, 255, 0.3);
+}
+
+.btn-details:hover {
+    background-color: rgba(107, 137, 255, 0.3);
 }
 
 /* Section spacing */
@@ -377,15 +433,15 @@ a {
 /* Empty event list styles */
 .no-events {
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .no-events .event-title {
-    color: #757575;
+    color: var(--text-muted);
 }
-
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
@@ -397,6 +453,11 @@ a {
         margin-left: 240px;
         width: calc(100% - 240px);
     }
+    
+    .event-image-container {
+        min-width: 160px;
+        height: 120px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -405,14 +466,22 @@ a {
         gap: 0.5rem;
     }
     
-    /* .event-actions {
+    .event-actions {
         flex-direction: column;
         gap: 8px;
+        width: 100%;
     }
     
-    .btn-rsvp, .btn-details {
+    .event-item-full {
+        flex-direction: column;
+    }
+    
+    .event-image-container {
         width: 100%;
-    } */
+        height: 180px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -432,14 +501,31 @@ a {
         align-items: flex-start;
         gap: 1rem;
     }
-    
-    .event-item-full {
-        flex-direction: column;
+}
+
+/* Mobile menu toggle button - assuming you'll add JS for this */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 200;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .mobile-menu-toggle {
+        display: block;
     }
-    
-    .event-date {
-        margin-bottom: 1rem;
-        margin-right: 0;
-        align-self: flex-start;
-    }
+}
+
+/* Animation for sidebar */
+.sidebar.active {
+    transform: translateX(0);
+    width: 280px;
 }
