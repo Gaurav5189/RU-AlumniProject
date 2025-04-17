@@ -51,8 +51,13 @@ class RavenshawEvent(models.Model):
     event_description = models.TextField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='upcoming')
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)  # Tracks when the event was last modified
-    event_img = models.ImageField(upload_to='event_images/', default="#")
+    updated_at = models.DateTimeField(auto_now=True)
+    # Replace ImageField with CloudinaryField
+    event_img = CloudinaryField('event_images',
+        default="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg",
+        null=True,
+        blank=True
+    )
     
     class Meta:
         ordering = ['-event_date']

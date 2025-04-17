@@ -1013,3 +1013,169 @@
       text-align: center;
     }
   }
+
+
+/* Additional styles for the new sections */
+
+/* Section containers */
+.section-container {
+  margin-bottom: 60px;
+  animation: fadeIn 1s ease;
+}
+
+.ongoing-events-section {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+/* Section titles */
+.subsection-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  /* START ANIMATION SETUP */
+  opacity: 0;                             /* start invisible */
+  transform: translateX(-30px);           /* start off to the left */
+  animation: slideInLeft 0.8s ease both;  /* play and keep final state */
+  /* END ANIMATION SETUP */
+
+  font-size: 26px;
+  color: var(--grey);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.subsection-text {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.8s ease 0.2s both;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+  max-width: 800px;
+}
+
+.upcoming-events-section .subsection-title {
+  animation-delay: 0.4s;  /* slide in after the Ongoing title */
+}
+
+.section-icon {
+  color: var(--dark-red);
+  animation: pulse 2s infinite;
+}
+
+/* Ongoing event specific styles */
+.ongoing-event {
+  border: 2px solid var(--orange);
+  position: relative;
+  box-shadow: 0 8px 20px rgba(255, 140, 0, 0.15);
+}
+
+.ongoing-event:hover {
+  box-shadow: 0 15px 30px rgba(255, 140, 0, 0.25);
+}
+
+.ongoing-event .event-date {
+  background-color: var(--orange);
+}
+
+.btn-ongoing {
+  background-color: var(--dark-red);
+}
+
+.btn-ongoing:hover {
+  background-color: var(--darker-red);
+}
+
+/* Event badge for ongoing events */
+.event-badge {
+  position: absolute;
+  top: 15px;
+  left: -5px;
+  background-color: var(--dark-red);
+  color: white;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  animation: pulse 2s infinite;
+}
+
+.event-badge:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-top: 5px solid var(--darker-red);
+}
+
+/* No events message */
+.no-events-message {
+  grid-column: 1 / -1;
+  background-color: var(--light-grey);
+  border-radius: 6px;
+  padding: 30px;
+  text-align: center;
+  color: #777;
+  animation: fadeIn 1s ease;
+}
+
+.no-events-message i {
+  font-size: 40px;
+  color: var(--grey);
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.no-events-message p {
+  font-size: 16px;
+}
+
+/* Custom animation for ongoing event cards */
+.ongoing-event.visible {
+  animation: pulseAndFadeIn 1s ease forwards;
+}
+
+@keyframes pulseAndFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .subsection-title {
+    font-size: 22px;
+  }
+  
+  .ongoing-events-section {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subsection-title {
+    font-size: 20px;
+  }
+  
+  .event-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}

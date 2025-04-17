@@ -86,12 +86,10 @@
                             <div class="date-day">{{ event.event_date|date:"d" }}</div>
                             <div class="date-month">{{ event.event_date|date:"M" }}</div>
                         </div>
-                        {% if event.event_image %}
-                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% if event.event_img %}
+                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
                         {% else %}
-                            <div class="event-image-placeholder">
-                                <i class="fas fa-calendar-day"></i>
-                            </div>
+                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="Cancelled Event" class="event-image">
                         {% endif %}
                     </div>
                     <div class="event-details">
@@ -127,12 +125,10 @@
                             <div class="date-day">{{ event.event_date|date:"d" }}</div>
                             <div class="date-month">{{ event.event_date|date:"M" }}</div>
                         </div>
-                        {% if event.event_image %}
-                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% if event.event_img %}
+                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
                         {% else %}
-                            <div class="event-image-placeholder">
-                                <i class="fas fa-calendar-day"></i>
-                            </div>
+                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="Cancelled Event" class="event-image">
                         {% endif %}
                     </div>
                     <div class="event-details">
@@ -177,12 +173,10 @@
                             <div class="date-day">{{ event.event_date|date:"d" }}</div>
                             <div class="date-month">{{ event.event_date|date:"M" }}</div>
                         </div>
-                        {% if event.event_image %}
-                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% if event.event_img %}
+                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
                         {% else %}
-                            <div class="event-image-placeholder">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
+                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="Cancelled Event" class="event-image">
                         {% endif %}
                     </div>
                     <div class="event-details">
@@ -222,12 +216,10 @@
                             <div class="date-day">{{ event.event_date|date:"d" }}</div>
                             <div class="date-month">{{ event.event_date|date:"M" }}</div>
                         </div>
-                        {% if event.event_image %}
-                            <img src="{{ event.event_image.url }}" alt="{{ event.event_name }}" class="event-image">
+                        {% if event.event_img %}
+                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
                         {% else %}
-                            <div class="event-image-placeholder">
-                                <i class="fas fa-calendar-times"></i>
-                            </div>
+                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="Cancelled Event" class="event-image">
                         {% endif %}
                     </div>
                     <div class="event-details">
@@ -251,6 +243,5 @@
     </div>
 </div> 
     
-<script src="{% static 'js/dashboard.js' %}"></script>
 </body>
 </html>

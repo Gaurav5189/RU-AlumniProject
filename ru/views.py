@@ -33,13 +33,15 @@ def about(request):
 
 def events(request):
     """
-    Fetches all events from the database and renders them on the events.html page.
+    Fetches ongoing and upcoming events from the database and renders them on the events.html page.
     """
     # Fetch all events from the database
-    upcoming_events = RavenshawEvent.objects.all()
+    ongoing_events = RavenshawEvent.objects.filter(status='ongoing').order_by('event_date')
+    upcoming_events = RavenshawEvent.objects.filter(status='upcoming').order_by('-event_date')
     
     # Pass the events to the template
     context = {
+        'ongoing_events': ongoing_events,
         'upcoming_events': upcoming_events
     }
     

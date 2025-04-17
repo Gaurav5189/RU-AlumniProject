@@ -50,20 +50,98 @@
 
         <main>
             <div class="container">
-                <p class="section-header">Upcoming Events</p>
+                <p class="section-header">Alumni Events</p>
                 <h1 class="section-title">Connect, celebrate, and create new memories with fellow alumni.</h1>
                 
                 <p class="hero-text">
                     From homecoming celebrations to networking nights, our events bring together alumni from across generations. Join us to strengthen your ties with Ravenshaw and expand your professional network while celebrating our shared traditions.
-                </p>              
-
-                <div class="events-grid" id="events-container">
+                </p>
                 
+                <!-- Ongoing Events Section -->
+                <div class="section-container ongoing-events-section">
+                    <h2 class="subsection-title">
+                        <i class="fas fa-calendar-day section-icon"></i> Ongoing Events
+                    </h2>
+                    <p class="subsection-text">Events happening right now. Don't miss out on these current opportunities to connect!</p>
+                    
+                    <div class="events-grid" id="ongoing-events-container">
+                        {% for event in ongoing_events %}
+                        <div class="event-card ongoing-event" data-type="ongoing" data-month="{{ event.event_date|date:'M'|lower }}" style="--card-index: {{ forloop.counter0 }}">
+                            <div class="event-badge">HAPPENING NOW</div>
+                            <div class="event-image">
+                            {% if event.event_img %}
+                                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" >
+                            {% else %}
+                                <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="{{ event.event_name }}">
+                            {% endif %}
+                            </div>
+                            <div class="event-date">{{ event.event_date|date:"M" }} {{ event.event_date|date:"d" }}  {{ event.event_date|date:"Y" }}</div>
+                            <div class="event-content">
+                                <h3 class="card-title">{{ event.event_name }}</h3>
+                                <p class="card-text">{{ event.event_description }}</p>
+                                <div class="event-details">
+                                    <i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}
+                                </div>
+                                <div class="event-details">
+                                    <i class="fas fa-map-marker-alt"></i> {{ event.event_location }}
+                                </div>
+                                <div class="event-actions">
+                                    <a href="{% url 'dashboard-events' %}" class="card-link">Learn More <span class="arrow-icon">→</span></a>
+                                    <a href="{% url 'login' %}" class="btn btn-ongoing">Join Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="no-events-message">
+                            <i class="fas fa-calendar-times"></i>
+                            <p>No ongoing events at the moment. Check back soon!</p>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
-
-                <div class="load-more">
-                    <button id="load-more-btn" class="btn">Load More Events</button>
+                
+                <!-- Upcoming Events Section -->
+                <div class="section-container upcoming-events-section">
+                    <h2 class="subsection-title">
+                        <i class="fas fa-calendar-alt section-icon"></i> Upcoming Events
+                    </h2>
+                    <p class="subsection-text">Mark your calendars for these exciting future events. Plan ahead and don't miss out!</p>
+                    
+                    <div class="events-grid" id="upcoming-events-container">
+                        {% for event in upcoming_events %}
+                        <div class="event-card" data-type="upcoming" data-month="{{ event.event_date|date:'M'|lower }}" style="--card-index: {{ forloop.counter0 }}">
+                            <div class="event-image">
+                            {% if event.event_img %}
+                                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" >
+                            {% else %}
+                                <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="{{ event.event_name }}">
+                            {% endif %}
+                            </div>
+                            <div class="event-date">{{ event.event_date|date:"M" }} {{ event.event_date|date:"d" }}  {{ event.event_date|date:"Y" }}</div>
+                            <div class="event-content">
+                                <h3 class="card-title">{{ event.event_name }}</h3>
+                                <p class="card-text">{{ event.event_description }}</p>
+                                <div class="event-details">
+                                    <i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}
+                                </div>
+                                <div class="event-details">
+                                    <i class="fas fa-map-marker-alt"></i> {{ event.event_location }}
+                                </div>
+                                <div class="event-actions">
+                                    <a href="{% url 'dashboard-events' %}" class="card-link">Learn More <span class="arrow-icon">→</span></a>
+                                    <a href="{% url 'login' %}" class="btn">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="no-events-message">
+                            <i class="fas fa-calendar-times"></i>
+                            <p>No upcoming events scheduled. Check back soon!</p>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
+                
             </div>
         </main>
 
@@ -121,6 +199,6 @@
   </div>
 </footer>
     </div>
-        <script src="{% static 'js/event.js' %}"></script>
+    <script src="{% static 'js/event.js' %}"></script>
   </body>
 </html>
