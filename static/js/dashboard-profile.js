@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById('submitBtn');
     let isEditing = false;
     
-    // Maximum file size (1MB in bytes)
-    const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1MB
+    // Maximum file size (3MB in bytes)
+    const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
     
     // Toggle active class in menu
     menuItems.forEach(item => {
