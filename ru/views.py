@@ -404,6 +404,14 @@ def dashboard_network(request):
             initials = user.first_name[0].upper()
         else:
             initials = user.username[0].upper()
+        
+        # Handle profile image properly
+        profile_img_url = None
+        if user.profile_img and hasattr(user.profile_img, 'url'):
+            profile_img_url = user.profile_img.url
+        elif not user.profile_img or not hasattr(user.profile_img, 'url'):
+            # Use the default Cloudinary image URL if profile_img is None or doesn't have a URL
+            profile_img_url = "https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png"
             
         user_data.append({
             'id': user.id,
@@ -413,7 +421,7 @@ def dashboard_network(request):
             'subject': user.subject or '',
             'c_name': user.c_name or '',
             'location': user.location or '',
-            'profile_img': user.profile_img.url if user.profile_img else None,
+            'profile_img': profile_img_url,
             'initials': initials
         })
 

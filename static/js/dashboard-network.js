@@ -24,11 +24,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const userInitials = document.getElementById('userInitials');
             
             // Check if card has an image or initials
-            const avatarImg = card.querySelector('.avatar-img');
-            if (avatarImg) {
-                // Replace initials with image
-                modalAvatar.innerHTML = `<img src="${avatarImg.src}" alt="${userName}" class="modal-avatar-img">`;
-                modalAvatar.classList.add('has-image');
+            const avatarImgContainer = card.querySelector('.alumni-avatar-img');
+            if (avatarImgContainer) {
+                const avatarImg = avatarImgContainer.querySelector('.avatar-img');
+                if (avatarImg && avatarImg.src) {
+                    // Replace initials with image
+                    modalAvatar.innerHTML = `<img src="${avatarImg.src}" alt="${userName}" class="modal-avatar-img">`;
+                    modalAvatar.classList.add('has-image');
+                } else {
+                    // Use initials as fallback
+                    userInitials.textContent = card.querySelector('.alumni-avatar').textContent;
+                    modalAvatar.classList.remove('has-image');
+                }
             } else {
                 // Use initials
                 userInitials.textContent = card.querySelector('.alumni-avatar').textContent;

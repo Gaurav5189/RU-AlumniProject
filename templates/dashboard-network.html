@@ -15,7 +15,11 @@
         <div class="sidebar">
             <div class="profile-section">
                 <div class="profile-pic">
-                    <img src="{{ user.profile_img.url|default:'/media/default_pf.png' }}" alt="Profile" class="avatar">
+                    {% if user.profile_img %}
+                    <img src="{{ user.profile_img.url }}" alt="Profile" class="avatar">
+                    {% else %}
+                    <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png" alt="Profile" class="avatar">
+                    {% endif %}
                 </div>
                 {% if user.is_authenticated %}
                 <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
@@ -80,7 +84,7 @@
                         <div class="alumni-header">
                             {% if user.profile_img %}
                             <div class="alumni-avatar-img">
-                                <img src="{{ user.profile_img.url }}" alt="{{ user.name }}" class="avatar-img">
+                                <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
                             </div>
                             {% else %}
                             <div class="alumni-avatar">{{ user.initials }}</div>
