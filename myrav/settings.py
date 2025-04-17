@@ -15,6 +15,7 @@ from pathlib import Path
 from decouple import config # type: ignore#
 from dotenv import load_dotenv
 from urllib.parse import urlparse
+import dj_database_url
 
 load_dotenv()
 
@@ -104,18 +105,14 @@ WSGI_APPLICATION = 'myrav.wsgi.application'
 #     }
 # }
 
-# Replace the DATABASES section of your settings.py with this
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+# Parse the DATABASE_URL from environment variable
+db_config = dj_database_url.parse(os.environ.get('DATABASE_URL'))
+
+# Override the NAME to use a shorter name
+db_config['NAME'] = 'neondb'  # Or any shorter name you prefer
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
-    }
+    'default': db_config
 }
 
 # Password validation
