@@ -1,9 +1,14 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "myrav/wsgi.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb" }
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "staticfiles" }
     }
   ],
   "routes": [
@@ -12,15 +17,8 @@
       "dest": "/static/$1"
     },
     {
-      "src": "/media/(.*)",
-      "dest": "/media/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "myrav/wsgi.py"
     }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "myrav.settings"
-  }
+  ]
 }
