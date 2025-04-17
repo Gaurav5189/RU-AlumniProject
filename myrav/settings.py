@@ -34,6 +34,9 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
+if not DEBUG:
+    ALLOWED_HOSTS.append('.vercel.app')
+
 
 # Application definition
 INSTALLED_APPS = [
