@@ -32,10 +32,14 @@ SECRET_KEY = config('SECURITY_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
-
-if not DEBUG:
-    ALLOWED_HOSTS.append('.vercel.app')
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'ravenshaw-alumni-project-8gg3.vercel.app',
+    'ravenshaw-alumni-project-8gg3-r6ey826gi-ravenshaws-projects.vercel.app',
+    '.vercel.app',  # This will match all subdomains of vercel.app
+]
 
 
 # Application definition
