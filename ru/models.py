@@ -12,7 +12,9 @@ class CustomUser(AbstractUser):
     batchno = models.CharField(max_length=20)
     c_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20, blank=True)
-    profile_img = models.ImageField(upload_to='profile_images/', default="default_pf.png")
+    profile_img = models.ImageField(upload_to='profile_images/', 
+                               default="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png", 
+                               storage=MediaCloudinaryStorage())
     Phone_no = models.CharField(max_length=15, null=True, blank=True)
     location = models.TextField(default='', blank=True)
     bio = models.TextField(default='', blank=True)  # or some other appropriate default

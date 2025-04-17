@@ -80,7 +80,7 @@
                         <div class="alumni-header">
                             {% if user.profile_img %}
                             <div class="alumni-avatar-img">
-                                <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
+                                <img src="{{ user.profile_img.url }}" alt="{{ user.name }}" class="avatar-img">
                             </div>
                             {% else %}
                             <div class="alumni-avatar">{{ user.initials }}</div>
