@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-      "build": "python manage.py collectstatic --noinput"
+      "build": "bash ./vercel-build-step.sh"
     }
   }

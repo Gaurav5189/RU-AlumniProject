@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "myrav/wsgi.py",
@@ -6,13 +7,6 @@
       "config": { 
         "maxLambdaSize": "15mb",
         "runtime": "python3.9"
-      }
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles"
       }
     }
   ],
@@ -30,7 +24,5 @@
       "dest": "myrav/wsgi.py"
     }
   ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "myrav.settings"
-  }
+  "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput"
 }
