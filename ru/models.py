@@ -3,8 +3,7 @@ from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from cloudinary_storage.storage import MediaCloudinaryStorage
-
+from cloudinary.models import CloudinaryField
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True)
@@ -12,9 +11,11 @@ class CustomUser(AbstractUser):
     batchno = models.CharField(max_length=20)
     c_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20, blank=True)
-    profile_img = models.ImageField(upload_to='profile_images/', 
-                               default="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png", 
-                               storage=MediaCloudinaryStorage())
+    profile_img = CloudinaryField('profile_images',
+        default="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png",
+        null=True,
+        blank=True
+    )
     Phone_no = models.CharField(max_length=15, null=True, blank=True)
     location = models.TextField(default='', blank=True)
     bio = models.TextField(default='', blank=True)  # or some other appropriate default
@@ -124,7 +125,7 @@ class ContactForm(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class TestImage(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='test_images/', storage=MediaCloudinaryStorage())
+# class TestImage(models.Model):
+#     name = models.CharField(max_length=100)
+#     image = models.ImageField(upload_to='test_images/', storage=MediaCloudinaryStorage())
 

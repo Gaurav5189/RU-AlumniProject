@@ -413,7 +413,7 @@ def dashboard_network(request):
             'subject': user.subject or '',
             'c_name': user.c_name or '',
             'location': user.location or '',
-            'profile_img': user.profile_img.url if user.profile_img and not user.profile_img.url == '#' else None,
+            'profile_img': user.profile_img.url if user.profile_img else None,
             'initials': initials
         })
 

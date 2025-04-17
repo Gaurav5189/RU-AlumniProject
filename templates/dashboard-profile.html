@@ -14,7 +14,7 @@
     <div class="sidebar">
         <div class="profile-section">
             <div class="profile-pic">
-                <img src="{{ user.profile_img.url|default:'#' }}" alt="Profile" class="avatar">
+                <img src="{{ user.profile_img.url|default:'/media/default_pf.png' }}" alt="Profile" class="avatar">
             </div>
             {% if user.is_authenticated %}
             <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
