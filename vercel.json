@@ -32,6 +32,7 @@
       "dest": "myrav/wsgi.py"
     }
   ],
+<<<<<<< HEAD
   "headers": [
     {
       "source": "/(.*)",
@@ -44,5 +45,7 @@
       ]
     }
   ],
+=======
+>>>>>>> parent of 69ddce8 (Enhance security settings in settings.py and add Content Security Policy in vercel.json)
   "buildCommand": "bash ./vercel-build-step.sh"
 }
