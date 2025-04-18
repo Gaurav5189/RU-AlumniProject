@@ -77,9 +77,11 @@ MIDDLEWARE = [
 ]
 
 #setting for WhiteNoise
-WHITENOSIE_USE_FINDERS = True
-WHITENOSIE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-WHITENOSIE_INDEX_FILE = True
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+WHITENOISE_INDEX_FILE = True
+WHITENOISE_MAX_AGE = 31536000  # 1 year in seconds
+WHITENOISE_AUTOREFRESH = True
 
 ROOT_URLCONF = 'myrav.urls'
 
