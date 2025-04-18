@@ -32,5 +32,20 @@
       "dest": "myrav/wsgi.py"
     }
   ],
+<<<<<<< HEAD
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'" }
+      ]
+    }
+  ],
+=======
+>>>>>>> parent of 69ddce8 (Enhance security settings in settings.py and add Content Security Policy in vercel.json)
   "buildCommand": "bash ./vercel-build-step.sh"
 }
