@@ -138,10 +138,17 @@
             <ul class="event-list-full">
                 {% for event in upcoming_events %}
                 <li class="event-item-full">
+                    <div class="event-image-container">
                     <div class="event-date">
                         <div class="date-day">{{ event.event_date|date:"d" }}</div>
                         <div class="date-month">{{ event.event_date|date:"M" }}</div>
                     </div>
+                    {% if event.event_img %}
+                    <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
+                {% else %}
+                    <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="Cancelled Event" class="event-image">
+                {% endif %}
+                </div>
                     <div class="event-details">
                         <div class="event-title">{{ event.event_name }}</div>
                         <div class="event-info">
