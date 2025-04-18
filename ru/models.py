@@ -19,7 +19,11 @@ class CustomUser(AbstractUser):
     )
     Phone_no = models.CharField(max_length=15, null=True, blank=True)
     location = models.TextField(default='', blank=True)
-    bio = models.TextField(default='', blank=True)  # or some other appropriate default
+    bio = models.TextField(
+        validators=[MaxLengthValidator(limit_value=300, message="Description cannot exceed 300 characters")],
+        default='',
+        blank=True
+    )
     subject = models.CharField(max_length=100, default='', blank=True)
     # Update this line - make sure a default empty dict is provided
     social_links = models.JSONField(default=dict, blank=True, null=False)  # Store social links as JSON
@@ -49,7 +53,11 @@ class RavenshawEvent(models.Model):
     event_name = models.CharField(max_length=200)
     event_date = models.DateTimeField()
     event_location = models.CharField(max_length=200)
-    event_description = models.TextField(validators=[MaxLengthValidator(300)])
+    event_description = models.TextField(
+        validators=[MaxLengthValidator(limit_value=300, message="Description cannot exceed 300 characters")],
+        default='',
+        blank=True
+    )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='upcoming')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
