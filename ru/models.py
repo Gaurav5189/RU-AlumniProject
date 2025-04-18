@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from cloudinary.models import CloudinaryField
+from django.core.validators import MaxLengthValidator
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True)
@@ -48,11 +49,10 @@ class RavenshawEvent(models.Model):
     event_name = models.CharField(max_length=200)
     event_date = models.DateTimeField()
     event_location = models.CharField(max_length=200)
-    event_description = models.TextField()
+    event_description = models.TextField(validators=[MaxLengthValidator(300)])
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='upcoming')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # Replace ImageField with CloudinaryField
     event_img = CloudinaryField('event_images',
         default="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg",
         null=True,
