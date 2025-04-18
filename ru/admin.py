@@ -4,14 +4,49 @@ from .models import CustomUser, OTPVerification, RavenshawEvent, JobPost, Contac
 
 class CustomUserAdmin(UserAdmin):
     # Add your custom fields to the list_display
-    list_display = ('username', 'email', 'first_name', 'last_name', 'c_name', 'c_id', 'batchno', 'subject', 'social_links',
+    list_display = ('username', 'email', 'first_name', 'last_name', 'get_company_name', 'get_college_id', 'batchno', 'subject', 'social_links',
                     'is_verified')
     
-    # Add fieldsets for the custom fields
-    fieldsets = UserAdmin.fieldsets + (
-        ('Custom Fields', {'fields': ('age', 'subject', 'c_id', 'batchno', 'c_name', 'gender', 
-                                    'profile_img', 'Phone_no', 'location', 'bio', 'social_links', 'is_verified')}),
-    )
+    # Add fieldsets for the custom fields with custom labels
+    def get_fieldsets(self, request, obj=None):
+        # Get the original fieldsets
+        fieldsets = super().get_fieldsets(request, obj)
+        
+        # Add custom fields with proper labels
+        custom_fieldsets = fieldsets + (
+            ('Custom Fields', {'fields': (
+                'age', 
+                'subject', 
+                ('c_id', 'batchno'),  # Grouped fields
+                'c_name', 
+                'gender',
+                'profile_img', 
+                'Phone_no', 
+                'location', 
+                'bio', 
+                'social_links', 
+                'is_verified'
+            )}),
+        )
+        return custom_fieldsets
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        field = super().formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'c_id':
+            field.label = 'College ID'
+        elif db_field.name == 'c_name':
+            field.label = 'Company Name'
+        return field
+
+    def get_company_name(self, obj):
+        return obj.c_name
+    get_company_name.short_description = 'Company Name'
+    get_company_name.admin_order_field = 'c_name'
+
+    def get_college_id(self, obj):
+        return obj.c_id
+    get_college_id.short_description = 'College ID'
+    get_college_id.admin_order_field = 'c_id'
 
 class RavenshawEventAdmin(admin.ModelAdmin):
     list_display = ('event_name', 'event_date', 'event_img', 'event_location', 'status', 'created_at')
