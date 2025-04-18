@@ -67,6 +67,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'myrav.middleware.SecurityHeadersMiddleware',  # Custom middleware for security headers
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line for WhiteNoise
     'csp.middleware.CSPMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -192,10 +193,12 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'", "https://res.cloudinary.com")
-CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com", "data:")
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")  # Adjust based on your needs
-CSP_FONT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "https://res.cloudinary.com", "https://cdnjs.cloudflare.com")
+CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com", "data:", "https://do7vm8vz3.cloudinary.com")
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com")
+CSP_FONT_SRC = ("'self'", "https://cdnjs.cloudflare.com")
+CSP_CONNECT_SRC = ("'self'",)
+CSP_INCLUDE_NONCE_IN = ['script-src']
 
 
 SECURE_BROWSER_XSS_FILTER = True
