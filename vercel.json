@@ -20,6 +20,10 @@
       "dest": "/static/$1"
     },
     {
+      "src": "/admin/static/(.*)",
+      "dest": "/static/admin/$1"
+    },
+    {
       "src": "/media/(.*)",
       "dest": "/media/$1"
     },

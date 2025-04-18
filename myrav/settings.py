@@ -76,6 +76,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#setting for WhiteNoise
+WHITENOSIE_USE_FINDERS = True
+WHITENOSIE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+WHITENOSIE_INDEX_FILE = True
+
 ROOT_URLCONF = 'myrav.urls'
 
 TEMPLATES = [
