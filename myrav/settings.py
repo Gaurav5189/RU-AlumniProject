@@ -36,6 +36,7 @@ SECURE_HSTS_PRELOAD = True
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
