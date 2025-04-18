@@ -242,7 +242,7 @@ button a:hover {
 
 /* Hero Section */
 #hero {
-  background-image: url("https://res.cloudinary.com/do7vm8vz3/image/upload/v1744977627/index_img_l9yvua.jpg");
+  background-image: url("/media/IMG-01.jpg");
   height: 90vh;
   width: 100%;
   background-size: cover;
