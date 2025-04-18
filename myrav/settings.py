@@ -123,9 +123,6 @@ DATABASES = {
         'PASSWORD': tmpPostgres.password,
         'HOST': tmpPostgres.hostname,
         'PORT': 5432,
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
     }
 }
 
@@ -218,7 +215,7 @@ else:
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
-
+    
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # For Vercel
 
 
