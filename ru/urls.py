@@ -1,5 +1,6 @@
 from django.urls import path # type: ignore
 from . import views
+from .views import test_csp_view
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -20,5 +21,5 @@ urlpatterns = [
     path('dashboard/jobs/', views.dashboard_jobs, name='dashboard-jobs'),
     path('dashboard/jobs/post/', views.job_post_create, name='job-post-create'),
     path('dashboard/jobs/edit/<int:job_id>/', views.job_post_edit, name='job-post-edit'),
-   
+    path("test-csp/", test_csp_view),
 ]

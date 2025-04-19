@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 
+from csp.decorators import csp_update
+
 User = get_user_model()  # This will be 'ru.CustomUser' per your AUTH_USER_MODEL
 
 def generate_otp():
@@ -545,3 +547,12 @@ def dashboard_jobs(request):
         'location_type': location_type,
     }
     return render(request, 'dashboard-jobs.html', context)
+
+
+@csp_update({
+    'default-src': ["'self'"],
+    'script-src': ["'self'", "https://test.com"],
+    'object-src': ["'none'"],
+})
+def test_csp_view(request):
+    return HttpResponse("CSP test response")

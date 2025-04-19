@@ -15,6 +15,7 @@ from pathlib import Path
 from decouple import config # type: ignore#
 from dotenv import load_dotenv
 from urllib.parse import urlparse
+from csp import constants as csp_constants
 
 load_dotenv()
 
@@ -49,10 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',         # must be BEFORE django.contrib.staticfiles
+    'csp',                      # for django‑csp
+    'cloudinary_storage',       # must be BEFORE django.contrib.staticfiles / register storage/finder before staticfiles
     'django.contrib.staticfiles',
-    'cloudinary',
-    'ru', # Add the app to the installed apps
+    'cloudinary',               # the Cloudinary SDK itself
+    'ru',                       # Add the app to the installed apps
 
 ]
 AUTH_USER_MODEL = 'ru.CustomUser' # Add this line to point to the custom user model
@@ -67,15 +69,15 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'myrav.middleware.SecurityHeadersMiddleware',  # Custom middleware for security headers
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line for WhiteNoise
-    'csp.middleware.CSPMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
+    'myrav.middleware.SecurityHeadersMiddleware',  # Custom middleware for security headers
 ]
 
 #setting for WhiteNoise
@@ -192,13 +194,32 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'", "https://res.cloudinary.com", "https://cdnjs.cloudflare.com")
-CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com", "data:", "https://do7vm8vz3.cloudinary.com")
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com")
-CSP_FONT_SRC = ("'self'", "https://cdnjs.cloudflare.com")
-CSP_CONNECT_SRC = ("'self'",)
-CSP_INCLUDE_NONCE_IN = ['script-src']
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'base-uri': ["'self'"],
+        'connect-src': ["'self'"],
+        'default-src': ["'self'"],
+        'font-src': ["'self'", "https://cdnjs.cloudflare.com"],
+        'img-src': [
+            "'self'",
+            "https://res.cloudinary.com",
+            "data:",
+            "https://do7vm8vz3.cloudinary.com",
+        ],
+        'object-src': ["'none'"],
+        'script-src': [
+            "'self'",
+            "https://res.cloudinary.com",
+            "https://cdnjs.cloudflare.com",
+            csp_constants.NONCE,
+        ],
+        'style-src': [
+            "'self'",
+            "'unsafe-inline'",
+            "https://cdnjs.cloudflare.com",
+        ],
+    }
+}
 
 
 SECURE_BROWSER_XSS_FILTER = True
