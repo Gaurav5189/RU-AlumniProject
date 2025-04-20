@@ -37,11 +37,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'www.ravenshaw-alumni-system.in',
-    'ravenshaw-alumni-system.in',
     'ravenshaw-alumni-project-8gg3.vercel.app',
     'ravenshaw-alumni-project-8gg3-r6ey826gi-ravenshaws-projects.vercel.app',
-    'ravenshaw-alumni-project-8gg3-git-main-ravenshaws-projects.vercel.app',
     '.vercel.app',  # This will match all subdomains of vercel.app
 ]
 
