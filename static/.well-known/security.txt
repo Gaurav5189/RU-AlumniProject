@@ -1,5 +1,0 @@
-# In static/.well-known/security.txt
-Contact: mailto:alumni.ravenshaw987@gmail.com
-Expires: 2026-04-20T00:00:00.000Z
-Preferred-Languages: en
-Policy: https://ravenshaw-alumni-project-8gg3.vercel.app/security-policy

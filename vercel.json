@@ -30,16 +30,6 @@
     {
       "src": "/(.*)",
       "dest": "myrav/wsgi.py"
-    },
-    {
-      "src": "/(.*)",
-      "headers": {
-        "X-Content-Type-Options": "nosniff",
-        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-        "Referrer-Policy": "no-referrer",
-        "X-Frame-Options": "DENY"
-      },
-      "continue": true
     }
   ],
   "buildCommand": "bash ./vercel-build-step.sh"
