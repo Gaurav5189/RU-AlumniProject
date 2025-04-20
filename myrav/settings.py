@@ -194,32 +194,38 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
+# settings.py
+
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
-        'base-uri': ["'self'"],
-        'connect-src': ["'self'"],
         'default-src': ["'self'"],
-        'font-src': ["'self'", "https://cdnjs.cloudflare.com"],
-        'img-src': [
-            "'self'",
-            "https://res.cloudinary.com",
-            "data:",
-            "https://do7vm8vz3.cloudinary.com",
-        ],
-        'object-src': ["'none'"],
         'script-src': [
             "'self'",
             "https://res.cloudinary.com",
             "https://cdnjs.cloudflare.com",
-            csp_constants.NONCE,
+            csp_constants.NONCE
         ],
         'style-src': [
             "'self'",
             "'unsafe-inline'",
-            "https://cdnjs.cloudflare.com",
+            "https://cdnjs.cloudflare.com"
         ],
+        'img-src': [
+            "'self'",
+            "https://res.cloudinary.com",
+            "https://do7vm8vz3.cloudinary.com",
+            "data:"
+        ],
+        'font-src': [
+            "'self'",
+            "https://cdnjs.cloudflare.com"
+        ],
+        'connect-src': ["'self'"],
+        'object-src': ["'none'"],
+        'base-uri': ["'self'"],
     }
 }
+
 
 
 SECURE_BROWSER_XSS_FILTER = True
