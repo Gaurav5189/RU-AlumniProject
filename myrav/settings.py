@@ -101,7 +101,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'your_app.context_processors.csp_nonce',  # Add your custom context processor here
             ],
         },
     },
@@ -211,17 +210,16 @@ CONTENT_SECURITY_POLICY = {
         'object-src': ["'none'"],
         'script-src': [
             "'self'",
-            "https://res.cloudinary.com", 
+            "https://res.cloudinary.com",
             "https://cdnjs.cloudflare.com",
-            csp_constants.NONCE,  # the nonce
+            csp_constants.NONCE,
         ],
         'style-src': [
             "'self'",
+            "'unsafe-inline'",
             "https://cdnjs.cloudflare.com",
-            csp_constants.NONCE,  # use nonce for styles
         ],
-    },
-    'NONCE_ENABLED': True,  # this is True
+    }
 }
 
 
