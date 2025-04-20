@@ -30,6 +30,10 @@
     {
       "src": "/(.*)",
       "dest": "myrav/wsgi.py"
+    },
+    {
+      "src": "/googlecc38ee9c840f1e71.html",
+      "dest": "/static/googlecc38ee9c840f1e71.html"
     }
   ],
   "buildCommand": "bash ./vercel-build-step.sh"
