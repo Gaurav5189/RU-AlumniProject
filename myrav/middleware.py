@@ -12,6 +12,7 @@ class SecurityHeadersMiddleware:
                 response.set_cookie(
                     cookie_name,
                     cookie.value,
+                    secure=True,
                     httponly=True,
                     samesite='Lax'
                 )
