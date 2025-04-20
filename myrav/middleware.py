@@ -13,7 +13,7 @@ class SecurityHeadersMiddleware:
         
         response = self.get_response(request)
         
-        # Add security headers
+        # security headers
         response["X-Content-Type-Options"] = "nosniff"
         response["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
         response["Referrer-Policy"] = "no-referrer"

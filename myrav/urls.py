@@ -18,10 +18,16 @@ from django.contrib import admin # type: ignore
 from django.urls import path, include # type: ignore
 from django.conf import settings # type: ignore
 from django.conf.urls.static import static # type: ignore
+from django.views.static import serve
+import os
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ru.urls')),
+    path('.well-known/security.txt', serve, {
+        'document_root': os.path.join(settings.STATIC_ROOT, '.well-known'),
+        'path': 'security.txt'
+    }),
 ]
 
 urlpatterns = urlpatterns+static(settings.MEDIA_URL,
