@@ -27,9 +27,9 @@
         {% endif %}
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form method="post" action="{% url 'register' %}" id="signUpForm">
-                {% csrf_token %}
-                {{ form.as_p }}
+            <form method="post" action="{% url 'register' %}" id="signUpForm" data-verify-url="{% url 'verify-otp-ajax' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
                 <h1>Create Account</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -105,10 +105,6 @@
     
     <!-- js code -->
 <!-- login.html -->
-<script>
-    // Django will replace this at render time with the actual URL (e.g. "/verify-otp-ajax/").
-    var verifyOtpAjaxUrl = "{% url 'verify-otp-ajax' %}";
-</script>
   <script src="{% static 'js/login.js' %}" defer></script>
   
 </body>
