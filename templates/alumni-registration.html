@@ -91,7 +91,7 @@
         </form>
     </div>
 
-    <script>
+    <script nonce="{{ csp_nonce }}">
         // Get the email parameter from URL and set it in the email field
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);

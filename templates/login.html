@@ -105,11 +105,11 @@
     
     <!-- js code -->
 <!-- login.html -->
-<script>
+<script nonce="{{ csp_nonce }}">
     // Django will replace this at render time with the actual URL (e.g. "/verify-otp-ajax/").
     var verifyOtpAjaxUrl = "{% url 'verify-otp-ajax' %}";
 </script>
-  <script src="{% static 'js/login.js' %}"></script>
+  <script src="{% static 'js/login.js' %}" nonce="{{ csp_nonce }}"></script>
   
 </body>
 </html>
