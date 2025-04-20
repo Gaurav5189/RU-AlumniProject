@@ -17,4 +17,9 @@ class SecurityHeadersMiddleware:
                     samesite='Lax'
                 )
 
+        # Permissions Policy Header (NEW)
+        response["Permissions-Policy"] = (
+            "geolocation=(), microphone=(), camera=(), payment=(), usb=(), fullscreen=(self)"
+        )
+
         return response
