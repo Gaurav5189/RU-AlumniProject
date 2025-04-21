@@ -79,3 +79,6 @@ yarn-error.log
 Docker
 Dockerfile
 docker-compose.yml
+README.Docker.md
+.dockerignore
+docker-compose.override.yml
