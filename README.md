@@ -10,7 +10,7 @@
 </div>
 
 <p align="center">
-  <img src="https://github.com/Gaurav5189/RU-AlumniProject/blob/main/Images/Ravenshaw_University_Logo.png" alt="Ravenshaw University Alumni Logo" width="300"/>
+  <img src="media/Ravenshaw_University_Logo.png" alt="Ravenshaw University Alumni Logo" width="300"/>
 </p>
 
 <div align="center">
