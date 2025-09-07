@@ -59,13 +59,13 @@ Founded in 1868, Ravenshaw University has a rich legacy of academic excellence a
 - **Search Functionality**: Easy discovery of people, events, and content
 - **Interactive Interface**: User-friendly navigation and interaction
 
-## 🖥️ Demo <a name="demo"></a>
+## 🖥️ LIVE <a name="demo"></a>
 
 <div align="center">
   
-  [🔗 Live Demo](https://gaurav5189.github.io/RU-AlumniProject/index.html)
+  [🔗 Live Project](https://ravenshaw-alumni-project-8gg3.vercel.app/)
   
-  ![Demo IMAGE](https://github.com/Gaurav5189/RU-AlumniProject/blob/main/Images/portal-img.png)
+  ![LIVE IMAGE](media/portal-img.png)
 </div>
 
 ## 💻 Tech Stack <a name="tech-stack"></a>
