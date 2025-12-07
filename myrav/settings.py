@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',       # must be BEFORE django.contrib.staticfiles / register storage/finder before staticfiles
     'django.contrib.staticfiles',
     'cloudinary',               # the Cloudinary SDK itself
+    'django.contrib.sitemaps',
     'ru',                       # Add the app to the installed apps
 
 ]
