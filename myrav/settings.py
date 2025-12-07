@@ -38,10 +38,17 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '0.0.0.0',
+
+    # Vercel domains
     'ravenshaw-alumni-project-8gg3.vercel.app',
     'ravenshaw-alumni-project-8gg3-r6ey826gi-ravenshaws-projects.vercel.app',
-    '.vercel.app',  # This will match all subdomains of vercel.app
+    '.vercel.app',
+
+    # Your custom domains
+    'ravenshawalumnisystem.dpdns.org',
+    '.dpdns.org',
 ]
+
 
 
 # Application definition
