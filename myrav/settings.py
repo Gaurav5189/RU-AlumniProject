@@ -222,32 +222,43 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'default-src': ["'self'"],
+
         'script-src': [
             "'self'",
             "https://res.cloudinary.com",
             "https://cdnjs.cloudflare.com",
-            csp_constants.NONCE
+            "https://static.cloudflareinsights.com",  # Cloudflare analytics beacon
+            csp_constants.NONCE,
         ],
+
         'style-src': [
             "'self'",
-            "'unsafe-inline'",
-            "https://cdnjs.cloudflare.com"
+            "'unsafe-inline'",          # OK for now because you use inline styles
+            "https://cdnjs.cloudflare.com",
         ],
+
         'img-src': [
             "'self'",
             "https://res.cloudinary.com",
-            "https://do7vm8vz3.cloudinary.com",
-            "data:"
+            "https://do7vm8vz3.cloudinary.com",  # your Cloudinary delivery subdomain
+            "data:",
         ],
+
         'font-src': [
             "'self'",
-            "https://cdnjs.cloudflare.com"
+            "https://cdnjs.cloudflare.com",
         ],
-        'connect-src': ["'self'"],
+
+        'connect-src': [
+            "'self'",
+            # add here later if you use external APIs or analytics
+        ],
+
         'object-src': ["'none'"],
         'base-uri': ["'self'"],
     }
 }
+
 
 
 
