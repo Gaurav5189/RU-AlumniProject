@@ -2,13 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in || Sign up form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-     integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a" crossorigin="anonymous">
+        integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
@@ -17,19 +18,21 @@
     <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
 </head>
+
 <body>
-        {% if messages %}
-            <div class="alert">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
+    {% if messages %}
+    <div class="alert">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form method="post" action="{% url 'register' %}" id="signUpForm" data-verify-url="{% url 'verify-otp-ajax' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
+            <form method="post" action="{% url 'register' %}" id="signUpForm"
+                data-verify-url="{% url 'verify-otp-ajax' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
                 <h1>Create Account</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -37,16 +40,16 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span id="signup-instruction">Enter your email to continue</span>
-                
+
                 <div class="infield">
-                    <input type="email" placeholder="Email" name="email" id="signupEmail" required/>
+                    <input type="email" placeholder="Email" name="email" id="signupEmail" required />
                     <label></label>
                 </div>
-                
+
                 <!-- OTP fields (hidden initially) -->
                 <div id="otp-container" class="otp-container" style="display: none;">
                     <div class="infield">
-                        <input type="text" placeholder="Enter OTP" id="otpInput" maxlength="6" required/>
+                        <input type="text" placeholder="Enter OTP" id="otpInput" maxlength="6" required />
                         <label></label>
                     </div>
                     <div class="resend-otp">
@@ -54,9 +57,10 @@
                         <a href="#" id="resend-btn" style="display: none;">Resend OTP</a>
                     </div>
                 </div>
-                
+
                 <button type="button" id="continueBtn">Continue</button>
                 <button type="submit" id="verifyBtn" style="display: none;">Verify</button>
+                <p class="mobile-toggle">Already have an account? <a href="#" id="mobile-signin-link">Sign In</a></p>
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -71,7 +75,7 @@
                 </div>
                 <span>or use your account</span>
                 <div class="infield">
-                    <input type="email" placeholder="Email" name="l-email"/>
+                    <input type="email" placeholder="Email" name="l-email" />
                     <label></label>
                 </div>
                 <div class="infield">
@@ -80,6 +84,7 @@
                 </div>
                 <a href="{% url 'forgot-password' %}" class="forgot">Forgot your password?</a>
                 <button>Sign In</button>
+                <p class="mobile-toggle">Don't have an account? <a href="#" id="mobile-signup-link">Sign Up</a></p>
             </form>
         </div>
         <div class="overlay-container" id="overlayCon">
@@ -98,14 +103,15 @@
             <button id="overlayBtn"></button>
         </div>
     </div>
-    
+
     <div class="home-link">
         <a href="/"><i class="fas fa-home"></i> Return to Home</a>
     </div>
-    
+
     <!-- js code -->
-<!-- login.html -->
-  <script src="{% static 'js/login.js' %}" defer></script>
-  
+    <!-- login.html -->
+    <script src="{% static 'js/login.js' %}" defer></script>
+
 </body>
+
 </html>

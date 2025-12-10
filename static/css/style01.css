@@ -105,6 +105,48 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.btn-login-header {
+  background-color: white;
+  color: var(--dark-red);
+  padding: 6px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-login-header:hover {
+  background-color: var(--off-white);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Hero CTA Button */
+.hero-cta {
+  margin-top: 30px;
+}
+
+.btn-hero-join {
+  background-color: var(--orange);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+  display: inline-block;
+}
+
+.btn-hero-join:hover {
+  background-color: var(--light-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.6);
+}
+
 button::after {
   content: '';
   position: absolute;
@@ -760,7 +802,11 @@ footer {
 
 @media (max-width: 768px) {
   .top-banner-container {
-    flex-direction: column;
+    flex-direction: row;
+    /* Keep it in a row */
+    justify-content: space-between;
+    /* Space out items */
+    align-items: center;
     gap: 1rem;
     padding: 0.5rem 0;
   }
@@ -792,9 +838,15 @@ footer {
   }
 
   .top-banner-left {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: flex-start;
+    flex-direction: row;
+    /* Keep contact items in row if possible, or wrap */
+    gap: 10px;
+    align-items: center;
+  }
+
+  .contact-item span {
+    font-size: 12px;
+    /* Smaller font on mobile */
   }
 
   #hero {

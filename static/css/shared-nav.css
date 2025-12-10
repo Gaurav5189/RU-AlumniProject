@@ -1,5 +1,24 @@
 /* Shared Mobile Navigation Styles */
 
+/* Shared Login Header Button */
+.btn-login-header {
+    background-color: white;
+    color: var(--dark-red, #8B0000);
+    padding: 6px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-login-header:hover {
+    background-color: var(--off-white, #F5F5F5);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 /* Hamburger Button - Hidden on Desktop */
 .mobile-toggle {
     display: none;
@@ -22,6 +41,25 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+
+    /* Top Banner - Single Row on Mobile */
+    .top-banner-container {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+
+    .top-banner-left {
+        flex-direction: row !important;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .contact-item span {
+        font-size: 11px;
+    }
 
     /* Ensure Nav container stays in a row */
     .nav {
