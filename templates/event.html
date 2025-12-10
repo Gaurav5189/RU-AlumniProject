@@ -1,207 +1,239 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events - Ravenshaw Alumni System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-     integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/event.css' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
-  </head>
-  <body>
-    <div class="min-h-screen flex flex-col">
-        <!-- Top Banner -->
-        <div class="top-banner">
-          <div class="container top-banner-container">
-            <div class="top-banner-left">
-              <div class="contact-item">
-                <!-- Mail Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-                  <polyline points="3 7 12 13 21 7"></polyline>
-                </svg>
-                <span>alumni.ravenshaw987@gmail.com</span>
-              </div>
-            </div>
-            <button>
-              <a href="{% url 'login' %}" class="nav-link1">Login</a>
-            </button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events - Ravenshaw Alumni System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/event.css' %}">
+  <link rel="stylesheet" href="{% static 'css/shared-nav.css' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
+  <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
+  <link rel="manifest" href="{% static 'site.webmanifest' %}">
+</head>
+
+<body>
+  <div class="min-h-screen flex flex-col">
+    <!-- Top Banner -->
+    <div class="top-banner">
+      <div class="container top-banner-container">
+        <div class="top-banner-left">
+          <div class="contact-item">
+            <!-- Mail Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke-width="2"
+              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+              <polyline points="3 7 12 13 21 7"></polyline>
+            </svg>
+            <span>alumni.ravenshaw987@gmail.com</span>
           </div>
         </div>
-  
-        <!-- Navigation -->
-        <header class="header">
-          <div class="container nav-container">
-            <nav class="nav">
-              <a href="/" class="logo">
-                <span class="logo-text-gray">Ravenshaw</span>
-                <span class="logo-text-accent">Alumni System</span>
-              </a>
-              <div class="nav-links">
-                <a href="/" class="nav-link">Home</a>
-                <a href="{% url 'events' %}" class="nav-link active">Events</a>
-                <a href="{% url 'contact' %}" class="nav-link">Contact</a>
-                <a href="{% url 'about' %}" class="nav-link">About</a>
-              </div>
-            </nav>
+        <button>
+          <a href="{% url 'login' %}" class="nav-link1">Login</a>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header">
+      <div class="container nav-container">
+        <nav class="nav">
+          <a href="/" class="logo">
+            <span class="logo-text-gray">Ravenshaw</span>
+            <span class="logo-text-accent">Alumni System</span>
+          </a>
+          <button class="mobile-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="{% url 'events' %}" class="nav-link active">Events</a>
+            <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+            <a href="{% url 'about' %}" class="nav-link">About</a>
           </div>
-        </header>
+        </nav>
+      </div>
+    </header>
 
-        <main>
-            <div class="container">
-                <p class="section-header">Alumni Events</p>
-                <h1 class="section-title">Connect, celebrate, and create new memories with fellow alumni.</h1>
-                
-                <p class="hero-text">
-                    From homecoming celebrations to networking nights, our events bring together alumni from across generations. Join us to strengthen your ties with Ravenshaw and expand your professional network while celebrating our shared traditions.
+    <main>
+      <div class="container">
+        <p class="section-header">Alumni Events</p>
+        <h1 class="section-title">Connect, celebrate, and create new memories with fellow alumni.</h1>
+
+        <p class="hero-text">
+          From homecoming celebrations to networking nights, our events bring together alumni from across generations.
+          Join us to strengthen your ties with Ravenshaw and expand your professional network while celebrating our
+          shared traditions.
+        </p>
+
+        <!-- Ongoing Events Section -->
+        <div class="section-container ongoing-events-section">
+          <h2 class="subsection-title">
+            <i class="fas fa-calendar-day section-icon"></i> Ongoing Events
+          </h2>
+          <p class="subsection-text">Events happening right now. Don't miss out on these current opportunities to
+            connect!</p>
+
+          <div class="events-grid" id="ongoing-events-container">
+            {% for event in ongoing_events %}
+            <div class="event-card ongoing-event" data-type="ongoing" data-month="{{ event.event_date|date:'M'|lower }}"
+              style="--card-index: {{ forloop.counter0 }}">
+              <div class="event-badge">HAPPENING NOW</div>
+              <div class="event-image">
+                {% if event.event_img %}
+                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}">
+                {% else %}
+                <img
+                  src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
+                  alt="{{ event.event_name }}">
+                {% endif %}
+              </div>
+              <div class="event-content">
+                <h3 class="card-title">{{ event.event_name }}</h3>
+                <p class="event-date"
+                  style="color: #555; font-weight: 500; margin-bottom: 15px; display: flex; align-items: center;">
+                  <i class="fas fa-calendar-alt" style="color: var(--dark-red); margin-right: 8px;"></i>
+                  {{ event.event_date|date:"M d, Y" }}
                 </p>
-                
-                <!-- Ongoing Events Section -->
-                <div class="section-container ongoing-events-section">
-                    <h2 class="subsection-title">
-                        <i class="fas fa-calendar-day section-icon"></i> Ongoing Events
-                    </h2>
-                    <p class="subsection-text">Events happening right now. Don't miss out on these current opportunities to connect!</p>
-                    
-                    <div class="events-grid" id="ongoing-events-container">
-                        {% for event in ongoing_events %}
-                        <div class="event-card ongoing-event" data-type="ongoing" data-month="{{ event.event_date|date:'M'|lower }}" style="--card-index: {{ forloop.counter0 }}">
-                            <div class="event-badge">HAPPENING NOW</div>
-                            <div class="event-image">
-                            {% if event.event_img %}
-                                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" >
-                            {% else %}
-                                <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="{{ event.event_name }}">
-                            {% endif %}
-                            </div>
-                            <div class="event-date">{{ event.event_date|date:"M" }} {{ event.event_date|date:"d" }}  {{ event.event_date|date:"Y" }}</div>
-                            <div class="event-content">
-                                <h3 class="card-title">{{ event.event_name }}</h3>
-                                <p class="card-text">{{ event.event_description }}</p>
-                                <div class="event-details">
-                                    <i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}
-                                </div>
-                                <div class="event-details">
-                                    <i class="fas fa-map-marker-alt"></i> {{ event.event_location }}
-                                </div>
-                                <div class="event-actions">
-                                    <a href="{% url 'dashboard-events' %}" class="card-link">Learn More <span class="arrow-icon">→</span></a>
-                                    <a href="{% url 'login' %}" class="btn btn-ongoing">Join Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        {% empty %}
-                        <div class="no-events-message">
-                            <i class="fas fa-calendar-times"></i>
-                            <p>No ongoing events at the moment. Check back soon!</p>
-                        </div>
-                        {% endfor %}
-                    </div>
+                <p class="card-text">{{ event.event_description }}</p>
+                <div class="event-details">
+                  <i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}
                 </div>
-                
-                <!-- Upcoming Events Section -->
-                <div class="section-container upcoming-events-section">
-                    <h2 class="subsection-title">
-                        <i class="fas fa-calendar-alt section-icon"></i> Upcoming Events
-                    </h2>
-                    <p class="subsection-text">Mark your calendars for these exciting future events. Plan ahead and don't miss out!</p>
-                    
-                    <div class="events-grid" id="upcoming-events-container">
-                        {% for event in upcoming_events %}
-                        <div class="event-card" data-type="upcoming" data-month="{{ event.event_date|date:'M'|lower }}" style="--card-index: {{ forloop.counter0 }}">
-                            <div class="event-image">
-                            {% if event.event_img %}
-                                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" >
-                            {% else %}
-                                <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg" alt="{{ event.event_name }}">
-                            {% endif %}
-                            </div>
-                            <div class="event-date">{{ event.event_date|date:"M" }} {{ event.event_date|date:"d" }}  {{ event.event_date|date:"Y" }}</div>
-                            <div class="event-content">
-                                <h3 class="card-title">{{ event.event_name }}</h3>
-                                <p class="card-text">{{ event.event_description }}</p>
-                                <div class="event-details">
-                                    <i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}
-                                </div>
-                                <div class="event-details">
-                                    <i class="fas fa-map-marker-alt"></i> {{ event.event_location }}
-                                </div>
-                                <div class="event-actions">
-                                    <a href="{% url 'dashboard-events' %}" class="card-link">Learn More <span class="arrow-icon">→</span></a>
-                                    <a href="{% url 'login' %}" class="btn">Register</a>
-                                </div>
-                            </div>
-                        </div>
-                        {% empty %}
-                        <div class="no-events-message">
-                            <i class="fas fa-calendar-times"></i>
-                            <p>No upcoming events scheduled. Check back soon!</p>
-                        </div>
-                        {% endfor %}
-                    </div>
+                <div class="event-details">
+                  <i class="fas fa-map-marker-alt"></i> {{ event.event_location }}
                 </div>
-                
+                <div class="event-actions">
+                  <a href="{% url 'dashboard-events' %}" class="card-link">Learn More <span
+                      class="arrow-icon">→</span></a>
+                  <a href="{% url 'login' %}" class="btn btn-ongoing">Join Now</a>
+                </div>
+              </div>
             </div>
-        </main>
+            {% empty %}
+            <div class="no-events-message">
+              <i class="fas fa-calendar-times"></i>
+              <p>No ongoing events at the moment. Check back soon!</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
 
-        <!-- footer -->  
-<footer>
-  <div class="container">
-    <div class="newstext" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-      <h1>Ravenshaw <span>Alumni Network</span></h1>
-      <p>Job Board & Placement Support: Browse job listings and internship opportunities posted by alumni and partner organizations</p>
-    </div>
-    <div class="footer-content">
-      <div class="footer-column">
-        <h3>Alumni Services</h3>
-        <ul>
-          <li><a href="#">Alumni Directory</a></li>
-          <li><a href="#">Events Calendar</a></li>
-          <li><a href="#">Mentorship Program</a></li>
-          <li><a href="#">Career Resources</a></li>
-          <li><a href="#">Benefits & Discounts</a></li>
-        </ul>
+        <!-- Upcoming Events Section -->
+        <div class="section-container upcoming-events-section">
+          <h2 class="subsection-title">
+            <i class="fas fa-calendar-alt section-icon"></i> Upcoming Events
+          </h2>
+          <p class="subsection-text">Mark your calendars for these exciting future events. Plan ahead and don't miss
+            out!</p>
+
+          <div class="events-grid" id="upcoming-events-container">
+            {% for event in upcoming_events %}
+            <div class="event-card" data-type="upcoming" data-month="{{ event.event_date|date:'M'|lower }}"
+              style="--card-index: {{ forloop.counter0 }}">
+              <div class="event-image">
+                {% if event.event_img %}
+                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}">
+                {% else %}
+                <img
+                  src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
+                  alt="{{ event.event_name }}">
+                {% endif %}
+              </div>
+              <div class="event-content">
+                <h3 class="card-title">{{ event.event_name }}</h3>
+                <p class="event-date"
+                  style="color: #555; font-weight: 500; margin-bottom: 15px; display: flex; align-items: center;">
+                  <i class="fas fa-calendar-alt" style="color: var(--dark-red); margin-right: 8px;"></i>
+                  {{ event.event_date|date:"M d, Y" }}
+                </p>
+                <p class="card-text">{{ event.event_description }}</p>
+                <div class="event-details">
+                  <i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A" }}
+                </div>
+                <div class="event-details">
+                  <i class="fas fa-map-marker-alt"></i> {{ event.event_location }}
+                </div>
+                <div class="event-actions">
+                  <a href="{% url 'dashboard-events' %}" class="card-link">Learn More <span
+                      class="arrow-icon">→</span></a>
+                  <a href="{% url 'login' %}" class="btn">Register</a>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <div class="no-events-message">
+              <i class="fas fa-calendar-times"></i>
+              <p>No upcoming events scheduled. Check back soon!</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
       </div>
-      <div class="footer-column">
-        <h3>Get Involved</h3>
-        <ul>
-          <li><a href="#">Volunteer</a></li>
-          <li><a href="#">Donate</a></li>
-          <li><a href="#">Attend Events</a></li>
-          <li><a href="#">Class Reunions</a></li>
-          <li><a href="#">Regional Clubs</a></li>
-        </ul>
+    </main>
+
+    <!-- footer -->
+    <footer>
+      <div class="container">
+        <div class="newstext" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+          <h1>Ravenshaw <span>Alumni Network</span></h1>
+          <p>Job Board & Placement Support: Browse job listings and internship opportunities posted by alumni and
+            partner organizations</p>
+        </div>
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Alumni Services</h3>
+            <ul>
+              <li><a href="#">Alumni Directory</a></li>
+              <li><a href="#">Events Calendar</a></li>
+              <li><a href="#">Mentorship Program</a></li>
+              <li><a href="#">Career Resources</a></li>
+              <li><a href="#">Benefits & Discounts</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Get Involved</h3>
+            <ul>
+              <li><a href="#">Volunteer</a></li>
+              <li><a href="#">Donate</a></li>
+              <li><a href="#">Attend Events</a></li>
+              <li><a href="#">Class Reunions</a></li>
+              <li><a href="#">Regional Clubs</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contact Us</h3>
+            <ul>
+              <li>Alumni Association Office</li>
+              <li>Email: alumni.ravenshaw987@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">
+            &copy; 2025 Alumni Association. All Rights Reserved.
+          </div>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@ravenshawuniversity."><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
       </div>
-      <div class="footer-column">
-        <h3>Contact Us</h3>
-        <ul>
-          <li>Alumni Association Office</li>
-          <li>Email: alumni.ravenshaw987@gmail.com</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="copyright">
-        &copy; 2025 Alumni Association. All Rights Reserved.
-      </div>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@ravenshawuniversity."><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-      </div>
-    </div>
+    </footer>
   </div>
-</footer>
-    </div>
-    <script src="{% static 'js/event.js' %}" defer></script>
-  </body>
+  <script src="{% static 'js/event.js' %}" defer></script>
+  <script src="{% static 'js/mobile-nav.js' %}" defer></script>
+</body>
+
 </html>

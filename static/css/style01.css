@@ -848,24 +848,27 @@ footer {
 
 /* Updated Alumni Section */
 .alumni-section {
-  padding: 60px 0;
+  padding: 80px 0;
   background-color: var(--off-white);
+  overflow: hidden;
+  /* Prevent horizontal scroll from animations */
 }
 
 .alumni-container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .alumni-title-row {
   text-align: center;
-  margin-bottom: 40px;
-  font-size: 28px;
+  margin-bottom: 60px;
+  font-size: 2.5rem;
   color: var(--dark-red);
   position: relative;
-  padding-bottom: 15px;
-  font-weight: 600;
+  padding-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .alumni-title-row::after {
@@ -874,188 +877,199 @@ footer {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background-color: var(--orange);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--dark-red), var(--orange));
+  border-radius: 2px;
   transition: width 0.3s ease;
 }
 
 .alumni-title-row:hover::after {
-  width: 120px;
+  width: 180px;
 }
 
-/* Card styling with fixed height and initial centered image */
+/* Card Styling - The Container */
 .alumni-card {
   display: flex;
   align-items: center;
-  padding: 30px;
-  margin-bottom: 40px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-  min-height: 180px;
-  /* Changed to min-height for flexibility */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  justify-content: space-between;
+  margin-bottom: 60px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  /* Soft, premium shadow */
+  padding: 40px;
+  gap: 40px;
 
-/* Initial state: Image centered, text content hidden */
-.alumni-card-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Smoother easing */
-  z-index: 2;
-  border: 3px solid var(--dark-red);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.alumni-text-content {
+  /* Initial Animation State */
   opacity: 0;
-  max-width: 70%;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Smoother transition */
-  transition-delay: 0.4s;
-  /* Reduced delay for more responsiveness */
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Elegant easing */
 }
 
-.alumni-card-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0 0 5px 0;
-}
-
-/* Text with controlled height to prevent overflow */
-.typing-text {
-  font-size: 0.95rem;
-  margin-top: 10px;
-  line-height: 1.5;
-  max-height: 90px;
-  /* Slightly increased */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  /* Add ellipsis for overflow */
-  word-wrap: break-word;
-  /* Break long words */
-  opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0.5s;
-  /* Coordinated with text-content */
-}
-
-/* Animation for ODD cards (1st, 3rd) - image slides to RIGHT */
-/* Initial state for odd cards - reverse layout but image still centered */
-.alumni-card:nth-child(odd) {
-  flex-direction: row-reverse;
-}
-
-/* When .show is added, animate to final position */
-.alumni-card:nth-child(odd).show .alumni-card-img {
-  left: auto;
-  right: 30px;
-  transform: translateX(0);
-}
-
-.alumni-card:nth-child(odd).show .alumni-text-content {
-  margin-right: 140px;
-  text-align: right;
-  opacity: 1;
-}
-
-.alumni-card:nth-child(odd).show .typing-text {
-  opacity: 1;
-}
-
-/* Animation for EVEN cards (2nd, 4th) - image slides to LEFT */
-/* Don't set flex-direction until .show is added to prevent instant positioning */
-
-/* When .show is added, set flex-direction AND animate to final position */
-.alumni-card:nth-child(even).show {
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-.alumni-card:nth-child(even).show .alumni-card-img {
-  left: 30px;
-  transform: translateX(0);
-}
-
-.alumni-card:nth-child(even).show .alumni-text-content {
-  margin-left: 140px;
-  text-align: left;
-  opacity: 1;
-}
-
-.alumni-card:nth-child(even).show .typing-text {
-  opacity: 1;
-}
-
-/* Hover effects */
-.alumni-card.show:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.alumni-card.show:hover .alumni-card-img {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  border: 3px solid var(--orange);
-}
-
-/* Different background color for alternating cards */
+/* Specific styling for alternating cards on Desktop */
 .alumni-card:nth-child(even) {
-  background-color: #f5f5f5;
+  flex-direction: row-reverse;
+  /* Swap image and text */
+  background-color: #fff;
+  /* Keep white for cleanliness or use subtle off-white if preferred */
 }
 
-.alumni-card:nth-child(odd) {
-  background-color: #f9f9f9;
+/* Reveal Animation Class applied by JS */
+.alumni-card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
+/* Hover Effect for Cards */
+.alumni-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  /* Subtle lift */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styling */
+.alumni-card-img {
+  width: 280px;
+  height: 280px;
+  /* Square or Circle aspect ratio */
+  border-radius: 50%;
+  /* Circular images look more premium for profiles */
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  flex-shrink: 0;
+  /* Prevent squishing */
+}
+
+.alumni-card:hover .alumni-card-img {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  border-color: var(--off-white);
+}
+
+/* Text Content Area */
+.alumni-text-content {
+  flex: 1;
+  /* Take remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Align text based on card orientation */
+.alumni-card:nth-child(odd) .alumni-text-content {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.alumni-card:nth-child(even) .alumni-text-content {
+  text-align: right;
+  /* Right align for reversed cards */
+  align-items: flex-end;
+}
+
+/* Name Styling */
+.alumni-card-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.alumni-card-name span {
+  display: block;
+  margin-top: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Description Text */
+.typing-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+  font-weight: 400;
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 992px) {
   .alumni-card {
-    height: auto;
-    min-height: 200px;
-    padding-top: 70px;
-    /* Space for centered image at top */
+    padding: 30px;
+    gap: 30px;
   }
 
+  .alumni-card-img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .alumni-card-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .alumni-section {
+    padding: 60px 0;
+  }
+
+  .alumni-title-row {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  /* Stack everything vertically on mobile */
   .alumni-card,
   .alumni-card:nth-child(even) {
+    /* Establish dominance over specific selectors */
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-
-  .alumni-card.show .alumni-card-img,
-  .alumni-card:nth-child(even).show .alumni-card-img {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    margin-bottom: 20px;
-  }
-
-  .alumni-card.show .alumni-text-content,
-  .alumni-card:nth-child(even).show .alumni-text-content {
-    margin: 60px 0 0 0;
     text-align: center;
-    max-width: 100%;
-    opacity: 1;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 20px;
+  }
+
+  /* Reset alignment for stacking */
+  .alumni-card:nth-child(odd) .alumni-text-content,
+  .alumni-card:nth-child(even) .alumni-text-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  /* Image Size for Mobile */
+  .alumni-card-img {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    /* Center it */
+  }
+
+  .alumni-card-name {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
   }
 
   .typing-text {
-    max-height: none;
+    font-size: 0.95rem;
+  }
+
+  /* Simplify animation for mobile performance */
+  .alumni-card {
+    transform: translateY(20px);
+  }
+
+  .alumni-card.show {
+    transform: translateY(0);
   }
 }
-
-/* Removed the old alumini-section (with 'i') that wasn't used */
 
 @keyframes fadeInUp {
   from {

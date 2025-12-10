@@ -20,6 +20,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{% static 'css/style01.css' %}">
+  <link rel="stylesheet" href="{% static 'css/shared-nav.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a" crossorigin="anonymous"
     media="print" id="font-awesome-css">
@@ -72,6 +73,11 @@
             <span class="logo-text-gray">Ravenshaw</span>
             <span class="logo-text-accent">Alumni System</span>
           </a>
+          <button class="mobile-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <div class="nav-links">
             <a href="/" class="nav-link active">Home</a>
             <a href="{% url 'events' %}" class="nav-link">Events</a>
@@ -246,6 +252,7 @@
 
   <!-- Script for alumni section animations -->
   <script src="{% static 'js/index.js' %}" defer></script>
+  <script src="{% static 'js/mobile-nav.js' %}" defer></script>
 </body>
 
 </html>

@@ -219,45 +219,37 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # settings.py
 
+# New django-csp 4.x style configuration
 CONTENT_SECURITY_POLICY = {
-    'DIRECTIVES': {
-        'default-src': ["'self'"],
-
-        'script-src': [
+    "DIRECTIVES": {
+        "default-src": ("'self'",),
+        "base-uri": ("'self'",),
+        "connect-src": ("'self'",),
+        "font-src": (
+            "'self'",
+            "https://cdnjs.cloudflare.com",
+        ),
+        "img-src": (
             "'self'",
             "https://res.cloudinary.com",
-            "https://cdnjs.cloudflare.com",
-            "https://static.cloudflareinsights.com",  # Cloudflare analytics beacon
-            csp_constants.NONCE,
-        ],
-
-        'style-src': [
-            "'self'",
-            "'unsafe-inline'",          # OK for now because you use inline styles
-            "https://cdnjs.cloudflare.com",
-        ],
-
-        'img-src': [
-            "'self'",
-            "https://res.cloudinary.com",
-            "https://do7vm8vz3.cloudinary.com",  # your Cloudinary delivery subdomain
+            "https://do7vm8vz3.cloudinary.com",
             "data:",
-        ],
-
-        'font-src': [
+        ),
+        "object-src": ("'none'",),
+        "script-src": (
             "'self'",
+            "https://res.cloudinary.com",
             "https://cdnjs.cloudflare.com",
-        ],
-
-        'connect-src': [
+            "https://static.cloudflareinsights.com",
+        ),
+        "style-src": (
             "'self'",
-            # add here later if you use external APIs or analytics
-        ],
-
-        'object-src': ["'none'"],
-        'base-uri': ["'self'"],
-    }
+            "'unsafe-inline'",
+            "https://cdnjs.cloudflare.com",
+        ),
+    },
 }
+
 
 
 
