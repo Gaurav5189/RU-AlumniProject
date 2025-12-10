@@ -8,9 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Ravenshaw Alumni System</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a" crossorigin="anonymous">
+
+  <!-- Preconnect to external domains for faster resource loading -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="{% static 'css/style01.css' %}" as="style">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="{% static 'css/style01.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a" crossorigin="anonymous"
+    media="print" id="font-awesome-css">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  </noscript>
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
@@ -86,21 +101,20 @@
           {% for event in upcoming_events %}
           <div class="event-card">
             {% if event.event_img %}
-            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
+            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image" loading="lazy">
             {% else %}
             <img
               src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
-              alt="Cancelled Event" class="event-image">
+              alt="Cancelled Event" class="event-image" loading="lazy">
             {% endif %}
             <div class="event-content">
               <div class="event-title-row">
                 <i class="fas fa-graduation-cap event-icon"></i>
                 <h3 class="event-title">{{ event.event_name }}</h3>
               </div>
-              <p class="event-date">{{ event.event_date|date:"M" }} {{ event.event_date|date:"d" }} {{
-                event.event_date|date:"Y" }}</p>
+              <p class="event-date">{{ event.event_date|date:"M d, Y" }}</p>
               <p class="event-description">{{ event.event_description }}</p>
-              <button onclick="window.location.href='events'" class="learn-more-btn">LEARN MORE</button>
+              <button class="learn-more-btn" data-redirect="events">LEARN MORE</button>
             </div>
           </div>
 
@@ -127,7 +141,7 @@
         <h2 class="alumni-title-row">OUR ILLUSTRIOUS ALUMNI</h2>
         <div class="alumni-card">
           <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744888650/a8q0wg7qlqb8sgduo5bc.webp"
-            alt="Biju patnaik" class="alumni-card-img" loading="lazy">
+            alt="Biju patnaik" class="alumni-card-img" loading="lazy" decoding="async">
           <div class="alumni-text-content">
             <p class="alumni-card-name">BIJU PATNAIK<br><span style="color: #666; font-size: 0.9rem;">1932</span></p>
             <div class="typing-text">Biju Patnaik, a 1932 Ravenshaw alumnus, was a remarkable sportsman who led college
@@ -138,7 +152,7 @@
 
         <div class="alumni-card">
           <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744970680/lmocg5e9cot1hsnjliyd.jpg"
-            alt="Sample 1" class="alumni-card-img" loading="lazy">
+            alt="Sample 1" class="alumni-card-img" loading="lazy" decoding="async">
           <div class="alumni-text-content">
             <p class="alumni-card-name">DR. DIPTI RANJAN MOHARANA<br><span
                 style="color: #666; font-size: 0.9rem;">1999-2001</span></p>
@@ -150,7 +164,7 @@
 
         <div class="alumni-card">
           <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1746471987/IMG_20250506_003604_hhcogl.jpg"
-            alt="Sample 2" class="alumni-card-img" loading="lazy">
+            alt="Sample 2" class="alumni-card-img" loading="lazy" decoding="async">
           <div class="alumni-text-content">
             <p class="alumni-card-name">MR. ANANDA KUMAR<br><span
                 style="color: #666; font-size: 0.9rem;">2015-2018</span></p>
@@ -162,7 +176,7 @@
 
         <div class="alumni-card">
           <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1746472299/drdass_ce6ta9.png" alt="Sample 3"
-            class="alumni-card-img" loading="lazy">
+            class="alumni-card-img" loading="lazy" decoding="async">
           <div class="alumni-text-content">
             <p class="alumni-card-name">Mr. Dipak Ranjan Das<br><span
                 style="color: #666; font-size: 0.9rem;">1989</span></p>
