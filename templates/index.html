@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="{% static 'css/style01.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a" crossorigin="anonymous"
-    media="print" onload="this.media='all'">
+    media="print" id="font-awesome-css">
   <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   </noscript>
@@ -115,7 +115,7 @@
               <p class="event-date">{{ event.event_date|date:"M" }} {{ event.event_date|date:"d" }} {{
                 event.event_date|date:"Y" }}</p>
               <p class="event-description">{{ event.event_description }}</p>
-              <button onclick="window.location.href='events'" class="learn-more-btn">LEARN MORE</button>
+              <button class="learn-more-btn" data-redirect="events">LEARN MORE</button>
             </div>
           </div>
 
