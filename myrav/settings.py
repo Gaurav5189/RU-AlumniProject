@@ -227,7 +227,6 @@ CONTENT_SECURITY_POLICY = {
         "img-src": (
             "'self'",
             "https://res.cloudinary.com",
-            "https://do7vm8vz3.cloudinary.com",
             "data:",
         ),
         
@@ -272,15 +271,17 @@ SECURE_HSTS_SECONDS = 31536000  # 1 year
 X_FRAME_OPTIONS = 'DENY'
 REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
+# Fix for mixed content - Force HTTPS (from ChatGPT recommendation)
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # HTTPS settings for cookies
 # Only enable these in production
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 else:
     # For development
-    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
 
@@ -288,8 +289,6 @@ SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'  # Helps prevent CSRF
 CSRF_COOKIE_SAMESITE = 'Lax'
-    
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # For Vercel
 
 
 INSTALLED_APPS += [
