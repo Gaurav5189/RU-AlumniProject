@@ -229,41 +229,31 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CONTENT_SECURITY_POLICY = {
     "DIRECTIVES": {
         "default-src": ("'self'",),
-        
+        "base-uri": ("'self'",),
+        "connect-src": ("'self'",),
+        "font-src": (
+            "'self'",
+            "https://cdnjs.cloudflare.com",
+        ),
         "img-src": (
             "'self'",
             "https://res.cloudinary.com",
             "data:",
         ),
-        
+        "object-src": ("'none'",),
         "script-src": (
             "'self'",
+            "https://res.cloudinary.com",
             "https://cdnjs.cloudflare.com",
             "https://static.cloudflareinsights.com",
         ),
-        
         "style-src": (
             "'self'",
             "'unsafe-inline'",
             "https://cdnjs.cloudflare.com",
         ),
-        
-        "font-src": (
-            "'self'",
-            "https://cdnjs.cloudflare.com",
-        ),
-        
-        "connect-src": (
-            "'self'",
-        ),
-        
-        "object-src": ("'none'",),
-        "base-uri": ("'self'",),
-    }
+    },
 }
-
-# This avoids accidental script blocking
-CSP_INCLUDE_NONCE_IN = []
 
 
 
