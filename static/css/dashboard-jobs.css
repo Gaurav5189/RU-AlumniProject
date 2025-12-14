@@ -32,10 +32,38 @@ body {
     background-color: var(--dark-gray);
     color: var(--white);
     height: 100vh;
-    display: flex;
+    display: block;
+    overflow-x: hidden;
 }
 
 /* Sidebar Styles */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 900;
+}
+
 .sidebar {
     background-color: var(--dark);
     width: 280px;
@@ -132,7 +160,7 @@ a {
 }
 
 .menu-item:hover {
-    background-color: rgba(34, 197, 94, 0.1); 
+    background-color: rgba(34, 197, 94, 0.1);
     /* Light Green Grass on hover */
 }
 
@@ -141,7 +169,7 @@ a {
 }
 
 .menu-item.active {
-    background-color: var(--primary); 
+    background-color: var(--primary);
     /* Ultramarine for active menu item */
 }
 
@@ -323,6 +351,72 @@ a {
     transition: all 0.3s ease;
 }
 
-.btn-view-job:hover {
-    background-color: var(--medium-red);
+
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
+
+@media (max-width: 769px) {
+    .hamburger {
+        display: block;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        overflow-x: hidden;
+        padding: 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .btn-post-job {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .jobs-filter {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .filter-options {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .jobs-grid {
+        grid-template-columns: 1fr;
+    }
 }

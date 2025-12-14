@@ -1,5 +1,5 @@
 :root {
-    --primary: #120a8f; 
+    --primary: #120a8f;
     --secondary: #6c757d;
     --success: #28a745;
     --background: #f8f9fa;
@@ -12,8 +12,8 @@
     --jobs-color: #28a745;
     --connections-color: #ffc107;
     --messages-color: #dc3545;
-    --green-grass: #22c55e; 
-    --dark-red: #8B0000; 
+    --green-grass: #22c55e;
+    --dark-red: #8B0000;
     --medium-red: #a52a2a;
     --light-red: #cd5c5c;
     --blue: #1e3a8a;
@@ -37,6 +37,8 @@
 body {
     background-color: var(--dark-gray);
     color: var(--white);
+    display: block;
+    overflow-x: hidden;
     min-height: 100vh;
 }
 
@@ -46,6 +48,33 @@ body {
 }
 
 /* Sidebar Styles */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 900;
+}
+
 .sidebar {
     background-color: var(--dark);
     width: 280px;
@@ -164,7 +193,8 @@ a {
 .main-content {
     flex: 1;
     padding: 30px;
-    margin-left: 280px; /* Match sidebar width */
+    margin-left: 280px;
+    /* Match sidebar width */
     min-height: 100vh;
 }
 
@@ -317,77 +347,79 @@ a {
     .sidebar {
         width: 250px;
     }
-    
+
     .main-content {
         margin-left: 250px;
     }
-    
+
     .alumni-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+    .hamburger {
+        display: block;
+    }
+
     .container {
-        flex-direction: column;
+        display: block;
     }
-    
+
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
+        transform: translateX(-100%);
+        position: fixed;
+        width: 280px;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
     }
-    
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
     .main-content {
         margin-left: 0;
         padding: 20px;
+        width: 100%;
+        overflow-x: hidden;
     }
-    
+
     .profile-section {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        padding: 15px;
+        text-align: center;
+        padding: 20px;
+        display: block;
     }
-    
+
     .profile-pic {
-        width: 50px;
-        height: 50px;
-        margin: 0 15px 0 0;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 10px;
     }
-    
+
     .header {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
-    
+
     .filter-options {
         flex-direction: column;
     }
-    
+
     .filter-group {
         width: 100%;
     }
-    
+
     .menu-section {
-        display: none;
-    }
-    
-    .menu-section.mobile-visible {
         display: block;
     }
-    
+
     .mobile-menu-toggle {
-        display: block;
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        font-size: 24px;
-        background: none;
-        border: none;
-        color: var(--white);
-        cursor: pointer;
+        display: none;
     }
 }
 
@@ -395,15 +427,15 @@ a {
     .alumni-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .page-title {
         font-size: 20px;
     }
-    
+
     .action-buttons {
         width: 100%;
     }
-    
+
     .btn {
         flex: 1;
         justify-content: center;
@@ -483,7 +515,8 @@ a {
 
 .alumni-info {
     padding: 15px 20px;
-    flex: 1;  /* This makes the info section expand to fill available space */
+    flex: 1;
+    /* This makes the info section expand to fill available space */
 }
 
 .info-item {
@@ -576,6 +609,7 @@ a {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -703,21 +737,21 @@ a {
     .modal-content {
         width: 95%;
     }
-    
+
     .modal-avatar {
         width: 80px;
         height: 80px;
         font-size: 26px;
     }
-    
+
     #userName {
         font-size: 18px;
     }
-    
+
     .profile-detail {
         flex-direction: column;
     }
-    
+
     .detail-label {
         width: 100%;
         margin-bottom: 5px;

@@ -1,5 +1,5 @@
 :root {
-    --primary: #120a8f; 
+    --primary: #120a8f;
     --secondary: #6c757d;
     --success: #28a745;
     --background: #f8f9fa;
@@ -12,8 +12,8 @@
     --jobs-color: #28a745;
     --connections-color: #ffc107;
     --messages-color: #dc3545;
-    --green-grass: #22c55e; 
-    --dark-red: #8B0000; 
+    --green-grass: #22c55e;
+    --dark-red: #8B0000;
     --medium-red: #a52a2a;
     --light-red: #cd5c5c;
     --blue: #1e3a8a;
@@ -37,10 +37,38 @@ body {
     background-color: var(--dark-gray);
     color: var(--white);
     height: 100vh;
-    display: flex;
+    display: block;
+    overflow-x: hidden;
 }
 
 /* Sidebar Styles */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 900;
+}
+
 .sidebar {
     background-color: var(--dark);
     width: 280px;
@@ -136,7 +164,7 @@ a {
 }
 
 .menu-item:hover {
-    background-color: rgba(34, 197, 94, 0.1); 
+    background-color: rgba(34, 197, 94, 0.1);
     /* Light Green Grass on hover */
 }
 
@@ -145,7 +173,7 @@ a {
 }
 
 .menu-item.active {
-    background-color: var(--primary); 
+    background-color: var(--primary);
     /* Ultramarine for active menu item */
 }
 
@@ -258,7 +286,8 @@ a {
 .info-group {
     margin-bottom: 15px;
     padding: 10px 0;
-    border-bottom: 1px solid var(--primary); /* Ultramarine border */
+    border-bottom: 1px solid var(--primary);
+    /* Ultramarine border */
 }
 
 .info-group label {
@@ -287,7 +316,8 @@ a {
 
 .experience-logo {
     font-size: 2rem;
-    color: var(--green-grass); /* Green Grass for icons */
+    color: var(--green-grass);
+    /* Green Grass for icons */
 }
 
 .experience-details {
@@ -295,7 +325,8 @@ a {
 }
 
 .experience-title {
-    color: var(--primary); /* Ultramarine for titles */
+    color: var(--primary);
+    /* Ultramarine for titles */
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -316,11 +347,13 @@ a {
 }
 
 .recent-section.personal {
-    border-left: 4px solid var(--dark-red); /* Dark Red for personal section */
+    border-left: 4px solid var(--dark-red);
+    /* Dark Red for personal section */
 }
 
 .recent-section.professional {
-    border-left: 4px solid var(--primary); /* Ultramarine for professional section */
+    border-left: 4px solid var(--primary);
+    /* Ultramarine for professional section */
 }
 
 /* Responsive Design */
@@ -328,42 +361,61 @@ a {
     .sidebar {
         width: 220px;
     }
-    
+
     .main-content {
         margin-left: 220px;
     }
-    
+
     .profile-details {
         flex-direction: column;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+    .hamburger {
+        display: block;
+    }
+
     body {
-        flex-direction: column;
+        display: block;
+        overflow-x: hidden;
     }
-    
+
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        margin-bottom: 20px;
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 280px;
+        height: 100vh;
+        z-index: 1000;
+        margin-bottom: 0;
     }
-    
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
     .main-content {
         margin-left: 0;
+        width: 100%;
+        overflow-x: hidden;
+        padding: 20px;
     }
 
     .profile-details {
         padding: 0 10px;
     }
-    
+
     .large-profile-pic {
         width: 120px;
         height: 120px;
         font-size: 2.5rem;
     }
 }
+
+
 
 /* Dynamic styles moved from profile.js */
 .edit-input {
@@ -386,7 +438,8 @@ a {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
 }
 
 .modal-content {
@@ -416,7 +469,8 @@ a {
     color: var(--light-gray);
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid var(--border-color);
@@ -459,11 +513,21 @@ a {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }

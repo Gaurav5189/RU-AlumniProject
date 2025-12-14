@@ -19,9 +19,10 @@
 </head>
 
 <body>
+    <div class="overlay" id="overlay"></div>
     <div class="container">
         <!-- Sidebar Navigation -->
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="profile-section">
                 <div class="profile-pic">
                     <img src="{{ user.profile_img.url }}" alt="Profile" class="avatar">
@@ -75,6 +76,9 @@
         <!-- Main content -->
         <div class="main-content">
             <div class="header">
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <h1 class="page-title">Events</h1>
             </div>
 
@@ -262,6 +266,7 @@
         </div>
     </div>
 
+    <script src="{% static 'js/pf-dashboard.js' %}" defer></script>
 </body>
 
 </html>

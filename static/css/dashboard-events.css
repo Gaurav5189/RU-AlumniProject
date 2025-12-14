@@ -49,7 +49,8 @@ body {
     background-color: var(--dark-gray);
     color: var(--white);
     height: 100vh;
-    display: flex;
+    display: block;
+    overflow-x: hidden;
 }
 
 .container {
@@ -447,19 +448,33 @@ a {
     color: var(--text-muted);
 }
 
-/* Mobile menu toggle button */
-.mobile-menu-toggle {
+/* Overlay for mobile */
+.overlay {
     display: none;
     position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 200;
-    background-color: var(--primary);
-    color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+    display: none;
+    background: none;
     border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
+    color: var(--white);
+    font-size: 1.5rem;
     cursor: pointer;
+    padding: 10px;
+    z-index: 900;
 }
 
 /* Animation for sidebar */
@@ -490,7 +505,11 @@ a {
 }
 
 /* Mobile View (768px and below): Sidebar Hidden, Full Width Content */
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+    .hamburger {
+        display: block;
+    }
+
     .sidebar {
         width: 280px;
         transform: translateX(-100%);
