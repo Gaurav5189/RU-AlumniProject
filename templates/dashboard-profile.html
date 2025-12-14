@@ -1,232 +1,156 @@
+{% extends 'dashboard_base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}User Profile{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | User Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/dashboard-profile.css' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard-profile.css' %}">
+{% endblock %}
 
-<body>
-    <div class="overlay" id="overlay"></div>
-    <!-- Sidebar Navigation -->
-    <div class="sidebar" id="sidebar">
-        <div class="profile-section">
-            <div class="profile-pic">
-                <img src="{{ user.profile_img.url|default:'/media/default_pf.png' }}" alt="Profile" class="avatar">
+{% block content %}
+<div class="header">
+    <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="page-title">My Profile</h1>
+    <div class="action-buttons">
+        <button type="button" class="btn" id="toggleEditBtn"><i class="fas fa-edit"></i> Edit Profile</button>
+    </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="profile-layout">
+    <!-- Profile Card -->
+    <div class="profile-card">
+        <div class="cover-photo"></div>
+        <div class="profile-info">
+            <div class="large-profile-pic">
+                <img src="{{ user.profile_img.url|default:'/media/default_pf.png' }}" alt="Profile"
+                    class="avatar-large">
             </div>
-            {% if user.is_authenticated %}
-            <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
-            <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
-            {% else %}
-            <div class="user-name">John Doe</div>
-            <div class="user-email">john.doe@example.com</div>
-            {% endif %}
-        </div>
+            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+            <p class="role">Student</p> <!-- Dynamic role if available -->
+            <p class="location"><i class="fas fa-map-marker-alt"></i> {{ user.location|default:"Location not set" }}</p>
 
-        <div class="menu-section">
-            <h3>Main Menu</h3>
-            <ul class="menu-items">
-                <li class="menu-item">
-                    <i class="fas fa-th-large"></i>
-                    <a href="{% url 'dashboard' %}">Dashboard</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <a href="{% url 'dashboard-events' %}">Events</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-users"></i>
-                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-briefcase"></i>
-                    <a href="{% url 'job-post-create' %}">Post Job</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-briefcase"></i>
-                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
-                </li>
-            </ul>
-        </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="count">250</span>
+                    <span class="label">Connections</span>
+                </div>
+                <div class="stat-item">
+                    <span class="count">12</span>
+                    <span class="label">Events</span>
+                </div>
+                <div class="stat-item">
+                    <span class="count">5</span>
+                    <span class="label">Projects</span>
+                </div>
+            </div>
 
-        <div class="menu-section">
-            <h3>ACCOUNT</h3>
-            <ul class="menu-items">
-                <li class="menu-item active">
-                    <i class="fas fa-user"></i>
-                    <a href="{% url 'dashboard-profile' %}">My Profile</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <a href="{% url 'logout' %}">Logout</a>
-                </li>
-            </ul>
+            <div class="social-links">
+                <a href="{{ user.linkedin_url|default:'#' }}" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="{{ user.github_url|default:'#' }}" class="social-btn"><i class="fab fa-github"></i></a>
+                <a href="mailto:{{ user.email }}" class="social-btn"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="header">
-            <button class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </button>
-            <h1 class="page-title">My Profile</h1>
-            <div class="action-buttons">
-                <button type="button" class="btn" id="toggleEditBtn"><i class="fas fa-edit"></i> Edit Profile</button>
-            </div>
+    <!-- Personal Details Section -->
+    <div class="profile-form-section">
+        <div class="section-header">
+            <h2 class="section-title">Personal Details</h2>
         </div>
 
-        <div class="recent-section personal">
-            <div class="section-header">
-                <h2 class="section-title">Personal Details</h2>
+        <form id="profileForm" method="post" enctype="multipart/form-data" action="{% url 'dashboard-profile' %}">
+            {% csrf_token %}
+            <div class="profile-details">
+                <!-- Profile Image Upload (Hidden by default or part of edit flow) -->
+                <div class="form-group full-width image-upload-group" style="display:none;">
+                    <label>Profile Image</label>
+                    <input type="file" name="profile_img" class="edit-input">
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <div class="value">{{ user.first_name }} {{ user.last_name }}</div>
+                    <input type="text" name="full_name" class="edit-input"
+                        value="{{ user.first_name }} {{ user.last_name }}" style="display:none;">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <div class="value">{{ user.email }}</div>
+                    <input type="email" name="email" class="edit-input" value="{{ user.email }}" style="display:none;">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <div class="value">{{ user.phone_number }}</div>
+                    <input type="text" name="phone_number" class="edit-input" value="{{ user.phone_number }}"
+                        style="display:none;">
+                </div>
+
+                <div class="form-group">
+                    <label>University</label>
+                    <div class="value">{{ user.university }}</div>
+                    <input type="text" name="university" class="edit-input" value="{{ user.university }}"
+                        style="display:none;">
+                </div>
+
+                <div class="form-group">
+                    <label>Course</label>
+                    <div class="value">{{ user.course }}</div>
+                    <input type="text" name="course" class="edit-input" value="{{ user.course }}" style="display:none;">
+                </div>
+
+                <div class="form-group">
+                    <label>Passing Year</label>
+                    <div class="value">{{ user.passing_year }}</div>
+                    <input type="text" name="passing_year" class="edit-input" value="{{ user.passing_year }}"
+                        style="display:none;">
+                </div>
+
+                <div class="form-group">
+                    <label>Current Company</label>
+                    <div class="value">{{ user.current_company }}</div>
+                    <input type="text" name="current_company" class="edit-input" value="{{ user.current_company }}"
+                        style="display:none;">
+                </div>
+
+                <div class="form-group">
+                    <label>Position</label>
+                    <div class="value">{{ user.current_position }}</div>
+                    <input type="text" name="current_position" class="edit-input" value="{{ user.current_position }}"
+                        style="display:none;">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>About Me</label>
+                    <div class="value">{{ user.bio }}</div>
+                    <textarea name="bio" class="edit-input" style="display:none;">{{ user.bio }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <div class="value">{{ user.location }}</div>
+                    <input type="text" name="location" class="edit-input" value="{{ user.location }}"
+                        style="display:none;">
+                </div>
+
+                <div class="form-group full-width" id="saveContainer" style="display:none;">
+                    <button type="submit" class="btn btn-save">Save Changes</button>
+                    <button type="button" class="btn btn-cancel" id="cancelEditBtn">Cancel</button>
+                </div>
             </div>
-
-            <!-- Update the form structure to center the profile image -->
-            <form id="profileForm" method="post" enctype="multipart/form-data" action="{% url 'dashboard-profile' %}">
-                {% csrf_token %}
-                <div class="profile-details">
-                    <!-- Profile Image Section - Now centered -->
-                    <div class="profile-image">
-                        <div class="large-profile-pic">
-                            {% if user.profile_img %}
-                            <img src="{{ user.profile_img.url }}" alt="Profile" class="large-avatar">
-                            {% else %}
-                            {{ user.username|slice:":2"|upper }}
-                            {% endif %}
-                        </div>
-                        <input type="file" id="profilePhotoInput" name="profile_img" accept="image/*"
-                            style="display: none;">
-                        <button type="button" class="btn btn-sm" id="changePhotoBtn" style="display: none;"><i
-                                class="fas fa-camera"></i> Change Photo</button>
-                    </div>
-
-                    <!-- Profile Info Section - Full width -->
-                    <div class="profile-info">
-                        <div class="info-group">
-                            <label>Full Name</label>
-                            <div class="info-value" data-field="username">{{ user.username }}</div>
-                            <input type="text" name="username" class="edit-input" value="{{ user.username }}"
-                                style="display: none;" readonly>
-                        </div>
-
-                        <div class="info-group">
-                            <label>Age</label>
-                            <div class="info-value" data-field="age">{{ user.age }}</div>
-                            <input type="number" name="age" class="edit-input" value="{{ user.age }}"
-                                style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>Major</label>
-                            <div class="info-value" data-field="subject">{{ user.subject }}</div>
-                            <input type="text" name="subject" class="edit-input" value="{{ user.subject }}"
-                                placeholder="Honours In" style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>Phone Number</label>
-                            <div class="info-value" data-field="phone_no">
-                                {{ user.Phone_no|default:"" }}
-                            </div>
-                            <input type="tel" name="phone_no" class="edit-input" value="{{ user.Phone_no|default:'' }}"
-                                style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>LinkedIn URL</label>
-                            <div class="info-value" data-field="linkedin">
-                                {% if user.social_links.linkedin %}
-                                <a href="{{ user.social_links.linkedin }}" target="_blank">{{ user.social_links.linkedin
-                                    }}</a>
-                                {% endif %}
-                            </div>
-                            <input type="text" name="linkedin" class="edit-input"
-                                value="{{ user.social_links.linkedin|default:'' }}" placeholder="LinkedIn URL"
-                                style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>Twitter/X URL</label>
-                            <div class="info-value" data-field="twitter">
-                                {% if user.social_links.twitter %}
-                                <a href="{{ user.social_links.twitter }}" target="_blank">{{ user.social_links.twitter
-                                    }}</a>
-                                {% endif %}
-                            </div>
-                            <input type="text" name="twitter" class="edit-input"
-                                value="{{ user.social_links.twitter|default:'' }}" placeholder="Twitter/X URL(Optional)"
-                                style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>GitHub URL</label>
-                            <div class="info-value" data-field="github">
-                                {% if user.social_links.github %}
-                                <a href="{{ user.social_links.github }}" target="_blank">{{ user.social_links.github
-                                    }}</a>
-                                {% endif %}
-                            </div>
-                            <input type="text" name="github" class="edit-input"
-                                value="{{ user.social_links.github|default:'' }}" placeholder="GitHub URL(Optional)"
-                                style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>Other URL</label>
-                            <div class="info-value" data-field="other">
-                                {% if user.social_links.other %}
-                                <a href="{{ user.social_links.other }}" target="_blank">{{ user.social_links.other
-                                    }}</a>
-                                {% endif %}
-                            </div>
-                            <input type="text" name="other" class="edit-input"
-                                value="{{ user.social_links.other|default:'' }}" placeholder="Any Other URL"
-                                style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>Company Working</label>
-                            <div class="info-value" data-field="c_name">{{ user.c_name }}</div>
-                            <input type="text" name="c_name" class="edit-input" value="{{ user.c_name }}"
-                                style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>Location</label>
-                            <div class="info-value" data-field="location">{{ user.location }}</div>
-                            <input type="text" name="location" class="edit-input" value="{{ user.location }}"
-                                placeholder="City, State, Country" style="display: none;">
-                        </div>
-
-                        <div class="info-group">
-                            <label>Bio</label>
-                            <div class="info-value" data-field="bio">{{ user.bio }}</div>
-                            <textarea name="bio" class="edit-input" style="display: none;"
-                                placeholder="bio">{{ user.bio }}</textarea>
-                        </div>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <button type="submit" id="submitBtn" class="btn" style="display: none;">Save Changes</button>
-                </div>
-            </form>
-        </div>
+        </form>
     </div>
+</div>
 
-    <script src="{% static 'js/pf-dashboard.js' %}" defer></script>
-    <script src="{% static 'js/dashboard-profile.js' %}" defer></script>
-</body>
+<!-- Edit Profile Modal (Alternative if implemented via modal as suggested by css, but checking html structure showed form toggle) -->
+<!-- Keeping existing structure: Form toggle seems to be the logic based on JS -->
 
-</html>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboard-profile.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,231 @@
+:root {
+    --primary: #120a8f; 
+    --secondary: #6c757d;
+    --success: #28a745;
+    --background: #f8f9fa;
+    --text-dark: #343a40;
+    --text-light: #6c757d;
+    --sidebar-bg: #ffffff;
+    --card-bg: #ffffff;
+    --border-color: #e9ecef;
+    --events-color: #4a6cfa;
+    --jobs-color: #28a745;
+    --connections-color: #ffc107;
+    --messages-color: #dc3545;
+    --green-grass: #22c55e;
+    --dark-red: #8B0000;
+    --medium-red: #a52a2a;
+    --light-red: #cd5c5c;
+    --blue: #1e3a8a;
+    --light-blue: #3b82f6;
+    --green: #166534;
+    --dark: #121212;
+    --dark-gray: #1e1e1e;
+    --medium-gray: #2d2d2d;
+    --light-gray: #e5e5e5;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark-gray);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: var(--dark);
+    width: 280px;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    position: fixed;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+
+.profile-section {
+    background-color: var(--dark-red);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    background-color: var(--medium-gray);
+    border: 3px solid var(--white);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--white);
+}
+
+.user-email {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--green-grass);
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.menu-section {
+    margin-bottom: 25px;
+}
+
+.menu-section h3 {
+    padding: 15px 20px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: var(--light-gray);
+    opacity: 0.7;
+}
+
+.menu-items {
+    list-style: none;
+}
+
+.menu-item {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin: 0 10px 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.menu-item i {
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+    color: var(--white);
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+.menu-item:hover {
+    background-color: rgba(34, 197, 94, 0.1);
+}
+
+.menu-item:hover a, 
+.menu-item:hover i {
+    color: var(--green-grass);
+}
+
+.menu-item.active {
+    background-color: var(--primary);
+}
+
+.menu-item.active a, 
+.menu-item.active i {
+    color: var(--white);
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Above sidebar when needed, or below? Correct logic: Sidebar 1000, Overlay 999. Hamburger usually visible when sidebar closed. */
+    /* Adjust z-index strategy: Hamburger should be visible on mobile header. */
+    z-index: 900; 
+}
+
+/* Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Main Content Base */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 20px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 769px) {
+    body {
+        display: block;
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: none; /* Shadow handled by transition or added when active if needed */
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+    
+    /* Ensure Header elements align correctly on mobile if generic header styles exist */
+}

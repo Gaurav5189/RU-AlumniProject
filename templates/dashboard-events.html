@@ -1,272 +1,136 @@
+{% extends 'dashboard_base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Events{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Events</title>
-    <link rel="stylesheet" href="{% static 'css/dashboard-events.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard-events.css' %}">
+{% endblock %}
 
-<body>
-    <div class="overlay" id="overlay"></div>
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <div class="sidebar" id="sidebar">
-            <div class="profile-section">
-                <div class="profile-pic">
-                    <img src="{{ user.profile_img.url }}" alt="Profile" class="avatar">
-                </div>
-                <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
-                <div class="user-email">{{ user.email }}</div>
-                <div class="user-status"><span class="status-indicator"></span>Online</div>
-            </div>
+{% block content %}
+<div class="header">
+    <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="page-title">Events</h1>
+</div>
 
-            <div class="menu-section">
-                <h3>Main Menu</h3>
-                <ul class="menu-items">
-                    <li class="menu-item">
-                        <i class="fas fa-th-large"></i>
-                        <a href="{% url 'dashboard' %}">Dashboard</a>
-                    </li>
-                    <li class="menu-item active">
-                        <i class="fas fa-calendar-alt"></i>
-                        <a href="{% url 'dashboard-events' %}">Events</a>
-                    </li>
-                    <li class="menu-item">
-                        <i class="fas fa-users"></i>
-                        <a href="{% url 'dashboard-network' %}">Alumni Network</a>
-                    </li>
-                    <li class="menu-item">
-                        <i class="fas fa-briefcase"></i>
-                        <a href="{% url 'job-post-create' %}">Post Job</a>
-                    </li>
-                    <li class="menu-item">
-                        <i class="fas fa-briefcase"></i>
-                        <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="menu-section">
-                <h3>Account</h3>
-                <ul class="menu-items">
-                    <li class="menu-item">
-                        <i class="fas fa-user"></i>
-                        <a href="{% url 'dashboard-profile' %}">My Profile</a>
-                    </li>
-                    <li class="menu-item">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <a href="{% url 'logout' %}">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Main content -->
-        <div class="main-content">
-            <div class="header">
-                <button class="hamburger" id="hamburger">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 class="page-title">Events</h1>
-            </div>
-
-            <!-- Ongoing Events -->
-            {% if ongoing_events %}
-            <div class="recent-section">
-                <div class="section-header">
-                    <h2 class="section-title">Ongoing Events</h2>
-                </div>
-
-                <ul class="event-list-full">
-                    {% for event in ongoing_events %}
-                    <li class="event-item-full">
-                        <div class="event-image-container">
-                            <div class="event-date">
-                                <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                                <div class="date-month">{{ event.event_date|date:"M" }}</div>
-                            </div>
-                            {% if event.event_img %}
-                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
-                            {% else %}
-                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
-                                alt="Cancelled Event" class="event-image">
-                            {% endif %}
-                        </div>
-                        <div class="event-details">
-                            <div class="event-title">{{ event.event_name }}</div>
-                            <div class="event-info">
-                                <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A"
-                                    }}</span>
-                                <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{
-                                    event.event_location }}</span>
-                            </div>
-                            <div class="event-description">
-                                {{ event.event_description }}
-                            </div>
-                            <div class="event-status ongoing">
-                                <span><i class="fas fa-circle"></i> Ongoing</span>
-                            </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-
-            <!-- Upcoming Events -->
-            <div class="recent-section">
-                <div class="section-header">
-                    <h2 class="section-title">Upcoming Events</h2>
-                </div>
-
-                <ul class="event-list-full">
-                    {% for event in upcoming_events %}
-                    <li class="event-item-full">
-                        <div class="event-image-container">
-                            <div class="event-date">
-                                <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                                <div class="date-month">{{ event.event_date|date:"M" }}</div>
-                            </div>
-                            {% if event.event_img %}
-                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
-                            {% else %}
-                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
-                                alt="Cancelled Event" class="event-image">
-                            {% endif %}
-                        </div>
-                        <div class="event-details">
-                            <div class="event-title">{{ event.event_name }}</div>
-                            <div class="event-info">
-                                <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A"
-                                    }}</span>
-                                <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{
-                                    event.event_location }}</span>
-                            </div>
-                            <div class="event-description">
-                                {{ event.event_description }}
-                            </div>
-                            <div class="event-status upcoming">
-                                <span><i class="fas fa-clock"></i> Upcoming</span>
-                            </div>
-                        </div>
-                    </li>
-                    {% empty %}
-                    <li class="no-events">
-                        <div class="event-details">
-                            <div class="event-title">No upcoming events at this time</div>
-                            <div class="event-description">
-                                Check back later for new events.
-                            </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <!-- Completed Events -->
-            {% if completed_events %}
-            <div class="recent-section">
-                <div class="section-header">
-                    <h2 class="section-title">Completed Events</h2>
-                </div>
-
-                <ul class="event-list-full">
-                    {% for event in completed_events %}
-                    <li class="event-item-full">
-                        <div class="event-image-container">
-                            <div class="event-date">
-                                <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                                <div class="date-month">{{ event.event_date|date:"M" }}</div>
-                            </div>
-                            {% if event.event_img %}
-                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
-                            {% else %}
-                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
-                                alt="Cancelled Event" class="event-image">
-                            {% endif %}
-                        </div>
-                        <div class="event-details">
-                            <div class="event-title">{{ event.event_name }}</div>
-                            <div class="event-info">
-                                <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A"
-                                    }}</span>
-                                <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{
-                                    event.event_location }}</span>
-                            </div>
-                            <div class="event-description">
-                                {{ event.event_description }}
-                            </div>
-                            <div class="event-status completed">
-                                <span><i class="fas fa-check-circle"></i> Completed</span>
-                            </div>
-                            <div class="event-actions">
-                                <button class="btn-details">View Gallery</button>
-                            </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-
-            <!-- Cancelled Events -->
-            {% if cancelled_events %}
-            <div class="recent-section">
-                <div class="section-header">
-                    <h2 class="section-title">Cancelled Events</h2>
-                </div>
-
-                <ul class="event-list-full">
-                    {% for event in cancelled_events %}
-                    <li class="event-item-full">
-                        <div class="event-image-container">
-                            <div class="event-date">
-                                <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                                <div class="date-month">{{ event.event_date|date:"M" }}</div>
-                            </div>
-                            {% if event.event_img %}
-                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
-                            {% else %}
-                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
-                                alt="Cancelled Event" class="event-image">
-                            {% endif %}
-                        </div>
-                        <div class="event-details">
-                            <div class="event-title">{{ event.event_name }}</div>
-                            <div class="event-info">
-                                <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A"
-                                    }}</span>
-                                <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{
-                                    event.event_location }}</span>
-                            </div>
-                            <div class="event-description">
-                                {{ event.event_description }}
-                            </div>
-                            <div class="event-status cancelled">
-                                <span><i class="fas fa-ban"></i> Cancelled</span>
-                            </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-        </div>
+<!-- Ongoing Events -->
+{% if ongoing_events %}
+<div class="recent-section">
+    <div class="section-header">
+        <h2 class="section-title">Ongoing Events</h2>
     </div>
 
-    <script src="{% static 'js/pf-dashboard.js' %}" defer></script>
-</body>
+    <ul class="event-list-full">
+        {% for event in ongoing_events %}
+        <li class="event-item-full">
+            <div class="event-image-container">
+                <div class="event-date">
+                    <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                    <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                </div>
+                {% if event.event_img %}
+                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
+                {% else %}
+                <img src="{% static 'images/default_event.jpg' %}" alt="Default Event" class="event-image">
+                {% endif %}
+                <div class="event-status status-ongoing">Ongoing</div>
+            </div>
+            <div class="event-details-full">
+                <h3 class="event-title-full">{{ event.event_name }}</h3>
+                <div class="event-meta">
+                    <span class="meta-item"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                    <span class="meta-item"><i class="fas fa-clock"></i> {{ event.event_date|date:"h:i A" }}</span>
+                </div>
+                <p class="event-description-full">{{ event.event_description }}</p>
+                <div class="event-actions">
+                    <button class="action-btn">Register Now</button>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
-</html>
+<!-- Upcoming Events -->
+<div class="recent-section">
+    <div class="section-header">
+        <h2 class="section-title">Upcoming Events</h2>
+    </div>
+
+    <ul class="event-list-full">
+        {% for event in upcoming_events %}
+        <li class="event-item-full">
+            <div class="event-image-container">
+                <div class="event-date">
+                    <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                    <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                </div>
+                {% if event.event_img %}
+                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
+                {% else %}
+                <img src="{% static 'images/default_event.jpg' %}" alt="Default Event" class="event-image">
+                {% endif %}
+                <div class="event-status status-upcoming">Upcoming</div>
+            </div>
+            <div class="event-details-full">
+                <h3 class="event-title-full">{{ event.event_name }}</h3>
+                <div class="event-meta">
+                    <span class="meta-item"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                    <span class="meta-item"><i class="fas fa-clock"></i> {{ event.event_date|date:"h:i A" }}</span>
+                </div>
+                <p class="event-description-full">{{ event.event_description }}</p>
+                <div class="event-actions">
+                    <button class="action-btn">Register Now</button>
+                    <button class="details-btn">View Details</button>
+                </div>
+            </div>
+        </li>
+        {% empty %}
+        <p>No upcoming events found.</p>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Past Events -->
+<div class="recent-section">
+    <div class="section-header">
+        <h2 class="section-title">Past Events</h2>
+    </div>
+
+    <ul class="event-list-full">
+        {% for event in past_events %}
+        <li class="event-item-full past-event">
+            <div class="event-image-container">
+                <div class="event-date date-past">
+                    <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                    <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                </div>
+                {% if event.event_img %}
+                <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image grayscale">
+                {% else %}
+                <img src="{% static 'images/default_event.jpg' %}" alt="Default Event" class="event-image grayscale">
+                {% endif %}
+                <div class="event-status status-past">Completed</div>
+            </div>
+            <div class="event-details-full">
+                <h3 class="event-title-full">{{ event.event_name }}</h3>
+                <div class="event-meta">
+                    <span class="meta-item"><i class="fas fa-map-marker-alt"></i> {{ event.event_location }}</span>
+                    <span class="meta-item"><i class="fas fa-clock"></i> {{ event.event_date|date:"h:i A" }}</span>
+                </div>
+                <p class="event-description-full">{{ event.event_description }}</p>
+                <div class="event-actions">
+                    <button class="details-btn">View Highlights</button>
+                </div>
+            </div>
+        </li>
+        {% empty %}
+        <p>No past events found.</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
