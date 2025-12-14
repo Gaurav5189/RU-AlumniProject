@@ -33,6 +33,10 @@
     align-items: center;
     position: relative;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    /* Remove padding to let cover fill top */
+    overflow: hidden;
+    /* Clip cover corners */
 }
 
 .alumni-card:hover {
@@ -40,11 +44,21 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
+.card-cover {
+    height: 80px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--events-color));
+}
+
 .alumni-header {
-    margin-bottom: 15px;
+    margin-top: -40px;
+    /* Overlap cover */
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     width: 100%;
+    position: relative;
+    /* Ensure above cover */
 }
 
 .alumni-avatar-img,
@@ -73,13 +87,33 @@
     text-align: center;
     width: 100%;
     margin-bottom: 20px;
+    padding: 0 20px 20px;
+    /* Move padding to content area */
 }
 
 .alumni-name {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--white);
+    margin-bottom: 5px;
+}
+
+.verification-badge-mini {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
     margin-bottom: 15px;
+    color: var(--white);
+}
+
+.verification-badge-mini.verified {
+    background: linear-gradient(135deg, #22c55e, #166534);
+}
+
+.verification-badge-mini.pending {
+    background: linear-gradient(135deg, #f59e0b, #b45309);
 }
 
 .info-row {

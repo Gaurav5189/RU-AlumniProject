@@ -19,6 +19,7 @@
     <div class="alumni-grid">
         {% for user in Users %}
         <div class="alumni-card">
+            <div class="card-cover"></div>
             <div class="alumni-header">
                 <!-- The view passes profile_img as a URL string, so we can use it directly. -->
                 {% if user.profile_img %}
@@ -34,6 +35,18 @@
 
             <div class="alumni-info">
                 <h3 class="alumni-name">{{ user.name }}</h3>
+
+                {% if user.is_verified %}
+                <div class="verification-badge-mini verified">
+                    Verified <i class="fas fa-check-circle"></i>
+                </div>
+                {% else %}
+                <div class="verification-badge-mini pending">
+                    Pending <i class="fas fa-clock"></i>
+                </div>
+                {% endif %}
+
+                <h3 class="alumni-name-spacer" style="display:none;"></h3>
                 <!-- Hidden email for JS to grab -->
                 <div class="alumni-email" style="display:none;">{{ user.email }}</div>
 

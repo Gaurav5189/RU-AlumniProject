@@ -29,30 +29,57 @@
                     class="avatar-large">
             </div>
             <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-            <p class="role">Student</p> <!-- Dynamic role if available -->
-            <p class="location"><i class="fas fa-map-marker-alt"></i> {{ user.location|default:"Location not set" }}</p>
 
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="count">250</span>
-                    <span class="label">Connections</span>
-                </div>
-                <div class="stat-item">
-                    <span class="count">12</span>
-                    <span class="label">Events</span>
-                </div>
-                <div class="stat-item">
-                    <span class="count">5</span>
-                    <span class="label">Projects</span>
-                </div>
+            {% if user.is_verified %}
+            <div class="verification-badge verified">
+                Verification: Verified <i class="fas fa-check-circle"></i>
             </div>
+            {% else %}
+            <div class="verification-badge pending">
+                Verification: Pending <i class="fas fa-clock"></i>
+            </div>
+            {% endif %}
 
-            <div class="social-links">
-                <a href="{{ user.linkedin_url|default:'#' }}" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="{{ user.github_url|default:'#' }}" class="social-btn"><i class="fab fa-github"></i></a>
-                <a href="mailto:{{ user.email }}" class="social-btn"><i class="fas fa-envelope"></i></a>
+            <div class="profile-info-list">
+                <div class="info-row">
+                    <span class="info-label">Class Year:</span>
+                    <span class="info-value-display">{{ user.batchno|default:"Not provided" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Major:</span>
+                    <span class="info-value-display">{{ user.subject|default:"Not provided" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Location:</span>
+                    <span class="info-value-display">{{ user.location|default:"Not provided" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Company:</span>
+                    <span class="info-value-display">{{ user.c_name|default:"Not provided" }}</span>
+                </div>
             </div>
         </div>
+
+        {% if not user.is_verified %}
+        <div class="verification-request-section"
+            style="margin-top: 20px; text-align: center; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+            {% if on_cooldown %}
+            <p style="color: #fbbf24; font-weight: 500; margin-bottom: 5px;"><i class="fas fa-clock"></i> Verification
+                Request Sent</p>
+            <p style="color: var(--text-light); font-size: 0.9rem;">You can send another request in {{ remaining_days }}
+                days.</p>
+            {% else %}
+            <p style="color: var(--text-light); margin-bottom: 15px; font-size: 0.9rem;">Want to get verified badge?</p>
+            <form method="post" action="{% url 'dashboard-profile' %}">
+                {% csrf_token %}
+                <button type="submit" name="request_verification" class="btn"
+                    style="background: linear-gradient(135deg, var(--primary), var(--events-color)); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                    Request Verification <i class="fas fa-paper-plane" style="margin-left: 5px;"></i>
+                </button>
+            </form>
+            {% endif %}
+        </div>
+        {% endif %}
     </div>
 
     <!-- Personal Details Section -->
@@ -85,8 +112,8 @@
 
                 <div class="form-group">
                     <label>Phone</label>
-                    <div class="value">{{ user.phone_number }}</div>
-                    <input type="text" name="phone_number" class="edit-input" value="{{ user.phone_number }}"
+                    <div class="value">{{ user.Phone_no }}</div>
+                    <input type="text" name="phone_no" class="edit-input" value="{{ user.Phone_no|default:'' }}"
                         style="display:none;">
                 </div>
 
@@ -98,9 +125,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Course</label>
-                    <div class="value">{{ user.course }}</div>
-                    <input type="text" name="course" class="edit-input" value="{{ user.course }}" style="display:none;">
+                    <label>Major (Subject)</label>
+                    <div class="value">{{ user.subject }}</div>
+                    <input type="text" name="subject" class="edit-input" value="{{ user.subject }}"
+                        style="display:none;">
                 </div>
 
                 <div class="form-group">
@@ -112,9 +140,8 @@
 
                 <div class="form-group">
                     <label>Current Company</label>
-                    <div class="value">{{ user.current_company }}</div>
-                    <input type="text" name="current_company" class="edit-input" value="{{ user.current_company }}"
-                        style="display:none;">
+                    <div class="value">{{ user.c_name }}</div>
+                    <input type="text" name="c_name" class="edit-input" value="{{ user.c_name }}" style="display:none;">
                 </div>
 
                 <div class="form-group">
@@ -127,18 +154,56 @@
                 <div class="form-group full-width">
                     <label>About Me</label>
                     <div class="value">{{ user.bio }}</div>
-                    <textarea name="bio" class="edit-input" style="display:none;">{{ user.bio }}</textarea>
+                    <textarea name="bio" id="input_bio" class="edit-input"
+                        style="display:none;">{{ user.bio }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Location</label>
                     <div class="value">{{ user.location }}</div>
-                    <input type="text" name="location" class="edit-input" value="{{ user.location }}"
-                        style="display:none;">
+                    <input type="text" name="location" id="input_location" class="edit-input"
+                        value="{{ user.location }}" style="display:none;">
+                </div>
+
+                <!-- Social Media Section -->
+                <div class="form-group full-width">
+                    <h3 class="section-title"
+                        style="margin-top: 20px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                        Social Media Links</h3>
+                </div>
+
+                <div class="form-group">
+                    <label>LinkedIn URL</label>
+                    <div class="value">{{ user.social_links.linkedin|default:"Not set" }}</div>
+                    <input type="url" name="linkedin" class="edit-input"
+                        value="{{ user.social_links.linkedin|default:'' }}" style="display:none;"
+                        placeholder="https://linkedin.com/in/...">
+                </div>
+
+                <div class="form-group">
+                    <label>GitHub URL</label>
+                    <div class="value">{{ user.social_links.github|default:"Not set" }}</div>
+                    <input type="url" name="github" class="edit-input" value="{{ user.social_links.github|default:'' }}"
+                        style="display:none;" placeholder="https://github.com/...">
+                </div>
+
+                <div class="form-group">
+                    <label>Twitter/X URL</label>
+                    <div class="value">{{ user.social_links.twitter|default:"Not set" }}</div>
+                    <input type="url" name="twitter" class="edit-input"
+                        value="{{ user.social_links.twitter|default:'' }}" style="display:none;"
+                        placeholder="https://twitter.com/...">
+                </div>
+
+                <div class="form-group">
+                    <label>Portfolio / Other</label>
+                    <div class="value">{{ user.social_links.other|default:"Not set" }}</div>
+                    <input type="url" name="other" class="edit-input" value="{{ user.social_links.other|default:'' }}"
+                        style="display:none;" placeholder="https://...">
                 </div>
 
                 <div class="form-group full-width" id="saveContainer" style="display:none;">
-                    <button type="submit" class="btn btn-save">Save Changes</button>
+                    <button type="submit" class="btn btn-save" id="submitBtn">Save Changes</button>
                     <button type="button" class="btn btn-cancel" id="cancelEditBtn">Cancel</button>
                 </div>
             </div>
@@ -152,5 +217,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/dashboard-profile.js' %}"></script>
+<script src="{% static 'js/dashboard-profile.js' %}?v={% now 'U' %}"></script>
 {% endblock %}
