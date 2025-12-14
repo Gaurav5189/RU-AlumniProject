@@ -83,8 +83,8 @@ textarea {
     padding: 12px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: #fcfcfc;
-    color: var(--text-dark);
+    background-color: var(--dark-gray);
+    color: var(--white);
     font-size: 1rem;
     transition: border-color 0.2s;
 }

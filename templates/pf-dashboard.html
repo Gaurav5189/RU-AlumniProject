@@ -30,84 +30,75 @@
         <p>Here's what's happening with your alumni network today.</p>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon events">
-                <i class="fas fa-calendar-check"></i>
-            </div>
-            <div class="stat-info">
-                <h3>12</h3>
-                <p>Upcoming Events</p>
-            </div>
+    <div class="stat-card">
+        <div class="stat-icon events">
+            <i class="fas fa-calendar-check"></i>
         </div>
-        <div class="stat-card">
-            <div class="stat-icon jobs">
-                <i class="fas fa-briefcase"></i>
-            </div>
-            <div class="stat-info">
-                <h3>25</h3>
-                <p>New Job Postings</p>
-            </div>
+        <div class="stat-info">
+            <h3>{{ upcoming_events.count }}</h3>
+            <p>Upcoming Events</p>
         </div>
-        <div class="stat-card">
-            <div class="stat-icon connections">
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <div class="stat-info">
-                <h3>150+</h3>
-                <p>Alumni Connections</p>
-            </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon jobs">
+            <i class="fas fa-briefcase"></i>
         </div>
-        <div class="stat-card">
-            <div class="stat-icon messages">
-                <i class="fas fa-envelope"></i>
-            </div>
-            <div class="stat-info">
-                <h3>5</h3>
-                <p>Unread Messages</p>
-            </div>
+        <div class="stat-info">
+            <h3>{{ total_jobs }}</h3>
+            <p>New Job Postings</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon connections">
+            <i class="fas fa-user-friends"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ total_users }}</h3>
+            <p>Alumni Connections</p>
         </div>
     </div>
 
-    <div class="content-grid">
-        <div class="recent-section">
-            <div class="section-header">
-                <h3>Recent Job Postings</h3>
-                <a href="{% url 'dashboard-jobs' %}" class="view-all">View All</a>
-            </div>
-            {% for job in jobs %}
-            <div class="job-card-mini">
-                <div class="job-info">
-                    <h4>{{ job.job_title }}</h4>
-                    <p>{{ job.company_name }} • {{ job.location }}</p>
-                </div>
-                <span class="job-type">{{ job.employment_type }}</span>
-            </div>
-            {% empty %}
-            <p>No recent jobs found.</p>
-            {% endfor %}
-        </div>
+</div>
 
-        <div class="recent-section">
-            <div class="section-header">
-                <h3>Upcoming Events</h3>
-                <a href="{% url 'dashboard-events' %}" class="view-all">View All</a>
-            </div>
-            {% for event in events %}
-            <div class="event-card-mini">
-                <div class="event-date">
-                    <span class="day">{{ event.event_date|date:"d" }}</span>
-                    <span class="month">{{ event.event_date|date:"M" }}</span>
-                </div>
-                <div class="event-info">
-                    <h4>{{ event.event_name }}</h4>
-                    <p>{{ event.event_location }}</p>
-                </div>
-            </div>
-            {% empty %}
-            <p>No upcoming events found.</p>
-            {% endfor %}
+<div class="content-grid">
+    <div class="recent-section">
+        <div class="section-header">
+            <h3>Recent Job Postings</h3>
+            <a href="{% url 'dashboard-jobs' %}" class="view-all">View All</a>
         </div>
+        {% for job in jobs %}
+        <div class="job-card-mini">
+            <div class="job-info">
+                <h4>{{ job.job_title }}</h4>
+                <p>{{ job.company_name }} • {{ job.location }}</p>
+            </div>
+            <span class="job-type">{{ job.employment_type }}</span>
+        </div>
+        {% empty %}
+        <p>No recent jobs found.</p>
+        {% endfor %}
     </div>
+
+    <div class="recent-section">
+        <div class="section-header">
+            <h3>Upcoming Events</h3>
+            <a href="{% url 'dashboard-events' %}" class="view-all">View All</a>
+        </div>
+        {% for event in events %}
+        <div class="event-card-mini">
+            <div class="event-date">
+                <span class="day">{{ event.event_date|date:"d" }}</span>
+                <span class="month">{{ event.event_date|date:"M" }}</span>
+            </div>
+            <div class="event-info">
+                <h4>{{ event.event_name }}</h4>
+                <p>{{ event.event_location }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>No upcoming events found.</p>
+        {% endfor %}
+    </div>
+</div>
 </div>
 {% endblock %}

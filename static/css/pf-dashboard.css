@@ -52,7 +52,7 @@
 
 /* Dashboard Content */
 .welcome-banner {
-    background: linear-gradient(135deg, var(--primary), var(--blue));
+    background: linear-gradient(135deg, var(--dark-red), var(--medium-red));
     padding: 30px;
     border-radius: 15px;
     margin-bottom: 30px;

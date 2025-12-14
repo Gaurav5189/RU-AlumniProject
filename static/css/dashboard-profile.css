@@ -223,8 +223,9 @@
     border-radius: 6px;
     font-size: 1rem;
     color: var(--text-dark);
-    /* Dark text for inputs on white bg */
-    background-color: #fcfcfc;
+    /* Light text */
+    background-color: var(--dark-gray);
+    /* Dark background */
 }
 
 .edit-input:focus {
