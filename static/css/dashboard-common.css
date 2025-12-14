@@ -237,3 +237,126 @@ body {
 
     /* Ensure Header elements align correctly on mobile if generic header styles exist */
 }
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+}
+
+/* Logout Modal Styles */
+.logout-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-modal-content {
+    background-color: #2d2d2d;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    color: var(--white);
+    animation: slideIn 0.3s ease-out;
+    text-align: center;
+}
+
+.logout-modal-header {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.logout-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.logout-modal-body {
+    padding: 30px 20px;
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.logout-modal-footer {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    border-top: 1px solid #444;
+}
+
+.btn-modal-cancel,
+.btn-modal-confirm {
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-modal-cancel {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.btn-modal-cancel:hover {
+    background-color: #5a6268;
+}
+
+.btn-modal-confirm {
+    background-color: var(--dark-red);
+    color: var(--white);
+}
+
+.btn-modal-confirm:hover {
+    background-color: var(--medium-red);
+}
+
+.close-logout-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.close-logout-modal:hover {
+    color: var(--white);
+}

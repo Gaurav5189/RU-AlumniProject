@@ -94,7 +94,8 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--primary);
-    background-color: var(--white);
+    background-color: var(--medium-gray);
+    color: var(--white);
 }
 
 textarea {

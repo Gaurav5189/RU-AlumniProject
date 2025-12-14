@@ -19,6 +19,10 @@
     gap: 15px;
 }
 
+.header-actions a {
+    text-decoration: none;
+}
+
 .btn-post-job {
     background-color: var(--green-grass);
     color: var(--white);

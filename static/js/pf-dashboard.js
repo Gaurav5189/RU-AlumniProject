@@ -32,3 +32,34 @@ window.addEventListener('resize', () => {
         overlay.classList.remove('active');
     }
 });
+
+// Logout Modal Logic
+const logoutModal = document.getElementById('logoutModal');
+const logoutTriggers = document.querySelectorAll('.logout-trigger');
+const closeLogoutModalBtns = document.querySelectorAll('.close-logout-modal, .btn-modal-cancel');
+
+// Open modal
+if (logoutTriggers) {
+    logoutTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (logoutModal) logoutModal.style.display = 'flex';
+        });
+    });
+}
+
+// Close modal
+if (closeLogoutModalBtns) {
+    closeLogoutModalBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (logoutModal) logoutModal.style.display = 'none';
+        });
+    });
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+    if (logoutModal && event.target === logoutModal) {
+        logoutModal.style.display = 'none';
+    }
+});
