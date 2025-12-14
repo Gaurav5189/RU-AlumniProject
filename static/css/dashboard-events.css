@@ -1,5 +1,7 @@
+/* static/css/dashboard-events.css */
+
 :root {
-    --primary: #120a8f; 
+    --primary: #120a8f;
     --secondary: #6c757d;
     --success: #28a745;
     --background: #f8f9fa;
@@ -12,8 +14,8 @@
     --jobs-color: #28a745;
     --connections-color: #ffc107;
     --messages-color: #dc3545;
-    --green-grass: #22c55e; 
-    --dark-red: #8B0000; 
+    --green-grass: #22c55e;
+    --dark-red: #8B0000;
     --medium-red: #a52a2a;
     --light-red: #cd5c5c;
     --blue: #1e3a8a;
@@ -160,7 +162,7 @@ a {
 }
 
 .menu-item:hover {
-    background-color: rgba(34, 197, 94, 0.1); 
+    background-color: rgba(34, 197, 94, 0.1);
 }
 
 .menu-item:hover a {
@@ -168,7 +170,7 @@ a {
 }
 
 .menu-item.active {
-    background-color: var(--primary); 
+    background-color: var(--primary);
 }
 
 .menu-item.active a {
@@ -337,14 +339,16 @@ a {
     margin-bottom: 0.8rem;
 }
 
-.event-time, .event-location {
+.event-time,
+.event-location {
     display: flex;
     align-items: center;
     color: var(--text-muted);
     font-size: 0.9rem;
 }
 
-.event-time i, .event-location i {
+.event-time i,
+.event-location i {
     font-size: 0.9rem;
     margin-right: 0.5rem;
     color: #6b89ff;
@@ -443,67 +447,7 @@ a {
     color: var(--text-muted);
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
-    .sidebar {
-        width: 240px;
-    }
-    
-    .main-content {
-        margin-left: 240px;
-        width: calc(100% - 240px);
-    }
-    
-    .event-image-container {
-        min-width: 160px;
-        height: 120px;
-    }
-}
-
-@media (max-width: 768px) {
-    .event-info {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .event-actions {
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
-    }
-    
-    .event-item-full {
-        flex-direction: column;
-    }
-    
-    .event-image-container {
-        width: 100%;
-        height: 180px;
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .sidebar {
-        width: 0;
-        transform: translateX(-100%);
-    }
-    
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-        padding: 1.5rem;
-    }
-    
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-}
-
-/* Mobile menu toggle button - assuming you'll add JS for this */
+/* Mobile menu toggle button */
 .mobile-menu-toggle {
     display: none;
     position: fixed;
@@ -518,14 +462,94 @@ a {
     cursor: pointer;
 }
 
-@media (max-width: 576px) {
-    .mobile-menu-toggle {
-        display: block;
-    }
-}
-
 /* Animation for sidebar */
 .sidebar.active {
     transform: translateX(0);
     width: 280px;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (Updated to fix Mobile/Tablet Overlap)
+   ========================================================================== */
+
+/* Tablet View (769px - 992px): Narrow Sidebar */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 240px;
+    }
+
+    .main-content {
+        margin-left: 240px;
+        width: calc(100% - 240px);
+    }
+
+    .event-image-container {
+        min-width: 160px;
+        height: 120px;
+    }
+}
+
+/* Mobile View (768px and below): Sidebar Hidden, Full Width Content */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 280px;
+        transform: translateX(-100%);
+        /* Start hidden */
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        height: 100vh;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+        /* Slide in when active */
+    }
+
+    /* Important: Override margins to use full width */
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1.5rem;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .event-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .event-actions {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .event-item-full {
+        flex-direction: column;
+    }
+
+    .event-image-container {
+        width: 100%;
+        height: 180px;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Small Mobile View */
+@media (max-width: 576px) {
+    .main-content {
+        padding: 1rem;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
 }
