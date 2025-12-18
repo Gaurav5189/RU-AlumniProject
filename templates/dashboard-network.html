@@ -1,3 +1,4 @@
+{% extends 'dashboard_base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -31,13 +32,35 @@
                     <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png"
                         alt="Profile" class="avatar">
                     {% endif %}
+{% block title %}Alumni Network{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard-network.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="header">
+    <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="page-title">Alumni Network</h1>
+</div>
+
+<div class="alumni-section">
+    <div class="alumni-grid">
+        {% for user in Users %}
+        <div class="alumni-card">
+            <div class="card-cover"></div>
+            <div class="alumni-header">
+                <!-- The view passes profile_img as a URL string, so we can use it directly. -->
+                {% if user.profile_img %}
+                <div class="alumni-avatar-img">
+                    <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
                 </div>
-                {% if user.is_authenticated %}
-                <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
-                <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
                 {% else %}
-                <div class="user-name">John Doe</div>
-                <div class="user-email"></span>john.doe@example.com</div>
+                <div class="alumni-avatar">
+                    {{ user.initials }}
+                </div>
                 {% endif %}
             </div>
 
@@ -79,8 +102,52 @@
                         <a href="{% url 'logout' %}">Logout</a>
                     </li>
                 </ul>
+            <div class="alumni-info">
+                <h3 class="alumni-name">{{ user.name }}</h3>
+
+                {% if user.is_verified %}
+                <div class="verification-badge-mini verified">
+                    Verified <i class="fas fa-check-circle"></i>
+                </div>
+                {% else %}
+                <div class="verification-badge-mini pending">
+                    Pending <i class="fas fa-clock"></i>
+                </div>
+                {% endif %}
+
+                <h3 class="alumni-name-spacer" style="display:none;"></h3>
+                <!-- Hidden email for JS to grab -->
+                <div class="alumni-email" style="display:none;">{{ user.email }}</div>
+
+                <div class="info-row">
+                    <span class="info-label">Class Year:</span>
+                    <span class="info-value">{{ user.batchno }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Major:</span>
+                    <span class="info-value">{{ user.subject }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Company:</span>
+                    <span class="info-value">{{ user.c_name|default:"na" }}</span>
+                </div>
+            </div>
+
+            <div class="alumni-actions">
+                <button class="view-profile-btn" data-user-id="{{ user.id }}" data-user-name="{{ user.name }}">
+                    View Profile
+                </button>
+                <!-- Connect/Message buttons (not functional yet but kept for UI) -->
+                <!-- <button class="btn-connect">Connect</button> -->
             </div>
         </div>
+        {% empty %}
+        <div class="no-alumni">
+            <p>No alumni found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
         <!-- Main Content -->
         <div class="main-content">
@@ -126,21 +193,23 @@
                     <div class="no-results">No alumni records found</div>
                     {% endfor %}
                 </div>
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+            <div id="modalAvatar" class="modal-avatar">
+                <span id="userInitials"></span>
             </div>
+            <h2 id="userName" class="modal-name"></h2>
+            <p id="userEmail" class="modal-email"></p>
+            <div id="verificationStatus" class="verification-status"></div>
         </div>
-    </div>
 
-    <!-- Popup Modal -->
-    <div id="profileModal" class="profile-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <div id="modalAvatar" class="modal-avatar">
-                    <span id="userInitials"></span>
-                </div>
-                <h2 id="userName"></h2>
-                <p id="userEmail"></p>
-                <p id="verificationStatus" class="verification-status"></p>
+        <div class="modal-body">
+            <div class="detail-row">
+                <span class="detail-label">Class Year:</span>
+                <span id="userBatch" class="detail-value"></span>
             </div>
             <div class="modal-body">
                 <div class="profile-detail">
@@ -167,14 +236,41 @@
                     <div class="detail-label">Social Links:</div>
                     <div id="userSocialLinks" class="detail-value social-links-container"></div>
                 </div>
+            <div class="detail-row">
+                <span class="detail-label">Major:</span>
+                <span id="userSubject" class="detail-value"></span>
             </div>
-            <div class="modal-footer">
-                <button class="close-button">Close</button>
+            <div class="detail-row">
+                <span class="detail-label">Location:</span>
+                <span id="userLocation" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Company:</span>
+                <span id="userCompany" class="detail-value"></span>
+            </div>
+
+            <div class="bio-section">
+                <span class="detail-label">Bio:</span>
+                <p id="userBio" class="detail-value bio-text"></p>
+            </div>
+
+            <div class="social-section">
+                <span class="detail-label">Social Links:</span>
+                <div id="userSocialLinks" class="social-links-container"></div>
             </div>
         </div>
+
+        <div class="modal-footer">
+            <button class="close-button">Close</button>
+        </div>
     </div>
+</div>
+{% endblock %}
 
     <script src="{% static 'js/dashboard-network.js' %}" defer></script>
 </body>
 
 </html>
+{% block extra_js %}
+<script src="{% static 'js/dashboard-network.js' %}"></script>
+{% endblock %}

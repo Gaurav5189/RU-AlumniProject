@@ -9,7 +9,7 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
 from .forms import EmailForm, OTPForm
-from .models import OTPVerification, CustomUser, RavenshawEvent, JobPost
+from .models import OTPVerification, CustomUser, RavenshawEvent, JobPost, ContactForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -331,7 +331,38 @@ def forgot_password(request):
 
 @login_required(login_url='login')
 def dashboard_profile(request):
+    today = timezone.now().date()
+    
+    # Calculate Cooldown for Verification Request
+    last_request = ContactForm.objects.filter(
+        email=request.user.email, 
+        message__startswith="Verification Request"
+    ).order_by('-created_at').first()
+    
+    cooldown_remaining = None
+    remaining_days = 0
+    on_cooldown = False
+    
+    if last_request:
+        time_since_request = timezone.now() - last_request.created_at
+        if time_since_request < timedelta(days=3):
+            on_cooldown = True
+            cooldown_remaining = timedelta(days=3) - time_since_request
+            remaining_days = cooldown_remaining.days
+
     if request.method == 'POST':
+        # Check if it's a verification request
+        if 'request_verification' in request.POST:
+            if not request.user.is_verified and not on_cooldown:
+                ContactForm.objects.create(
+                    first_name=request.user.first_name,
+                    last_name=request.user.last_name,
+                    email=request.user.email,
+                    message=f"Verification Request for user: {request.user.username}"
+                )
+                messages.success(request, 'Verification request sent successfully!')
+                return redirect('dashboard-profile')
+        
         # Handle profile update logic here
         age = request.POST.get('age', '')
         subject = request.POST.get('subject', '')
@@ -347,12 +378,11 @@ def dashboard_profile(request):
         other = request.POST.get('other', '')
         
         # Create a dictionary for social links
-        social_links = {
-            'linkedin': linkedin,
-            'twitter': twitter,
-            'github': github,
-            'other': other,
-        }
+        social_links = request.user.social_links or {} # Initialize if None
+        social_links['linkedin'] = linkedin
+        social_links['twitter'] = twitter
+        social_links['github'] = github
+        social_links['other'] = other
         
         # Handle profile image upload if present
         if 'profile_img' in request.FILES:
@@ -366,13 +396,18 @@ def dashboard_profile(request):
         request.user.c_name = c_name
         request.user.location = location
         request.user.bio = bio
-        request.user.social_links = social_links  # Now we're setting a proper dictionary
+        request.user.social_links = social_links
         request.user.save()
         
         messages.success(request, 'Profile updated successfully!')
         return redirect('dashboard-profile')
-    else:
-        return render(request, 'dashboard-profile.html', {'user': request.user})
+    
+    return render(request, 'dashboard-profile.html', {
+        'user': request.user,
+        'today': today,
+        'on_cooldown': on_cooldown,
+        'remaining_days': remaining_days
+    })
     
 @login_required(login_url='login')
 def dashboard_events(request):
@@ -395,8 +430,8 @@ def dashboard_events(request):
 
 @login_required(login_url='login')
 def dashboard_network(request):
-    # Fetch all users except the current user and admin users
-    users = CustomUser.objects.exclude(id=request.user.id).exclude(is_superuser=True)
+    # Fetch all users except the current user and admin users, ordered by verified status then name
+    users = CustomUser.objects.exclude(id=request.user.id).exclude(is_superuser=True).order_by('-is_verified', 'first_name')
     
     # Prepare users for template rendering with proper attributes
     user_data = []
@@ -426,7 +461,8 @@ def dashboard_network(request):
             'c_name': user.c_name or '',
             'location': user.location or '',
             'profile_img': profile_img_url,
-            'initials': initials
+            'initials': initials,
+            'is_verified': user.is_verified
         })
 
     return render(request, 'dashboard-network.html', {

@@ -49,7 +49,13 @@ ALLOWED_HOSTS = [
     '.dpdns.org',
 ]
 
-
+#active when using vs code tunel --------
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://localhost:8000',
+#     'https://*.devtunnels.ms',  # Allow VS Code tunnels
+#     'https://*.vscode-dev.net', # Allow VS Code web
+# ]
+#----------------------------------------
 
 # Application definition
 INSTALLED_APPS = [

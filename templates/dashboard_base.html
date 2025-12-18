@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %} | Alumni Network</title>
+
+    <!-- Shared Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard-common.css' %}">
+
+    <!-- Page Specific CSS -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                {% if user.profile_img %}
+                <img src="{{ user.profile_img.url }}" alt="Profile Avatar" class="avatar">
+                {% else %}
+                <img src="{% static 'images/default_profile.png' %}" alt="Default Avatar" class="avatar">
+                {% endif %}
+            </div>
+            {% if user.is_authenticated %}
+            <h3 class="user-name">{{ user.first_name }} {{ user.last_name }}</h3>
+            <p class="user-email"><span class="status-indicator"></span>{{ user.email }}</p>
+            {% else %}
+            <!-- Fallback for non-authenticated view if needed -->
+            <h3 class="user-name">Guest User</h3>
+            {% endif %}
+        </div>
+
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item {% if request.path == '/dashboard/' %}active{% endif %}">
+                    <i class="fas fa-th-large"></i>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="menu-item {% if '/dashboard-events/' in request.path %}active{% endif %}">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="{% url 'dashboard-events' %}">Events</a>
+                </li>
+                <li class="menu-item {% if '/dashboard-network/' in request.path %}active{% endif %}">
+                    <i class="fas fa-users"></i>
+                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
+                </li>
+                <li class="menu-item {% if '/dashboard/jobs/post/' in request.path %}active{% endif %}">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'job-post-create' %}">Post Job</a>
+                </li>
+                <li
+                    class="menu-item {% if request.path == '/dashboard/jobs/' or '/dashboard/jobs/edit/' in request.path %}active{% endif %}">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                <li class="menu-item {% if '/dashboard-profile/' in request.path %}active{% endif %}">
+                    <i class="fas fa-user"></i>
+                    <a href="{% url 'dashboard-profile' %}">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="#" class="logout-trigger">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Shared Toggle Script -->
+    <script src="{% static 'js/pf-dashboard.js' %}" defer></script>
+
+    <!-- Logout Modal -->
+    <div id="logoutModal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-modal">&times;</span>
+            <div class="logout-modal-header">
+                <h2>Confirm Logout</h2>
+            </div>
+            <div class="logout-modal-body">
+                <p>Are you sure you want to log out?</p>
+            </div>
+            <div class="logout-modal-footer">
+                <button class="btn-modal-cancel">Cancel</button>
+                <a href="{% url 'logout' %}" class="btn-modal-confirm">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Specific JS -->
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

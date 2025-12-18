@@ -1,3 +1,4 @@
+{% extends 'dashboard_base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -33,32 +34,11 @@
             <p class="user-email"><span class="status-indicator"></span>semilie123@gmail.com</p>
             {% endif %}
         </div>
+{% block title %}Dashboard{% endblock %}
 
-        <div class="menu-section">
-            <h3>Main Menu</h3>
-            <ul class="menu-items">
-                <li class="menu-item active">
-                    <i class="fas fa-th-large"></i>
-                    <a href="{% url 'dashboard' %}" class="menu_change">Dashboard</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <a href="{% url 'dashboard-events' %}">Events</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-users"></i>
-                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-briefcase"></i>
-                    <a href="{% url 'job-post-create' %}">Post Job</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-briefcase"></i>
-                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
-                </li>
-            </ul>
-        </div>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pf-dashboard.css' %}">
+{% endblock %}
 
         <div class="menu-section">
             <h3>ACCOUNT</h3>
@@ -73,8 +53,22 @@
                     <a href="{% url 'logout' %}">Logout</a>
                 </li>
             </ul>
+{% block content %}
+<div class="top-bar">
+    <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="logo">COLLAGE ALUMNI SYSTEM</h1>
+    <div class="top-bar-action">
+        <div class="user-profile-mini">
+            <img src="{{ user.profile_img.url }}" alt="User Avatar" class="user-avatar-mini">
+            <span>{{ user.username }}</span>
         </div>
+        <a href="#" class="logout-btn logout-trigger">
+            <i class="fas fa-sign-out-alt logout-icon"></i>
+        </a>
     </div>
+</div>
 
     <!-- main content -->
     <div class="main-content">
@@ -90,11 +84,41 @@
                     <i class="fas fa-sign-out-alt logout-icon"></i>
                 </a>
             </div>
+<div class="dashboard-content">
+    <div class="welcome-banner">
+        <h2>Welcome Back, {{ user.first_name }}!</h2>
+        <p>Here's what's happening with your alumni network today.</p>
+    </div>
 
+    <div class="stat-card">
+        <div class="stat-icon events">
+            <i class="fas fa-calendar-check"></i>
         </div>
+        <div class="stat-info">
+            <h3>{{ upcoming_events.count }}</h3>
+            <p>Upcoming Events</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon jobs">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ total_jobs }}</h3>
+            <p>New Job Postings</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon connections">
+            <i class="fas fa-user-friends"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ total_users }}</h3>
+            <p>Alumni Connections</p>
+        </div>
+    </div>
 
-        <div class="dashboard-content">
-            <h2 class="page-title">Dashboard</h2>
+</div>
 
             <div class="stats-grid">
                 <div class="stat-card">
@@ -133,7 +157,24 @@
 
 
 
+<div class="content-grid">
+    <div class="recent-section">
+        <div class="section-header">
+            <h3>Recent Job Postings</h3>
+            <a href="{% url 'dashboard-jobs' %}" class="view-all">View All</a>
         </div>
+        {% for job in jobs %}
+        <div class="job-card-mini">
+            <div class="job-info">
+                <h4>{{ job.job_title }}</h4>
+                <p>{{ job.company_name }} • {{ job.location }}</p>
+            </div>
+            <span class="job-type">{{ job.employment_type }}</span>
+        </div>
+        {% empty %}
+        <p>No recent jobs found.</p>
+        {% endfor %}
+    </div>
 
         <div>
             <link rel="stylesheet" href="{% static 'css/dashboard-events.css' %}">
@@ -196,3 +237,26 @@
 </body>
 
 </html>
+    <div class="recent-section">
+        <div class="section-header">
+            <h3>Upcoming Events</h3>
+            <a href="{% url 'dashboard-events' %}" class="view-all">View All</a>
+        </div>
+        {% for event in events %}
+        <div class="event-card-mini">
+            <div class="event-date">
+                <span class="day">{{ event.event_date|date:"d" }}</span>
+                <span class="month">{{ event.event_date|date:"M" }}</span>
+            </div>
+            <div class="event-info">
+                <h4>{{ event.event_name }}</h4>
+                <p>{{ event.event_location }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>No upcoming events found.</p>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}
