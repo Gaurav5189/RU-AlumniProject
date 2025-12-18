@@ -1,6 +1,66 @@
 {% extends 'dashboard_base.html' %}
 {% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Posted Jobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/dashboard-jobs.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="canonical" href="https://ravenshawalumnisystem.dpdns.org{{ request.path }}">
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="{{ user.profile_img.url|default:'#' }}" alt="Profile" class="avatar">
+            </div>
+            {% if user.is_authenticated %}
+            <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
+            {% else %}
+            <div class="user-name">John Doe</div>
+            <div class="user-email">john.doe@example.com</div>
+            {% endif %}
+        </div>
+
+        <div class="menu-section">
+            <h3>Main Menu</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <a href="{% url 'dashboard-events' %}">Events</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'job-post-create' %}">Post Job</a>
+                </li>
+                <li class="menu-item active">
+                    <i class="fas fa-briefcase"></i>
+                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
+                </li>
+            </ul>
+        </div>
 {% block title %}Posted Jobs{% endblock %}
 
 {% block extra_css %}
@@ -23,6 +83,17 @@
     </div>
 </div>
 
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">Posted Jobs</h1>
+            <div class="header-actions">
+                <a href="{% url 'job-post-create' %}">
+                    <button class="btn-post-job">
+                        <i class="fas fa-plus"></i>
+                        Post New Job
+                    </button>
+                </a>
 <div class="jobs-filter">
     <div class="search-bar">
         <i class="fas fa-search"></i>
@@ -100,6 +171,9 @@
             <button class="btn-view-job">View Details</button>
         </div>
     </div>
+</body>
+
+</html>
     {% empty %}
     <div class="no-jobs">
         <p>No jobs have been posted yet.</p>
