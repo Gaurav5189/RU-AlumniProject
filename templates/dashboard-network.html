@@ -1,279 +1,134 @@
 {% extends 'dashboard_base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Alumni Network{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Alumni Network</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/dashboard-network.css' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <link rel="canonical" href="https://ravenshawalumnisystem.dpdns.org{{ request.path }}">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard-network.css' %}">
+{% endblock %}
 
-<body>
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <div class="sidebar">
-            <div class="profile-section">
-                <div class="profile-pic">
-                    {% if user.profile_img %}
-                    <img src="{{ user.profile_img.url }}" alt="Profile" class="avatar">
-                    {% else %}
-                    <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png"
-                        alt="Profile" class="avatar">
-                    {% endif %}
-                    {% block title %}Alumni Network{% endblock %}
+{% block content %}
+<div class="header">
+    <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="page-title">Alumni Network</h1>
+</div>
 
-                    {% block extra_css %}
-                    <link rel="stylesheet" href="{% static 'css/dashboard-network.css' %}">
-                    {% endblock %}
+<div class="alumni-section">
+    <div class="alumni-grid">
+        {% for user in Users %}
+        <div class="alumni-card">
+            <div class="card-cover"></div>
+            <div class="alumni-header">
+                <!-- The view passes profile_img as a URL string, so we can use it directly. -->
+                {% if user.profile_img %}
+                <div class="alumni-avatar-img">
+                    <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
+                </div>
+                {% else %}
+                <div class="alumni-avatar">
+                    {{ user.initials }}
+                </div>
+                {% endif %}
+            </div>
 
-                    {% block content %}
-                    <div class="header">
-                        <button class="hamburger" id="hamburger">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                        <h1 class="page-title">Alumni Network</h1>
-                    </div>
+            <div class="alumni-info">
+                <h3 class="alumni-name">{{ user.name }}</h3>
 
-                    <div class="alumni-section">
-                        <div class="alumni-grid">
-                            {% for user in Users %}
-                            <div class="alumni-card">
-                                <div class="card-cover"></div>
-                                <div class="alumni-header">
-                                    <!-- The view passes profile_img as a URL string, so we can use it directly. -->
-                                    {% if user.profile_img %}
-                                    <div class="alumni-avatar-img">
-                                        <img src="{{ user.profile_img }}" alt="{{ user.name }}" class="avatar-img">
-                                    </div>
-                                    {% else %}
-                                    <div class="alumni-avatar">
-                                        {{ user.initials }}
-                                    </div>
-                                    {% endif %}
-                                </div>
+                {% if user.is_verified %}
+                <div class="verification-badge-mini verified">
+                    Verified <i class="fas fa-check-circle"></i>
+                </div>
+                {% else %}
+                <div class="verification-badge-mini pending">
+                    Pending <i class="fas fa-clock"></i>
+                </div>
+                {% endif %}
 
-                                <div class="menu-section">
-                                    <h3>Main Menu</h3>
-                                    <ul class="menu-items">
-                                        <li class="menu-item">
-                                            <i class="fas fa-th-large"></i>
-                                            <a href="{% url 'dashboard' %}">Dashboard</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <a href="{% url 'dashboard-events' %}">Events</a>
-                                        </li>
-                                        <li class="menu-item active">
-                                            <i class="fas fa-users"></i>
-                                            <a href="{% url 'dashboard-network' %}">Alumni Network</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <i class="fas fa-briefcase"></i>
-                                            <a href="{% url 'job-post-create' %}">Post Job</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <i class="fas fa-briefcase"></i>
-                                            <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                <h3 class="alumni-name-spacer" style="display:none;"></h3>
+                <!-- Hidden email for JS to grab -->
+                <div class="alumni-email" style="display:none;">{{ user.email }}</div>
 
-                                <div class="menu-section">
-                                    <h3>ACCOUNT</h3>
-                                    <ul class="menu-items">
-                                        <li class="menu-item">
-                                            <i class="fas fa-user"></i>
-                                            <a href="{% url 'dashboard-profile' %}">My Profile</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                            <a href="{% url 'logout' %}">Logout</a>
-                                        </li>
-                                    </ul>
-                                    <div class="alumni-info">
-                                        <h3 class="alumni-name">{{ user.name }}</h3>
+                <div class="info-row">
+                    <span class="info-label">Class Year:</span>
+                    <span class="info-value">{{ user.batchno }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Major:</span>
+                    <span class="info-value">{{ user.subject }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Company:</span>
+                    <span class="info-value">{{ user.c_name|default:"na" }}</span>
+                </div>
+            </div>
 
-                                        {% if user.is_verified %}
-                                        <div class="verification-badge-mini verified">
-                                            Verified <i class="fas fa-check-circle"></i>
-                                        </div>
-                                        {% else %}
-                                        <div class="verification-badge-mini pending">
-                                            Pending <i class="fas fa-clock"></i>
-                                        </div>
-                                        {% endif %}
+            <div class="alumni-actions">
+                <button class="view-profile-btn" data-user-id="{{ user.id }}" data-user-name="{{ user.name }}">
+                    View Profile
+                </button>
+                <!-- Connect/Message buttons (not functional yet but kept for UI) -->
+                <!-- <button class="btn-connect">Connect</button> -->
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-alumni">
+            <p>No alumni found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
-                                        <h3 class="alumni-name-spacer" style="display:none;"></h3>
-                                        <!-- Hidden email for JS to grab -->
-                                        <div class="alumni-email" style="display:none;">{{ user.email }}</div>
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+            <div id="modalAvatar" class="modal-avatar">
+                <span id="userInitials"></span>
+            </div>
+            <h2 id="userName" class="modal-name"></h2>
+            <p id="userEmail" class="modal-email"></p>
+            <div id="verificationStatus" class="verification-status"></div>
+        </div>
 
-                                        <div class="info-row">
-                                            <span class="info-label">Class Year:</span>
-                                            <span class="info-value">{{ user.batchno }}</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <span class="info-label">Major:</span>
-                                            <span class="info-value">{{ user.subject }}</span>
-                                        </div>
-                                        <div class="info-row">
-                                            <span class="info-label">Company:</span>
-                                            <span class="info-value">{{ user.c_name|default:"na" }}</span>
-                                        </div>
-                                    </div>
+        <div class="modal-body">
+            <div class="detail-row">
+                <span class="detail-label">Class Year:</span>
+                <span id="userBatch" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Major:</span>
+                <span id="userSubject" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Location:</span>
+                <span id="userLocation" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Company:</span>
+                <span id="userCompany" class="detail-value"></span>
+            </div>
 
-                                    <div class="alumni-actions">
-                                        <button class="view-profile-btn" data-user-id="{{ user.id }}"
-                                            data-user-name="{{ user.name }}">
-                                            View Profile
-                                        </button>
-                                        <!-- Connect/Message buttons (not functional yet but kept for UI) -->
-                                        <!-- <button class="btn-connect">Connect</button> -->
-                                    </div>
-                                </div>
-                                {% empty %}
-                                <div class="no-alumni">
-                                    <p>No alumni found.</p>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
+            <div class="bio-section">
+                <span class="detail-label">Bio:</span>
+                <p id="userBio" class="detail-value bio-text"></p>
+            </div>
 
-                        <!-- Main Content -->
-                        <div class="main-content">
-                            <div class="header">
-                                <h1 class="page-title">Alumni Network</h1>
-                            </div>
+            <div class="social-section">
+                <span class="detail-label">Social Links:</span>
+                <div id="userSocialLinks" class="social-links-container"></div>
+            </div>
+        </div>
 
-                            <div class="alumni-section">
-                                <div class="alumni-grid">
-                                    {% for user in Users %}
-                                    <div class="alumni-card">
-                                        <div class="alumni-header">
-                                            {% if user.profile_img %}
-                                            <div class="alumni-avatar-img">
-                                                <img src="{{ user.profile_img }}" alt="{{ user.name }}"
-                                                    class="avatar-img">
-                                            </div>
-                                            {% else %}
-                                            <div class="alumni-avatar">{{ user.initials }}</div>
-                                            {% endif %}
-                                            <div class="alumni-name">{{ user.name }}</div>
-                                            <div class="alumni-email">{{ user.email }}</div>
-                                        </div>
-                                        <div class="alumni-info">
-                                            <div class="info-item">
-                                                <div class="info-label">Class Year:</div>
-                                                <div class="info-value">{{ user.batchno }}</div>
-                                            </div>
-                                            <div class="info-item">
-                                                <div class="info-label">Major:</div>
-                                                <div class="info-value">{{ user.subject }}</div>
-                                            </div>
-                                            <div class="info-item">
-                                                <div class="info-label">Company:</div>
-                                                <div class="info-value">{{ user.c_name }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="alumni-footer">
-                                            <button class="view-profile-btn" data-user-id="{{ user.id }}"
-                                                data-user-name="{{ user.name }}">View Profile</button>
-                                        </div>
-                                    </div>
-                                    {% empty %}
-                                    <div class="no-results">No alumni records found</div>
-                                    {% endfor %}
-                                </div>
-                                <!-- Profile Modal -->
-                                <div id="profileModal" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close-modal">&times;</span>
-                                        <div class="modal-header">
-                                            <div id="modalAvatar" class="modal-avatar">
-                                                <span id="userInitials"></span>
-                                            </div>
-                                            <h2 id="userName" class="modal-name"></h2>
-                                            <p id="userEmail" class="modal-email"></p>
-                                            <div id="verificationStatus" class="verification-status"></div>
-                                        </div>
+        <div class="modal-footer">
+            <button class="close-button">Close</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
-                                        <div class="modal-body">
-                                            <div class="detail-row">
-                                                <span class="detail-label">Class Year:</span>
-                                                <span id="userBatch" class="detail-value"></span>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="profile-detail">
-                                                    <div class="detail-label">Class Year:</div>
-                                                    <div id="userBatch" class="detail-value"></div>
-                                                </div>
-                                                <div class="profile-detail">
-                                                    <div class="detail-label">Major:</div>
-                                                    <div id="userSubject" class="detail-value"></div>
-                                                </div>
-                                                <div class="profile-detail">
-                                                    <div class="detail-label">Location:</div>
-                                                    <div id="userLocation" class="detail-value"></div>
-                                                </div>
-                                                <div class="profile-detail">
-                                                    <div class="detail-label">Company:</div>
-                                                    <div id="userCompany" class="detail-value"></div>
-                                                </div>
-                                                <div class="profile-detail">
-                                                    <div class="detail-label">Bio:</div>
-                                                    <div id="userBio" class="detail-value"></div>
-                                                </div>
-                                                <div class="profile-detail">
-                                                    <div class="detail-label">Social Links:</div>
-                                                    <div id="userSocialLinks"
-                                                        class="detail-value social-links-container"></div>
-                                                </div>
-                                                <div class="detail-row">
-                                                    <span class="detail-label">Major:</span>
-                                                    <span id="userSubject" class="detail-value"></span>
-                                                </div>
-                                                <div class="detail-row">
-                                                    <span class="detail-label">Location:</span>
-                                                    <span id="userLocation" class="detail-value"></span>
-                                                </div>
-                                                <div class="detail-row">
-                                                    <span class="detail-label">Company:</span>
-                                                    <span id="userCompany" class="detail-value"></span>
-                                                </div>
-
-                                                <div class="bio-section">
-                                                    <span class="detail-label">Bio:</span>
-                                                    <p id="userBio" class="detail-value bio-text"></p>
-                                                </div>
-
-                                                <div class="social-section">
-                                                    <span class="detail-label">Social Links:</span>
-                                                    <div id="userSocialLinks" class="social-links-container"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button class="close-button">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endblock %}
-
-                                    <script src="{% static 'js/dashboard-network.js' %}" defer></script>
-</body>
-
-</html>
 {% block extra_js %}
 <script src="{% static 'js/dashboard-network.js' %}"></script>
 {% endblock %}
