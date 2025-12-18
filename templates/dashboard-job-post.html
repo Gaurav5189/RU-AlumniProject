@@ -1,165 +1,99 @@
 {% extends 'dashboard_base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Post Job{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Post Job</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/dashboard-job-post.css' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <link rel="canonical" href="https://ravenshawalumnisystem.dpdns.org{{ request.path }}">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard-job-post.css' %}">
+{% endblock %}
 
-<body>
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-pic">
-                <img src="{{ user.profile_img.url|default:'#' }}" alt="Profile" class="avatar">
+{% block content %}
+<div class="header">
+    <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </button>
+    <h1 class="page-title">Post a Job</h1>
+
+    <!-- Optional: Back button if needed -->
+    <div class="header-actions">
+        <a href="{% url 'dashboard-jobs' %}" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Jobs
+        </a>
+    </div>
+</div>
+
+<div class="job-post-container">
+    <div class="job-post-form">
+        <h2 class="form-title">Job Details</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="job_title">Job Title</label>
+                    <input type="text" id="job_title" name="job_title" required placeholder="e.g. Software Engineer">
+                </div>
+
+                <div class="form-group">
+                    <label for="company_name">Company Name</label>
+                    <input type="text" id="company_name" name="company_name" required
+                        placeholder="e.g. Tech Solutions Inc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required placeholder="e.g. Remote, New York, NY">
+                </div>
+
+                <div class="form-group">
+                    <label for="employment_type">Employment Type</label>
+                    <select id="employment_type" name="employment_type" required>
+                        <option value="">Select Type</option>
+                        <option value="Full-Time">Full-Time</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Remote">Remote</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="salary_range">Salary Range</label>
+                    <input type="text" id="salary_range" name="salary_range" placeholder="e.g. $80,000 - $100,000">
+                </div>
+
+                <div class="form-group">
+                    <label for="experience_level">Experience Level</label>
+                    <select id="experience_level" name="experience_level">
+                        <option value="Entry Level">Entry Level</option>
+                        <option value="Mid Level">Mid Level</option>
+                        <option value="Senior Level">Senior Level</option>
+                        <option value="Director">Director</option>
+                    </select>
+                </div>
             </div>
-            {% if user.is_authenticated %}
-            <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
-            <div class="user-email"><span class="status-indicator"></span>{{ user.email }}</div>
-            {% else %}
-            <div class="user-name">John Doe</div>
-            <div class="user-email">john.doe@example.com</div>
-            {% endif %}
-        </div>
 
-        <div class="menu-section">
-            <h3>Main Menu</h3>
-            <ul class="menu-items">
-                <li class="menu-item">
-                    <i class="fas fa-th-large"></i>
-                    <a href="{% url 'dashboard' %}">Dashboard</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <a href="{% url 'dashboard-events' %}">Events</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-users"></i>
-                    <a href="{% url 'dashboard-network' %}">Alumni Network</a>
-                </li>
-                <li class="menu-item active">
-                    <i class="fas fa-briefcase"></i>
-                    <a href="{% url 'job-post-create' %}">Post Job</a>
-                </li>
-                <li class="menu-item">
-                    <i class="fas fa-briefcase"></i>
-                    <a href="{% url 'dashboard-jobs' %}">View Posted Job</a>
-                </li>
-            </ul>
-        </div>
-        {% block title %}Post Job{% endblock %}
-
-        {% block extra_css %}
-        <link rel="stylesheet" href="{% static 'css/dashboard-job-post.css' %}">
-        {% endblock %}
-
-        {% block content %}
-        <div class="header">
-            <button class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </button>
-            <h1 class="page-title">Post a Job</h1>
-
-            <!-- Optional: Back button if needed -->
-            <div class="header-actions">
-                <a href="{% url 'dashboard-jobs' %}" class="btn-back">
-                    <i class="fas fa-arrow-left"></i> Back to Jobs
-                </a>
+            <div class="form-group full-width">
+                <label for="job_description">Job Description</label>
+                <textarea id="job_description" name="job_description" rows="6" required
+                    placeholder="Describe the role, responsibilities, and requirements..."></textarea>
             </div>
-        </div>
 
-        <div class="job-post-container">
-            <div class="job-post-form">
-                <h2 class="form-title">Job Details</h2>
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="job_title">Job Title</label>
-                            <input type="text" id="job_title" name="job_title" required
-                                placeholder="e.g. Software Engineer">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="company_name">Company Name</label>
-                            <input type="text" id="company_name" name="company_name" required
-                                placeholder="e.g. Tech Solutions Inc.">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="location">Location</label>
-                            <input type="text" id="location" name="location" required
-                                placeholder="e.g. Remote, New York, NY">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="employment_type">Employment Type</label>
-                            <select id="employment_type" name="employment_type" required>
-                                <option value="">Select Type</option>
-                                <option value="Full-Time">Full-Time</option>
-                                <option value="Part-Time">Part-Time</option>
-                                <option value="Contract">Contract</option>
-                                <option value="Internship">Internship</option>
-                                <option value="Remote">Remote</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="salary_range">Salary Range</label>
-                            <input type="text" id="salary_range" name="salary_range"
-                                placeholder="e.g. $80,000 - $100,000">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="experience_level">Experience Level</label>
-                            <select id="experience_level" name="experience_level">
-                                <option value="Entry Level">Entry Level</option>
-                                <option value="Mid Level">Mid Level</option>
-                                <option value="Senior Level">Senior Level</option>
-                                <option value="Director">Director</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="job_description">Job Description</label>
-                        <textarea id="job_description" name="job_description" rows="6" required
-                            placeholder="Describe the role, responsibilities, and requirements..."></textarea>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="requirements">Requirements</label>
-                        <textarea id="requirements" name="requirements" rows="4"
-                            placeholder="List specific requirements..."></textarea>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="company_logo">Company Logo (Optional)</label>
-                        <input type="file" id="company_logo" name="company_logo" class="file-input">
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="btn-reset">Reset</button>
-                        <button type="submit" class="btn-submit">Post Job</button>
-                    </div>
-                </form>
+            <div class="form-group full-width">
+                <label for="requirements">Requirements</label>
+                <textarea id="requirements" name="requirements" rows="4"
+                    placeholder="List specific requirements..."></textarea>
             </div>
-</body>
 
-</html>
+            <div class="form-group full-width">
+                <label for="company_logo">Company Logo (Optional)</label>
+                <input type="file" id="company_logo" name="company_logo" class="file-input">
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-reset">Reset</button>
+                <button type="submit" class="btn-submit">Post Job</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
