@@ -61,31 +61,17 @@
                 </li>
             </ul>
         </div>
-{% block title %}Posted Jobs{% endblock %}
+        {% block title %}Posted Jobs{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/dashboard-jobs.css' %}">
-{% endblock %}
+        {% block extra_css %}
+        <link rel="stylesheet" href="{% static 'css/dashboard-jobs.css' %}">
+        {% endblock %}
 
-{% block content %}
-<div class="header">
-    <button class="hamburger" id="hamburger">
-        <i class="fas fa-bars"></i>
-    </button>
-    <h1 class="page-title">Posted Jobs</h1>
-    <div class="header-actions">
-        <a href="{% url 'job-post-create' %}">
-            <button class="btn-post-job">
-                <i class="fas fa-plus"></i>
-                Post New Job
-            </button>
-        </a>
-    </div>
-</div>
-
-    <!-- Main Content -->
-    <div class="main-content">
+        {% block content %}
         <div class="header">
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
             <h1 class="page-title">Posted Jobs</h1>
             <div class="header-actions">
                 <a href="{% url 'job-post-create' %}">
@@ -94,90 +80,104 @@
                         Post New Job
                     </button>
                 </a>
-<div class="jobs-filter">
-    <div class="search-bar">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search jobs...">
-    </div>
-    <div class="filter-options">
-        <select class="filter-select">
-            <option value="">Job Type</option>
-            <option value="full-time">Full Time</option>
-            <option value="part-time">Part Time</option>
-            <option value="internship">Internship</option>
-        </select>
-        <select class="filter-select">
-            <option value="">Location</option>
-            <option value="remote">Remote</option>
-            <option value="onsite">On-site</option>
-        </select>
-        <select class="filter-select">
-            <option value="">Date Posted</option>
-            <option value="today">Today</option>
-            <option value="week">This Week</option>
-            <option value="month">This Month</option>
-        </select>
-    </div>
-</div>
-
-<!-- Jobs Grid -->
-<div class="jobs-grid">
-    {% for job in jobs %}
-    <div class="job-card">
-        <div class="job-header">
-            <div class="company-logo">
-                {% if job.company_logo %}
-                <img src="{{ job.company_logo.url }}" alt="{{ job.company_name }}">
-                {% else %}
-                <div class="logo-placeholder">{{ job.company_name|slice:":1" }}</div>
-                {% endif %}
-            </div>
-            <div class="job-main-info">
-                <h2 class="job-title">{{ job.job_title }}</h2>
-                <p class="company-name">{{ job.company_name }}</p>
-            </div>
-            <div class="job-actions">
-                <button class="btn-save"><i class="far fa-bookmark"></i></button>
             </div>
         </div>
 
-        <div class="job-details">
-            <div class="detail-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>{{ job.location }}</span>
-            </div>
-            <div class="detail-item">
-                <i class="fas fa-clock"></i>
-                <span>{{ job.employment_type }}</span>
-            </div>
-            <div class="detail-item">
-                <i class="fas fa-dollar-sign"></i>
-                <span>{{ job.salary_range }}</span>
-            </div>
-        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1 class="page-title">Posted Jobs</h1>
+                <div class="header-actions">
+                    <a href="{% url 'job-post-create' %}">
+                        <button class="btn-post-job">
+                            <i class="fas fa-plus"></i>
+                            Post New Job
+                        </button>
+                    </a>
+                    <div class="jobs-filter">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search jobs...">
+                        </div>
+                        <div class="filter-options">
+                            <select class="filter-select">
+                                <option value="">Job Type</option>
+                                <option value="full-time">Full Time</option>
+                                <option value="part-time">Part Time</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">Location</option>
+                                <option value="remote">Remote</option>
+                                <option value="onsite">On-site</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">Date Posted</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                    </div>
 
-        <div class="job-tags">
-            <span class="tag">{{ job.experience_level }}</span>
-            <span class="tag">Urgent</span>
-            <span class="tag">Tech</span>
-        </div>
+                    <!-- Jobs Grid -->
+                    <div class="jobs-grid">
+                        {% for job in jobs %}
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div class="company-logo">
+                                    {% if job.company_logo %}
+                                    <img src="{{ job.company_logo.url }}" alt="{{ job.company_name }}">
+                                    {% else %}
+                                    <div class="logo-placeholder">{{ job.company_name|slice:":1" }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="job-main-info">
+                                    <h2 class="job-title">{{ job.job_title }}</h2>
+                                    <p class="company-name">{{ job.company_name }}</p>
+                                </div>
+                                <div class="job-actions">
+                                    <button class="btn-save"><i class="far fa-bookmark"></i></button>
+                                </div>
+                            </div>
 
-        <div class="job-description-preview">
-            {{ job.job_description|truncatechars:100 }}
-        </div>
+                            <div class="job-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>{{ job.location }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>{{ job.employment_type }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>{{ job.salary_range }}</span>
+                                </div>
+                            </div>
 
-        <div class="job-footer">
-            <span class="posted-date">Posted {{ job.created_at|timesince }} ago</span>
-            <button class="btn-view-job">View Details</button>
-        </div>
-    </div>
+                            <div class="job-tags">
+                                <span class="tag">{{ job.experience_level }}</span>
+                                <span class="tag">Urgent</span>
+                                <span class="tag">Tech</span>
+                            </div>
+
+                            <div class="job-description-preview">
+                                {{ job.job_description|truncatechars:100 }}
+                            </div>
+
+                            <div class="job-footer">
+                                <span class="posted-date">Posted {{ job.created_at|timesince }} ago</span>
+                                <button class="btn-view-job">View Details</button>
+                            </div>
+                        </div>
 </body>
 
 </html>
-    {% empty %}
-    <div class="no-jobs">
-        <p>No jobs have been posted yet.</p>
-    </div>
-    {% endfor %}
+{% empty %}
+<div class="no-jobs">
+    <p>No jobs have been posted yet.</p>
+</div>
+{% endfor %}
 </div>
 {% endblock %}

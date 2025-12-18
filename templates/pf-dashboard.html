@@ -34,11 +34,11 @@
             <p class="user-email"><span class="status-indicator"></span>semilie123@gmail.com</p>
             {% endif %}
         </div>
-{% block title %}Dashboard{% endblock %}
+        {% block title %}Dashboard{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pf-dashboard.css' %}">
-{% endblock %}
+        {% block extra_css %}
+        <link rel="stylesheet" href="{% static 'css/pf-dashboard.css' %}">
+        {% endblock %}
 
         <div class="menu-section">
             <h3>ACCOUNT</h3>
@@ -53,210 +53,214 @@
                     <a href="{% url 'logout' %}">Logout</a>
                 </li>
             </ul>
-{% block content %}
-<div class="top-bar">
-    <button class="hamburger" id="hamburger">
-        <i class="fas fa-bars"></i>
-    </button>
-    <h1 class="logo">COLLAGE ALUMNI SYSTEM</h1>
-    <div class="top-bar-action">
-        <div class="user-profile-mini">
-            <img src="{{ user.profile_img.url }}" alt="User Avatar" class="user-avatar-mini">
-            <span>{{ user.username }}</span>
-        </div>
-        <a href="#" class="logout-btn logout-trigger">
-            <i class="fas fa-sign-out-alt logout-icon"></i>
-        </a>
-    </div>
-</div>
-
-    <!-- main content -->
-    <div class="main-content">
-        <div class="top-bar">
-            <h1 class="logo">COLLAGE ALUMNI SYSTEM</h1>
-            <div class="top-bar-action">
-                <div class="user-profile-mini">
-                    <img src="{{ user.profile_img.url }}" alt="User Avatar" class="user-avatar-mini">
-                    <span>{{ user.username }}</span>
-
-                </div>
-                <a href="{% url 'logout' %}" class="logout-btn">
-                    <i class="fas fa-sign-out-alt logout-icon"></i>
-                </a>
-            </div>
-<div class="dashboard-content">
-    <div class="welcome-banner">
-        <h2>Welcome Back, {{ user.first_name }}!</h2>
-        <p>Here's what's happening with your alumni network today.</p>
-    </div>
-
-    <div class="stat-card">
-        <div class="stat-icon events">
-            <i class="fas fa-calendar-check"></i>
-        </div>
-        <div class="stat-info">
-            <h3>{{ upcoming_events.count }}</h3>
-            <p>Upcoming Events</p>
-        </div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-icon jobs">
-            <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="stat-info">
-            <h3>{{ total_jobs }}</h3>
-            <p>New Job Postings</p>
-        </div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-icon connections">
-            <i class="fas fa-user-friends"></i>
-        </div>
-        <div class="stat-info">
-            <h3>{{ total_users }}</h3>
-            <p>Alumni Connections</p>
-        </div>
-    </div>
-
-</div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat1 ">
-                        <i class="fas fa-calendar-alt"></i>
+            {% block content %}
+            <div class="top-bar">
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="logo">COLLAGE ALUMNI SYSTEM</h1>
+                <div class="top-bar-action">
+                    <div class="user-profile-mini">
+                        <img src="{{ user.profile_img.url }}" alt="User Avatar" class="user-avatar-mini">
+                        <span>{{ user.username }}</span>
                     </div>
-                    <div class="stat-value">{{ total_events }}</div>
-                    <div class="stat-label">Total Events</div>
-                    <button class="stat-btn">
-                        <a href="{% url 'dashboard-events' %}">View Details</a>
-                    </button>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat2 ">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <div class="stat-value">{{ total_jobs }}</div>
-                    <div class="stat-label">Jobs Posted</div>
-                    <button class="stat-btn">
-                        <a href="{% url 'dashboard-jobs' %}">View Details</a>
-                    </button>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat3 ">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-value">{{ total_users }}</div>
-                    <div class="stat-label">Alumni Connections</div>
-                    <button class="stat-btn">
-                        <a href="{% url 'dashboard-network' %}">View Details</a>
-                    </button>
+                    <a href="#" class="logout-btn logout-trigger">
+                        <i class="fas fa-sign-out-alt logout-icon"></i>
+                    </a>
                 </div>
             </div>
 
+            <!-- main content -->
+            <div class="main-content">
+                <div class="top-bar">
+                    <h1 class="logo">COLLAGE ALUMNI SYSTEM</h1>
+                    <div class="top-bar-action">
+                        <div class="user-profile-mini">
+                            <img src="{{ user.profile_img.url }}" alt="User Avatar" class="user-avatar-mini">
+                            <span>{{ user.username }}</span>
+
+                        </div>
+                        <a href="{% url 'logout' %}" class="logout-btn">
+                            <i class="fas fa-sign-out-alt logout-icon"></i>
+                        </a>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="welcome-banner">
+                            <h2>Welcome Back, {{ user.first_name }}!</h2>
+                            <p>Here's what's happening with your alumni network today.</p>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon events">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>{{ upcoming_events.count }}</h3>
+                                    <p>Upcoming Events</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon jobs">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>{{ total_jobs }}</h3>
+                                    <p>New Job Postings</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon connections">
+                                    <i class="fas fa-user-friends"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>{{ total_users }}</h3>
+                                    <p>Alumni Connections</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat1 ">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="stat-value">{{ total_events }}</div>
+                            <div class="stat-label">Total Events</div>
+                            <button class="stat-btn">
+                                <a href="{% url 'dashboard-events' %}">View Details</a>
+                            </button>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat2 ">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="stat-value">{{ total_jobs }}</div>
+                            <div class="stat-label">Jobs Posted</div>
+                            <button class="stat-btn">
+                                <a href="{% url 'dashboard-jobs' %}">View Details</a>
+                            </button>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat3 ">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-value">{{ total_users }}</div>
+                            <div class="stat-label">Alumni Connections</div>
+                            <button class="stat-btn">
+                                <a href="{% url 'dashboard-network' %}">View Details</a>
+                            </button>
+                        </div>
+                    </div>
 
 
-<div class="content-grid">
-    <div class="recent-section">
-        <div class="section-header">
-            <h3>Recent Job Postings</h3>
-            <a href="{% url 'dashboard-jobs' %}" class="view-all">View All</a>
-        </div>
-        {% for job in jobs %}
-        <div class="job-card-mini">
-            <div class="job-info">
-                <h4>{{ job.job_title }}</h4>
-                <p>{{ job.company_name }} • {{ job.location }}</p>
-            </div>
-            <span class="job-type">{{ job.employment_type }}</span>
-        </div>
-        {% empty %}
-        <p>No recent jobs found.</p>
-        {% endfor %}
-    </div>
 
-        <div>
-            <link rel="stylesheet" href="{% static 'css/dashboard-events.css' %}">
-            <div class="recent-section">
-                <div class="section-header">
-                    <h2 class="section-title">Upcoming Events</h2>
-                    <!-- <div class="view-options">
+                    <div class="content-grid">
+                        <div class="recent-section">
+                            <div class="section-header">
+                                <h3>Recent Job Postings</h3>
+                                <a href="{% url 'dashboard-jobs' %}" class="view-all">View All</a>
+                            </div>
+                            {% for job in jobs %}
+                            <div class="job-card-mini">
+                                <div class="job-info">
+                                    <h4>{{ job.job_title }}</h4>
+                                    <p>{{ job.company_name }} • {{ job.location }}</p>
+                                </div>
+                                <span class="job-type">{{ job.employment_type }}</span>
+                            </div>
+                            {% empty %}
+                            <p>No recent jobs found.</p>
+                            {% endfor %}
+                        </div>
+
+                        <div>
+                            <link rel="stylesheet" href="{% static 'css/dashboard-events.css' %}">
+                            <div class="recent-section">
+                                <div class="section-header">
+                                    <h2 class="section-title">Upcoming Events</h2>
+                                    <!-- <div class="view-options">
                     <span class="view-all">View All</span>
                 </div> -->
-                </div>
+                                </div>
 
-                <ul class="event-list-full">
-                    {% for event in upcoming_events %}
-                    <li class="event-item-full">
-                        <div class="event-image-container">
-                            <div class="event-date">
-                                <div class="date-day">{{ event.event_date|date:"d" }}</div>
-                                <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                                <ul class="event-list-full">
+                                    {% for event in upcoming_events %}
+                                    <li class="event-item-full">
+                                        <div class="event-image-container">
+                                            <div class="event-date">
+                                                <div class="date-day">{{ event.event_date|date:"d" }}</div>
+                                                <div class="date-month">{{ event.event_date|date:"M" }}</div>
+                                            </div>
+                                            {% if event.event_img %}
+                                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}"
+                                                class="event-image">
+                                            {% else %}
+                                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
+                                                alt="Cancelled Event" class="event-image">
+                                            {% endif %}
+                                        </div>
+                                        <div class="event-details">
+                                            <div class="event-title">{{ event.event_name }}</div>
+                                            <div class="event-info">
+                                                <span class="event-time"><i class="fas fa-clock"></i> {{
+                                                    event.event_date|date:"g:i A"
+                                                    }}</span>
+                                                <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{
+                                                    event.event_location }}</span>
+                                            </div>
+                                            <div class="event-description">
+                                                {{ event.event_description }}
+                                            </div>
+                                            <div class="event-status upcoming">
+                                                <span><i class="fas fa-clock"></i> Upcoming</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% empty %}
+                                    <li class="no-events">
+                                        <div class="event-details">
+                                            <div class="event-title">No upcoming events at this time</div>
+                                            <div class="event-description">
+                                                Check back later for new events.
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
                             </div>
-                            {% if event.event_img %}
-                            <img src="{{ event.event_img.url }}" alt="{{ event.event_name }}" class="event-image">
-                            {% else %}
-                            <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744900889/WhatsApp_Image_2025-04-17_at_8.03.06_PM_ie50i3.jpg"
-                                alt="Cancelled Event" class="event-image">
-                            {% endif %}
                         </div>
-                        <div class="event-details">
-                            <div class="event-title">{{ event.event_name }}</div>
-                            <div class="event-info">
-                                <span class="event-time"><i class="fas fa-clock"></i> {{ event.event_date|date:"g:i A"
-                                    }}</span>
-                                <span class="event-location"><i class="fas fa-map-marker-alt"></i> {{
-                                    event.event_location }}</span>
-                            </div>
-                            <div class="event-description">
-                                {{ event.event_description }}
-                            </div>
-                            <div class="event-status upcoming">
-                                <span><i class="fas fa-clock"></i> Upcoming</span>
-                            </div>
-                        </div>
-                    </li>
-                    {% empty %}
-                    <li class="no-events">
-                        <div class="event-details">
-                            <div class="event-title">No upcoming events at this time</div>
-                            <div class="event-description">
-                                Check back later for new events.
-                            </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
 
 
-    </div>
+                    </div>
 
 </body>
 
 </html>
-    <div class="recent-section">
-        <div class="section-header">
-            <h3>Upcoming Events</h3>
-            <a href="{% url 'dashboard-events' %}" class="view-all">View All</a>
-        </div>
-        {% for event in events %}
-        <div class="event-card-mini">
-            <div class="event-date">
-                <span class="day">{{ event.event_date|date:"d" }}</span>
-                <span class="month">{{ event.event_date|date:"M" }}</span>
-            </div>
-            <div class="event-info">
-                <h4>{{ event.event_name }}</h4>
-                <p>{{ event.event_location }}</p>
-            </div>
-        </div>
-        {% empty %}
-        <p>No upcoming events found.</p>
-        {% endfor %}
+<div class="recent-section">
+    <div class="section-header">
+        <h3>Upcoming Events</h3>
+        <a href="{% url 'dashboard-events' %}" class="view-all">View All</a>
     </div>
+    {% for event in events %}
+    <div class="event-card-mini">
+        <div class="event-date">
+            <span class="day">{{ event.event_date|date:"d" }}</span>
+            <span class="month">{{ event.event_date|date:"M" }}</span>
+        </div>
+        <div class="event-info">
+            <h4>{{ event.event_name }}</h4>
+            <p>{{ event.event_location }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p>No upcoming events found.</p>
+    {% endfor %}
+</div>
 </div>
 </div>
 {% endblock %}
