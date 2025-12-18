@@ -1,4 +1,3 @@
-{% extends 'dashboard_base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -61,102 +60,99 @@
                 </li>
             </ul>
         </div>
-{% block title %}Post Job{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/dashboard-job-post.css' %}">
-{% endblock %}
-
-{% block content %}
-<div class="header">
-    <button class="hamburger" id="hamburger">
-        <i class="fas fa-bars"></i>
-    </button>
-    <h1 class="page-title">Post a Job</h1>
-
-    <!-- Optional: Back button if needed -->
-    <div class="header-actions">
-        <a href="{% url 'dashboard-jobs' %}" class="btn-back">
-            <i class="fas fa-arrow-left"></i> Back to Jobs
-        </a>
+        <div class="menu-section">
+            <h3>ACCOUNT</h3>
+            <ul class="menu-items">
+                <li class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <a href="{% url 'dashboard-profile' %}">My Profile</a>
+                </li>
+                <li class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
 
-<div class="job-post-container">
-    <div class="job-post-form">
-        <h2 class="form-title">Job Details</h2>
-        <form method="post" action="">
-            {% csrf_token %}
-            <div class="form-grid">
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1 class="page-title">Post a Job</h1>
+        </div>
+
+        <div class="job-post-form">
+            <form method="post" action="">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="job_title">Job Title</label>
-                    <input type="text" id="job_title" name="job_title" required placeholder="e.g. Software Engineer">
+                    <input type="text" id="job_title" name="job_title" required>
                 </div>
 
                 <div class="form-group">
                     <label for="company_name">Company Name</label>
-                    <input type="text" id="company_name" name="company_name" required
-                        placeholder="e.g. Tech Solutions Inc.">
+                    <input type="text" id="company_name" name="company_name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="location">Location</label>
-                    <input type="text" id="location" name="location" required placeholder="e.g. Remote, New York, NY">
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="employment_type">Employment Type</label>
+                        <select id="employment_type" name="employment_type" required>
+                            <option value="">Select Type</option>
+                            <option value="full-time">Full-time</option>
+                            <option value="part-time">Part-time</option>
+                            <option value="contract">Contract</option>
+                            <option value="internship">Internship</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group half">
+                        <label for="experience_level">Experience Level</label>
+                        <select id="experience_level" name="experience_level" required>
+                            <option value="">Select Level</option>
+                            <option value="entry">Entry Level</option>
+                            <option value="mid">Mid Level</option>
+                            <option value="senior">Senior Level</option>
+                            <option value="executive">Executive</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="employment_type">Employment Type</label>
-                    <select id="employment_type" name="employment_type" required>
-                        <option value="">Select Type</option>
-                        <option value="Full-Time">Full-Time</option>
-                        <option value="Part-Time">Part-Time</option>
-                        <option value="Contract">Contract</option>
-                        <option value="Internship">Internship</option>
-                        <option value="Remote">Remote</option>
-                    </select>
+                    <label for="job_description">Job Description</label>
+                    <textarea id="job_description" name="job_description" rows="6" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="salary_range">Salary Range</label>
-                    <input type="text" id="salary_range" name="salary_range" placeholder="e.g. $80,000 - $100,000">
+                    <label for="requirements">Requirements</label>
+                    <textarea id="requirements" name="requirements" rows="4" required></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="experience_level">Experience Level</label>
-                    <select id="experience_level" name="experience_level">
-                        <option value="Entry Level">Entry Level</option>
-                        <option value="Mid Level">Mid Level</option>
-                        <option value="Senior Level">Senior Level</option>
-                        <option value="Director">Director</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="salary_range">Salary Range</label>
+                        <input type="text" id="salary_range" name="salary_range" placeholder="e.g., $50,000 - $70,000">
+                    </div>
+
+                    <div class="form-group half">
+                        <label for="application_deadline">Application Deadline</label>
+                        <input type="date" id="application_deadline" name="application_deadline" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group full-width">
-                <label for="job_description">Job Description</label>
-                <textarea id="job_description" name="job_description" rows="6" required
-                    placeholder="Describe the role, responsibilities, and requirements..."></textarea>
-            </div>
-
-            <div class="form-group full-width">
-                <label for="requirements">Requirements</label>
-                <textarea id="requirements" name="requirements" rows="4"
-                    placeholder="List specific requirements..."></textarea>
-            </div>
-
-            <div class="form-group full-width">
-                <label for="company_logo">Company Logo (Optional)</label>
-                <input type="file" id="company_logo" name="company_logo" class="file-input">
-            </div>
-
-            <div class="form-actions">
-                <button type="button" class="btn-reset">Reset</button>
-                <button type="submit" class="btn-submit">Post Job</button>
-            </div>
-        </form>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Post Job</button>
+                    <button type="reset" class="btn-reset">Reset</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 
 </html>
-</div>
-{% endblock %}

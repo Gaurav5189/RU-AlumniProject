@@ -135,7 +135,6 @@ class ContactForm(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField()
-    is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
