@@ -263,7 +263,7 @@ REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
 # Fix for mixed content - Force HTTPS (from ChatGPT recommendation)
 # Only enable SSL redirect in production (Vercel), not localhost
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = not DEBUG
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
