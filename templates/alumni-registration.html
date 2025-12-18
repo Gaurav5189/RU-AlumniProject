@@ -1,28 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumni Registration Portal</title>
     <link rel="stylesheet" href="{% static 'css/style_resi.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-     integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
     <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
     <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="canonical" href="https://ravenshawalumnisystem.dpdns.org{{ request.path }}">
 </head>
+
 <body>
     <center>
         {% if messages %}
-            <div class="alert">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            </div>
+        <div class="alert">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
         {% endif %}
     </center>
     <div class="contener">
@@ -36,7 +39,8 @@
                 </div>
                 <div class="input-box">
                     <span class="details"><i class="fas fa-envelope"></i> Email</span>
-                    <input type="email" name="email" id="email-field" placeholder="Enter your email address" readonly required>
+                    <input type="email" name="email" id="email-field" placeholder="Enter your email address" readonly
+                        required>
                 </div>
                 <div class="input-box">
                     <span class="details"><i class="fas fa-birthday-cake"></i> Age</span>
@@ -56,15 +60,17 @@
                 </div>
                 <div class="input-box">
                     <span class="details"><i class="fas fa-lock"></i> Password</span>
-                    <input type="password" name="password" id="password" placeholder="Create a strong password" required>
+                    <input type="password" name="password" id="password" placeholder="Create a strong password"
+                        required>
                 </div>
                 <div class="input-box">
                     <span class="details"><i class="fas fa-check-circle"></i> Confirm Password</span>
-                    <input type="password" name="c_password" id="confirm-password" placeholder="Confirm your password" required>
+                    <input type="password" name="c_password" id="confirm-password" placeholder="Confirm your password"
+                        required>
                     <div id="password-match-indicator" class="password-match-indicator"></div>
                 </div>
             </div>
-            
+
             <div class="gender-details">
                 <span class="gender-title"><i class="fas fa-venus-mars"></i> Gender</span>
                 <input type="hidden" name="gender" id="gender-field" value="">
@@ -86,11 +92,12 @@
                     </label>
                 </div>
             </div>
-            
+
             <input type="submit" value="Register">
         </form>
     </div>
 
     <script src="{% static 'js/alumni-registration.js' %}" defer></script>
 </body>
+
 </html>

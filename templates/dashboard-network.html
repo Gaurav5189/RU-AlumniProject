@@ -2,12 +2,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Alumni Network</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-     integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/dashboard-network.css' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
@@ -15,7 +16,9 @@
     <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
     <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="canonical" href="https://ravenshawalumnisystem.dpdns.org{{ request.path }}">
 </head>
+
 <body>
     <div class="container">
         <!-- Sidebar Navigation -->
@@ -25,7 +28,8 @@
                     {% if user.profile_img %}
                     <img src="{{ user.profile_img.url }}" alt="Profile" class="avatar">
                     {% else %}
-                    <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png" alt="Profile" class="avatar">
+                    <img src="https://res.cloudinary.com/do7vm8vz3/image/upload/v1744881837/default_pf_faq5zi.png"
+                        alt="Profile" class="avatar">
                     {% endif %}
                 </div>
                 {% if user.is_authenticated %}
@@ -36,7 +40,7 @@
                 <div class="user-email"></span>john.doe@example.com</div>
                 {% endif %}
             </div>
-            
+
             <div class="menu-section">
                 <h3>Main Menu</h3>
                 <ul class="menu-items">
@@ -62,7 +66,7 @@
                     </li>
                 </ul>
             </div>
-            
+
             <div class="menu-section">
                 <h3>ACCOUNT</h3>
                 <ul class="menu-items">
@@ -83,7 +87,7 @@
             <div class="header">
                 <h1 class="page-title">Alumni Network</h1>
             </div>
-            
+
             <div class="alumni-section">
                 <div class="alumni-grid">
                     {% for user in Users %}
@@ -114,7 +118,8 @@
                             </div>
                         </div>
                         <div class="alumni-footer">
-                            <button class="view-profile-btn" data-user-id="{{ user.id }}" data-user-name="{{ user.name }}">View Profile</button>
+                            <button class="view-profile-btn" data-user-id="{{ user.id }}"
+                                data-user-name="{{ user.name }}">View Profile</button>
                         </div>
                     </div>
                     {% empty %}
@@ -150,7 +155,7 @@
                     <div class="detail-label">Location:</div>
                     <div id="userLocation" class="detail-value"></div>
                 </div>
-                 <div class="profile-detail">
+                <div class="profile-detail">
                     <div class="detail-label">Company:</div>
                     <div id="userCompany" class="detail-value"></div>
                 </div>
@@ -171,4 +176,5 @@
 
     <script src="{% static 'js/dashboard-network.js' %}" defer></script>
 </body>
+
 </html>
