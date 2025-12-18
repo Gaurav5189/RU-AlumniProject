@@ -30,31 +30,33 @@
         <p>Here's what's happening with your alumni network today.</p>
     </div>
 
-    <div class="stat-card">
-        <div class="stat-icon events">
-            <i class="fas fa-calendar-check"></i>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon events">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-info">
+                <h3>{{ upcoming_events.count }}</h3>
+                <p>Upcoming Events</p>
+            </div>
         </div>
-        <div class="stat-info">
-            <h3>{{ upcoming_events.count }}</h3>
-            <p>Upcoming Events</p>
+        <div class="stat-card">
+            <div class="stat-icon jobs">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="stat-info">
+                <h3>{{ total_jobs }}</h3>
+                <p>New Job Postings</p>
+            </div>
         </div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-icon jobs">
-            <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="stat-info">
-            <h3>{{ total_jobs }}</h3>
-            <p>New Job Postings</p>
-        </div>
-    </div>
-    <div class="stat-card">
-        <div class="stat-icon connections">
-            <i class="fas fa-user-friends"></i>
-        </div>
-        <div class="stat-info">
-            <h3>{{ total_users }}</h3>
-            <p>Alumni Connections</p>
+        <div class="stat-card">
+            <div class="stat-icon connections">
+                <i class="fas fa-user-friends"></i>
+            </div>
+            <div class="stat-info">
+                <h3>{{ total_users }}</h3>
+                <p>Alumni Connections</p>
+            </div>
         </div>
     </div>
 
