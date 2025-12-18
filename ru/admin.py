@@ -68,13 +68,18 @@ class RavenshawEventAdmin(admin.ModelAdmin):
         })
     )
 
+@admin.action(description='Mark selected forms as read')
+def mark_as_read(modeladmin, request, queryset):
+    queryset.update(is_read=True)
+
 class ContactFormAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'created_at')
+    list_display = ('first_name', 'last_name', 'email', 'is_read', 'created_at')
     list_display_links = ('first_name', 'last_name')
     search_fields = ('first_name', 'last_name', 'email')
-    list_filter = ('created_at',)
+    list_filter = ('is_read', 'created_at')
     date_hierarchy = 'created_at'
     ordering = ('-created_at',)
+    actions = [mark_as_read]
 
 # Register the ContactForm model (assuming you have a ContactForm model defined)
 admin.site.register(ContactForm, ContactFormAdmin)
