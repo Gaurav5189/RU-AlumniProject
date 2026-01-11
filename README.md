@@ -3,7 +3,7 @@
 <div align="center">
 
 ![GitHub license](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
+![Version](https://img.shields.io/badge/version-2.0.0-brightgreen)
 ![Status](https://img.shields.io/badge/status-active-success)
 ![PRs](https://img.shields.io/badge/PRs-welcome-orange)
 
