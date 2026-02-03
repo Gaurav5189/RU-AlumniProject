@@ -13,6 +13,7 @@ from .models import OTPVerification, CustomUser, RavenshawEvent, JobPost, Contac
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+import requests
 
 from csp.decorators import csp_update
 
@@ -56,7 +57,7 @@ def contact(request):
         email = request.POST.get('email', '').strip()
         message = request.POST.get('message', '').strip()
 
-        # Create a new ContactForm instance
+        # 1. Create and save the record in your local Django database
         from .models import ContactForm
         contact_form = ContactForm(
             first_name=first_name,
@@ -65,6 +66,23 @@ def contact(request):
             message=message
         )
         contact_form.save()
+
+        # 2. Trigger the n8n Workflow
+        n8n_webhook_url = "https://tom716-n8n-free.hf.space/webhook/04f034fb-ebc1-46d9-982b-b55849a16131"
+        payload = {
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "message": message,
+            "source": "Ravenshaw Alumni System Contact Form"
+        }
+
+        try:
+            # Send data to n8n asynchronously (or with a short timeout)
+            requests.post(n8n_webhook_url, json=payload, timeout=5)
+        except requests.exceptions.RequestException as e:
+            # Log the error if n8n is down, but don't stop the user experience
+            print(f"n8n webhook failed: {e}")
 
         messages.success(request, 'Your message has been sent successfully!')
         return redirect('contact')
